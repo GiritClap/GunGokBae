@@ -448,6 +448,7 @@
 "Assets/M_BagAndBoss/Scripts/M_Pattern1.cs"
 "Assets/M_BagAndBoss/Scripts/M_PlayerMove.cs"
 "Assets/M_BagAndBoss/Scripts/M_Portal.cs"
+"Assets/M_BagAndBoss/Scripts/M_ShipController.cs"
 "Assets/M_BagAndBoss/Scripts/M_TextOnScreen.cs"
 "Assets/M_BagAndBoss/Scripts/M_TimelineTest.cs"
 "Assets/M_BagAndBoss/Scripts/PlayerMovementAdvanced.cs"
