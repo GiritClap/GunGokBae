@@ -11,6 +11,14 @@ TagManager:
   - stone
   - gun
   - ore
+  - Ground_Sand
+  - Ground
+  - Portal1
+  - stone3
+  - stone2
+  - gun3
+  - gun2
+  - melee
   layers:
   - Default
   - TransparentFX

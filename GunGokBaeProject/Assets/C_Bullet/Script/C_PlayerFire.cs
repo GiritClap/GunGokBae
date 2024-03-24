@@ -22,6 +22,10 @@ public class C_PlayerFire : MonoBehaviour
 
     C_PlayerItem C_PlayerItem;
 
+    //M_code
+    public Collider melee;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,27 +36,60 @@ public class C_PlayerFire : MonoBehaviour
         bullet_cnt_txt.text = (bullet_All + " / " + bullet_Cnt);
 
         C_PlayerItem = this.GetComponent<C_PlayerItem>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetButtonDown("Fire1")) //좌클릭
+   
+        /*if (Input.GetButtonDown("Fire1")) //좌클릭
         {
             if(C_PlayerItem.nowItem.name == "Gun") {
                 ShotRayBullet();
             }
             if (C_PlayerItem.nowItem.name == "Pick")
             {
-                Debug.Log("Mining");
-                Mining();
+                if(meleeTimer > 2.0f)
+                {
+                    //M_code 광물 캐는 속도 
+                    Mining();
+                    melee.enabled = false;
+                    meleeTimer = 0; 
+                }
+         
+            }
+        }*/
+
+        if (C_PlayerItem.nowItem.name == "Gun")
+        {
+            if (Input.GetButtonDown("Fire1")) //좌클릭
+            {
+                ShotRayBullet();
             }
         }
 
-        if (Input.GetButtonDown("Fire2")) //우클릭
+        if (C_PlayerItem.nowItem.name == "Pick")
         {
             
+                if (Input.GetButtonDown("Fire1")) //좌클릭
+                {
+
+                    Debug.Log("melee true");
+
+                    melee.enabled = true;
+                    
+                }
+                if(Input.GetButtonUp("Fire1")) 
+                {
+                    melee.enabled = false;
+                }
+        }
+
+
+        if (Input.GetButtonDown("Fire2")) //우클릭
+        {
+
         }
 
         if (Input.GetKeyDown(KeyCode.R)) //총 재장전
@@ -79,6 +116,7 @@ public class C_PlayerFire : MonoBehaviour
             bullet_cnt_txt.text = (bullet_All + " / " + bullet_Cnt);
         }
     }
+
 
     private void ShotBigBullet() // 일반적인 총알 발사
     {
@@ -117,7 +155,7 @@ public class C_PlayerFire : MonoBehaviour
 
     private void Mining()
     {
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        /*Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         RaycastHit hitInfo = new RaycastHit();
 
         if (Physics.Raycast(ray, out hitInfo, 5))
@@ -127,6 +165,8 @@ public class C_PlayerFire : MonoBehaviour
             {
                 Destroy(hitInfo.collider.gameObject);
             }
-        }
+        }*/
+
+        // Debug.Log("Mining");
     }
 }

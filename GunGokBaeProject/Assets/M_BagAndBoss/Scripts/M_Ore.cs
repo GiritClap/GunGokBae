@@ -11,10 +11,13 @@ public class M_Ore : MonoBehaviour
     // 해당 광물에 어떤 광물과 총기를 드랍할 것 인지 등록
     public GameObject gun;
     public GameObject ore;
+
+    Color oriCol;
     // Start is called before the first frame update
     void Start()
     {
         mat = GetComponent<MeshRenderer>();
+        oriCol = mat.material.color;
     }
 
     // Update is called once per frame
@@ -46,7 +49,7 @@ public class M_Ore : MonoBehaviour
         cnt++;
         mat.material.color = Color.red;
         yield return new WaitForSeconds(0.5f);
-        mat.material.color = Color.green;
+        mat.material.color = oriCol;
         isDamage = false;
     }
 }
