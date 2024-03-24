@@ -20,6 +20,8 @@ public class C_PlayerFire : MonoBehaviour
     public Text bullet_Txt;
     Text bullet_cnt_txt;
 
+    C_PlayerItem C_PlayerItem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,19 +31,28 @@ public class C_PlayerFire : MonoBehaviour
         bullet_cnt_txt = Instantiate(bullet_Txt, createPoint, Quaternion.identity, GameObject.Find("Canvas").transform);
         bullet_cnt_txt.text = (bullet_All + " / " + bullet_Cnt);
 
+        C_PlayerItem = this.GetComponent<C_PlayerItem>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetButtonDown("Fire1")) //¡¬≈¨∏Ø
         {
-            ShotBigBullet();
+            if(C_PlayerItem.nowItem.name == "Gun") {
+                ShotRayBullet();
+            }
+            if (C_PlayerItem.nowItem.name == "Pick")
+            {
+                Debug.Log("Mining");
+                Mining();
+            }
         }
 
         if (Input.GetButtonDown("Fire2")) //øÏ≈¨∏Ø
         {
-            ShotRayBullet();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.R)) //√— ¿Á¿Â¿¸
@@ -101,6 +112,21 @@ public class C_PlayerFire : MonoBehaviour
             }
             //Debug.Log("bullet_all : " + bullet_All + "  /  bulet_Cnt : " + bullet_Cnt);
             bullet_cnt_txt.text = (bullet_All + " / " + bullet_Cnt);
+        }
+    }
+
+    private void Mining()
+    {
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        RaycastHit hitInfo = new RaycastHit();
+
+        if (Physics.Raycast(ray, out hitInfo, 5))
+        {
+            Debug.Log(hitInfo.collider.tag);
+            if(hitInfo.collider.tag == "ore")
+            {
+                Destroy(hitInfo.collider.gameObject);
+            }
         }
     }
 }
