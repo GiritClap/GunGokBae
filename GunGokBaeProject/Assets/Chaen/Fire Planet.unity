@@ -640,6 +640,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1876729150938596221, guid: 802ca10b24bc77d47a315b51721c7f0e, type: 3}
+      propertyPath: MaxDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1876729150938596221, guid: 802ca10b24bc77d47a315b51721c7f0e, type: 3}
+      propertyPath: DefaultDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2674126274083341044, guid: 802ca10b24bc77d47a315b51721c7f0e, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 8479389742421531620}
     - target: {fileID: 3479738986603720387, guid: 802ca10b24bc77d47a315b51721c7f0e, type: 3}
       propertyPath: OrientationMethod
       value: 0
@@ -1489,7 +1501,7 @@ GameObject:
   - component: {fileID: 2576589027242770331}
   - component: {fileID: 8479389742421531620}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
