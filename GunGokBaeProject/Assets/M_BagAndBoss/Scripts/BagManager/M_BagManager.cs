@@ -10,11 +10,14 @@ public class M_BagManager : MonoBehaviour
     public float stone = 0;
     public float stone2 = 0;
     public float stone3 = 0;
+    public float stone4 = 0;
+    public float stone5 = 0;
 
     //총 종류가 추가될때마다 gun변수 하나씩 추가
     public bool gun = false;
     public bool gun2 = false;
     public bool gun3 = false;
+
 
     private void Awake()
     {
@@ -48,30 +51,47 @@ public class M_BagManager : MonoBehaviour
     {
         return stone;
     }
-
     public void SetStone()
     {
         stone++;
     }
+
     public float GetStone2()
     {
         return stone2;
     }
-
     public void SetStone2()
     {
         stone2++;
     }
+
     public float GetStone3()
     {
         return stone3;
     }
-
     public void SetStone3()
     {
         stone3++;
     }
- 
+
+    public float GetStone4()
+    {
+        return stone4;
+    }
+    public void SetStone4()
+    {
+        stone4++;
+    }
+
+    public float GetStone5()
+    {
+        return stone5;
+    }
+    public void SetStone5()
+    {
+        stone5++;
+    }
+
     // 아래에는 gun 추가
 
     public bool GetGun()

@@ -20,6 +20,8 @@ public class M_TextOnScreen : MonoBehaviour
         stone[0].text = "stone1 : " + M_BagManager.Instance.GetStone().ToString();
         stone[1].text = "stone2 : " + M_BagManager.Instance.GetStone2().ToString();
         stone[2].text = "stone3 : " + M_BagManager.Instance.GetStone3().ToString();
+        stone[3].text = "stone4 : " + M_BagManager.Instance.GetStone4().ToString();
+        stone[4].text = "stone5 : " + M_BagManager.Instance.GetStone5().ToString();
 
 
         imgs[0].gameObject.SetActive(M_BagManager.Instance.GetGun());

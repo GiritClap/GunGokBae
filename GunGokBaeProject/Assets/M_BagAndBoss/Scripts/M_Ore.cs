@@ -25,9 +25,13 @@ public class M_Ore : MonoBehaviour
     {
         if (cnt > 2)
         {
-            GameObject gg = Instantiate(gun, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation);
-            gg.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1, 2, 1) * 100); // 광석이나 총기가 드랍될때 랜덤한 방향으로 튕겨나가기
-                                                                                          // 추후 랜덤한 방향으로 바꿀것
+            if(gun != null)
+            {
+                GameObject gg = Instantiate(gun, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation);
+                gg.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1, 2, 1) * 100); // 광석이나 총기가 드랍될때 랜덤한 방향으로 튕겨나가기 // 추후 랜덤한 방향으로 바꿀것
+
+            }
+           
             GameObject oo = Instantiate(ore, this.transform.position + new Vector3(-1, 0, 0), this.transform.rotation);
             oo.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 2, -1) * 100);
 
