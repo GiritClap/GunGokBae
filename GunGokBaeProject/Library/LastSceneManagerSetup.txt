@@ -1,5 +1,9 @@
 sceneSetups:
-- path: Assets/Chaen/Fire Planet.unity
+<<<<<<< HEAD
+- path: Assets/Chaen/Scenes/Fire Planet.unity
+=======
+- path: Assets/M_BagAndBoss/Scenes/GrapplingTest.unity
+>>>>>>> fcb52058536c31adc7c30e2157ef9417a2f0cd96
   isLoaded: 1
   isActive: 1
   isSubScene: 0
