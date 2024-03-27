@@ -383,6 +383,7 @@
 "Assets/C_Bullet/Script/C_PlayerFire.cs"
 "Assets/C_Bullet/Script/M_CameraPos.cs"
 "Assets/C_Bullet/Script/PlayerFire.cs"
+"Assets/Kim_Server/Scripts/NetworkManager.cs"
 "Assets/Kim_Server/Scripts/RoomManager.cs"
 "Assets/KinematicCharacterController/Core/ICharacterController.cs"
 "Assets/KinematicCharacterController/Core/IMoverController.cs"
