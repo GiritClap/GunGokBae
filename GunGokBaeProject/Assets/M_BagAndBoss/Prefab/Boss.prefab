@@ -385,10 +385,10 @@ MonoBehaviour:
   player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
   meleeWeapon: {fileID: 0}
   pattern01: {fileID: 0}
   pattern02: {fileID: 0}
