@@ -48,7 +48,6 @@ public class M_PlayerBody : MonoBehaviour
             M_BagManager.Instance.SetStone4();
             Destroy(collision.gameObject);
         }
-
         if (collision.collider.tag == "stone5")
         {
             M_BagManager.Instance.SetStone5();

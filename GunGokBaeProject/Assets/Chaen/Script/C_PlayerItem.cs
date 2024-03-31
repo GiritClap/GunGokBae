@@ -8,7 +8,7 @@ public class C_PlayerItem : MonoBehaviour
     public GameObject pick;
     public GameObject special_gun;
 
-    public GameObject[] player_ItemNum = new GameObject[4];
+    public GameObject[] player_ItemNum = new GameObject[3];
     public GameObject nowItem;
     // Start is called before the first frame update
     void Start()

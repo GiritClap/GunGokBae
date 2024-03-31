@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class C_PlayerFire : MonoBehaviour
 {
-    Vector2 createPoint;
+    Vector2 createPoint = new Vector2(100, 100);
     public GameObject bulletFactory;
     public Transform firePosition;
     GameObject colEnemy;
@@ -130,9 +130,9 @@ public class C_PlayerFire : MonoBehaviour
         if (bullet_Cnt > 0)
         {
             bullet_Cnt -= 1;
-            Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-            RaycastHit hitInfo = new RaycastHit();
-
+            //Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
+            RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, 1000))
             {
                 // ««∞› ¿Ã∆Â∆Æ

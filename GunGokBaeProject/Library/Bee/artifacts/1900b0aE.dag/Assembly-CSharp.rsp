@@ -501,6 +501,7 @@
 "Assets/M_BagAndBoss/Scripts/M_Boss.cs"
 "Assets/M_BagAndBoss/Scripts/M_BossCheckPlayer.cs"
 "Assets/M_BagAndBoss/Scripts/M_Grappling.cs"
+"Assets/M_BagAndBoss/Scripts/M_GunTest.cs"
 "Assets/M_BagAndBoss/Scripts/M_Ore.cs"
 "Assets/M_BagAndBoss/Scripts/M_Pattern1.cs"
 "Assets/M_BagAndBoss/Scripts/M_PlayerBody.cs"
