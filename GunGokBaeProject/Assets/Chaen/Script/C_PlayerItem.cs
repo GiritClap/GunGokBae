@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class C_PlayerItem : MonoBehaviour
 {
+    //수정 예정
     public GameObject gun;
     public GameObject pick;
     public GameObject[] special_gun = new GameObject[3];
     [SerializeField] GameObject noGun;
     [SerializeField] GameObject grapplingGun;
     [SerializeField] GameObject groundGun;
+
+    public int specialNum;
 
     public GameObject[] player_ItemNum = new GameObject[3];
     public GameObject nowItem;
@@ -23,19 +26,15 @@ public class C_PlayerItem : MonoBehaviour
         special_gun[1] = grapplingGun;
         special_gun[2] = groundGun;
 
-
         player_ItemNum[0] = gun;
         player_ItemNum[1] = pick;
-        player_ItemNum[2] = special_gun[0];
+        player_ItemNum[2] = special_gun[1];
         nowItem = player_ItemNum[1];
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(special_gun[0].name);
-        Debug.Log(special_gun[1].name);
-        Debug.Log(special_gun[2].name);
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             player_ItemNum[0].SetActive(true);
