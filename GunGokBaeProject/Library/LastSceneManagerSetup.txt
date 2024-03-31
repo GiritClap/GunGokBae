@@ -1,5 +1,0 @@
-sceneSetups:
-- path: Assets/M_BagAndBoss/Scenes/UpgradeTest.unity
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
