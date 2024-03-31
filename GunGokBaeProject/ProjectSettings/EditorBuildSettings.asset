@@ -4,11 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Chaen/Scenes/Fire Planet.unity
-    guid: 0a99d216a39b8ff4eae2ede09461d13a
-  - enabled: 1
-    path: Assets/M_BagAndBoss/Scenes/BossScene.unity
-    guid: 5afdb950e58926047ad4aaf0bd063936
+  m_Scenes: []
   m_configObjects: {}
