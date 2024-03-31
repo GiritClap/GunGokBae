@@ -65,7 +65,7 @@ public class C_PlayerFire : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1")) //ÁÂÅ¬¸¯
             {
-                ShotRayBullet();
+               ShotRayBullet();
             }
         }
 
