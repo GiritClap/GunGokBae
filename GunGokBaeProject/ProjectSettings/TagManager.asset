@@ -23,6 +23,7 @@ TagManager:
   - stone4
   - stone5
   - Bullet
+  - UpgradeMachine
   layers:
   - Default
   - TransparentFX

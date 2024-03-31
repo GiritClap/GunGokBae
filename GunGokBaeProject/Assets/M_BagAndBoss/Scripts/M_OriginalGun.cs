@@ -12,12 +12,18 @@ public class M_OriginalGun : MonoBehaviour
     ParticleSystem ps;
     public Text bulletCntText;
 
+    public float fireTimer = 0; // 발사속도
+
+    public Image crosshair;
+
+
     // Start is called before the first frame update
     void Start()
     {
         bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
-
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
+        crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+
     }
 
     // Update is called once per frame
@@ -25,20 +31,27 @@ public class M_OriginalGun : MonoBehaviour
     {
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
 
-        if (Input.GetButtonDown("Fire1")) //좌클릭
+        fireTimer += Time.deltaTime;
+
+        if(fireTimer > 1.5f && crosshair.gameObject.activeSelf == true)
         {
-            if(cur_Bullet_Cnt > 0)
+            if (Input.GetButtonDown("Fire1")) //좌클릭
             {
-                ShotRayBullet();
-                cur_Bullet_Cnt--;    
-            }
-            else
-            {
-                Debug.Log("재장전 해야됩니다!!");
+                if (cur_Bullet_Cnt > 0)
+                {
+                    ShotRayBullet();
+                    cur_Bullet_Cnt--;
+                }
+                else
+                {
+                    Debug.Log("재장전 해야됩니다!!");
+                }
+                fireTimer = 0;
             }
         }
+       
 
-        if (Input.GetKeyDown(KeyCode.R)) // 재장전
+        if (Input.GetKeyDown(KeyCode.R) && cur_Bullet_Cnt != reload_Bullet_Cnt && crosshair.gameObject.activeSelf == true) // 재장전
         {
             if(max_Bullet_Cnt > 0)
             {
@@ -51,7 +64,7 @@ public class M_OriginalGun : MonoBehaviour
         }
     }
 
-    private void ShotRayBullet() // ray 를 이용한 총알 발사
+    private void ShotRayBullet() // ray를 이용한 총알 발사
     {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
             RaycastHit hitInfo;
