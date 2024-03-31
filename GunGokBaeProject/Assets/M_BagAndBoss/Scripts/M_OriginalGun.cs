@@ -15,6 +15,8 @@ public class M_OriginalGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
+
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
     }
 

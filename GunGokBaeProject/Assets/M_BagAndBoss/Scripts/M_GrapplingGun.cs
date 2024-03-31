@@ -12,6 +12,7 @@ public class M_GrapplingGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
         gp = GetComponentInChildren<Grappling>();
     }
 
