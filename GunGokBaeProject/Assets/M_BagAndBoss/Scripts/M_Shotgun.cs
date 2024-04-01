@@ -14,6 +14,7 @@ public class M_Shotgun : MonoBehaviour
     public Text bulletCntText;
 
     public float fireTimer = 0; // 발사속도
+    float timer = 0;
 
     public Image crosshair;
 
@@ -35,9 +36,9 @@ public class M_Shotgun : MonoBehaviour
     {
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
 
-        fireTimer += Time.deltaTime;
+        timer += Time.deltaTime;
 
-        if (fireTimer > 1f && crosshair.gameObject.activeSelf == true)
+        if (fireTimer < timer && crosshair.gameObject.activeSelf == true)
         {
             if (Input.GetButtonDown("Fire1")) //좌클릭
             {
@@ -50,7 +51,7 @@ public class M_Shotgun : MonoBehaviour
                 {
                     Debug.Log("재장전 해야됩니다!!");
                 }
-                fireTimer = 0;
+                timer = 0;
             }
         }
 

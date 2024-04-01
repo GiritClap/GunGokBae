@@ -480,7 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletEffect: {fileID: 7465784824618726419, guid: 310083050f9305140a5ce85cfb4e9cc3, type: 3}
   bulletCntText: {fileID: 0}
-  fireTimer: 0
+  fireTimer: 3
   crosshair: {fileID: 0}
 --- !u!114 &7792453602751184210
 MonoBehaviour:
@@ -496,11 +496,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletEffect: {fileID: 7962392344137173328, guid: 2dc515018292c3f47a84efbc62e0aced, type: 3}
   bulletCntText: {fileID: 0}
-  fireTimer: 0
+  fireTimer: 1.5
   crosshair: {fileID: 0}
   bullet: {fileID: 7696604961985615993, guid: 9e571b4235dd0494bb32e7af9b3f00b3, type: 3}
   bulletPos: {fileID: 2442697240866213273}
-  bulletSpeed: 5000
+  bulletSpeed: 8500
 --- !u!1 &4828823464924801054
 GameObject:
   m_ObjectHideFlags: 0

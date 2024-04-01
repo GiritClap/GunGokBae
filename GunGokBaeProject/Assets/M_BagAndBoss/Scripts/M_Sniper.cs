@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class M_OriginalGun : MonoBehaviour
+public class M_Sniper : MonoBehaviour
 {
     float cur_Bullet_Cnt = 0; // 현재 총알수
-    float max_Bullet_Cnt = 70; // 총 총알수
-    float reload_Bullet_Cnt = 10; // 장전 할 수 있는 총알 수
+    float max_Bullet_Cnt = 15; // 총 총알수
+    float reload_Bullet_Cnt = 4; // 장전 할 수 있는 총알 수
     public GameObject bulletEffect;
     ParticleSystem ps;
     public Text bulletCntText;
@@ -17,6 +17,9 @@ public class M_OriginalGun : MonoBehaviour
 
     public Image crosshair;
 
+    public GameObject bullet;
+    public GameObject bulletPos;
+    public float bulletSpeed = 30f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,7 @@ public class M_OriginalGun : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if(fireTimer < timer && crosshair.gameObject.activeSelf == true)
+        if (fireTimer < timer && crosshair.gameObject.activeSelf == true)
         {
             if (Input.GetButtonDown("Fire1")) //좌클릭
             {
@@ -50,11 +53,11 @@ public class M_OriginalGun : MonoBehaviour
                 timer = 0;
             }
         }
-       
+
 
         if (Input.GetKeyDown(KeyCode.R) && cur_Bullet_Cnt != reload_Bullet_Cnt && crosshair.gameObject.activeSelf == true) // 재장전
         {
-            if(max_Bullet_Cnt > 0)
+            if (max_Bullet_Cnt > 0)
             {
                 Reload();
             }
@@ -67,26 +70,19 @@ public class M_OriginalGun : MonoBehaviour
 
     private void ShotRayBullet() // ray를 이용한 총알 발사
     {
-            Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
-            RaycastHit hitInfo;
-            int layerMask = (-1) - (1 << LayerMask.NameToLayer("whatIsPlayer"));  // Everything에서 Player 레이어만 제외하고 충돌 체크함
 
-        if (Physics.Raycast(ray, out hitInfo, 1000, layerMask))
-            {
-                // 피격 이펙트
-                GameObject bE = Instantiate(bulletEffect);
-                bE.transform.position = hitInfo.point;
-                ps = bE.GetComponent<ParticleSystem>();
-                ps.Play();
-            }        
+        GameObject bul = Instantiate(bullet, bulletPos.transform.position, bulletPos.transform.rotation);
+        bul.GetComponentInChildren<Rigidbody>().AddForce(bul.transform.TransformDirection(Vector3.forward) * Time.deltaTime * bulletSpeed * 10000f);
+        Destroy(bul, 5f);
+
     }
 
     void Reload()
     {
-        if(max_Bullet_Cnt >= reload_Bullet_Cnt)
+        if (max_Bullet_Cnt >= reload_Bullet_Cnt)
         {
-            cur_Bullet_Cnt = reload_Bullet_Cnt;
             max_Bullet_Cnt -= reload_Bullet_Cnt;
+            cur_Bullet_Cnt = reload_Bullet_Cnt;
         }
         else
         {
