@@ -34,7 +34,7 @@ public class C_EnemyCtrl : MonoBehaviour
         }
         transform.Translate(Vector3.forward * Time.deltaTime);
         transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
-        nmAgent.SetDestination(target.position);
+        //nmAgent.SetDestination(target.position);
     }
 
     void OnTriggerEnter(Collider other)
