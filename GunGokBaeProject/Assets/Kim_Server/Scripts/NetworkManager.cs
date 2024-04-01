@@ -17,28 +17,28 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
 
-    public void Connect() => PhotonNetwork.ConnectUsingSettings();
+    public void Connect() => PhotonNetwork.ConnectUsingSettings(); //함수 호출 (OnConnectedToMaster)
 
-    public override void OnConnectedToMaster()
+    public override void OnConnectedToMaster() //콜백 함수  (ConnectUsingSettings)
     {
         print("서버접속완료");
-        PhotonNetwork.LocalPlayer.NickName = NickNameInput.text;
+        PhotonNetwork.LocalPlayer.NickName = NickNameInput.text; //UI에 작성한 닉네임을 받아 옴
     }
 
 
 
-    public void Disconnect() => PhotonNetwork.Disconnect();
+    public void Disconnect() => PhotonNetwork.Disconnect(); //함수 호출 (OnDisconnected)
 
-    public override void OnDisconnected(DisconnectCause cause) => print("연결끊김");
-
-
-
-    public void JoinLobby() => PhotonNetwork.JoinLobby();
-
-    public override void OnJoinedLobby() => print("로비접속완료");
+    public override void OnDisconnected(DisconnectCause cause) => print("연결끊김"); //콜백 함수  (Disconnect)
 
 
 
+    public void JoinLobby() => PhotonNetwork.JoinLobby(); //로비 접속(예 )광장)
+
+    public override void OnJoinedLobby() => print("로비접속완료"); //방 들어가기
+
+
+    // 이 밑 함수 들은 Join 나 OnConnectedToMaster 가 되어 있어야 사용 가능
     public void CreateRoom() => PhotonNetwork.CreateRoom(roomInput.text, new RoomOptions { MaxPlayers = 5 });
 
     public void JoinRoom() => PhotonNetwork.JoinRoom(roomInput.text);
