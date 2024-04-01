@@ -68,7 +68,9 @@ public class M_OriginalGun : MonoBehaviour
     {
             Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo, 1000))
+            int layerMask = (-1) - (1 << LayerMask.NameToLayer("whatIsPlayer"));  // Everything에서 Player 레이어만 제외하고 충돌 체크함
+
+        if (Physics.Raycast(ray, out hitInfo, 1000, layerMask))
             {
                 // 피격 이펙트
                 GameObject bE = Instantiate(bulletEffect);

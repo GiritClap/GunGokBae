@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6319078268812419168}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6626562902248823648}
   - component: {fileID: 1495440836392646544}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 2754177831214284574}
   - component: {fileID: 6768805135628627610}
   - component: {fileID: 2184895110688072413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -220,6 +220,37 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070984310854687293}
   m_Enabled: 1
+--- !u!1 &2442697240866213273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1808453004029545712}
+  m_Layer: 6
+  m_Name: BulletPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1808453004029545712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2442697240866213273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -0.569, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6431835820844386673}
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
 --- !u!1 &3469791715150042965
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +371,8 @@ GameObject:
   - component: {fileID: 8621799181942922408}
   - component: {fileID: 7457071512604230061}
   - component: {fileID: 5537047129056890217}
-  m_Layer: 0
+  - component: {fileID: 7792453602751184210}
+  m_Layer: 6
   m_Name: OriginalGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +391,8 @@ Transform:
   m_LocalPosition: {x: 0.637, y: -0.429, z: 0.355}
   m_LocalScale: {x: 2, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1808453004029545712}
   m_Father: {fileID: 2754177831214284574}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &5438691846432416051
@@ -440,7 +473,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4616197622464230308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c58070abef35e047a30ebb2f52e7c9d, type: 3}
   m_Name: 
@@ -449,6 +482,25 @@ MonoBehaviour:
   bulletCntText: {fileID: 0}
   fireTimer: 0
   crosshair: {fileID: 0}
+--- !u!114 &7792453602751184210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616197622464230308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 465fbce14f60af3449958e26725a7658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletEffect: {fileID: 7962392344137173328, guid: 2dc515018292c3f47a84efbc62e0aced, type: 3}
+  bulletCntText: {fileID: 0}
+  fireTimer: 0
+  crosshair: {fileID: 0}
+  bullet: {fileID: 7696604961985615993, guid: 9e571b4235dd0494bb32e7af9b3f00b3, type: 3}
+  bulletPos: {fileID: 2442697240866213273}
+  bulletSpeed: 50000
 --- !u!1 &4828823464924801054
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,8 +514,8 @@ GameObject:
   - component: {fileID: 4727167784990084356}
   - component: {fileID: 1666182734246097532}
   - component: {fileID: 7356947683135875098}
-  m_Layer: 0
-  m_Name: Grapple Gun
+  m_Layer: 6
+  m_Name: GrappleGun(NoTouch)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,7 +552,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4828823464924801054}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1332,7 +1384,7 @@ GameObject:
   - component: {fileID: 7814844639231416216}
   - component: {fileID: 6540303131558800523}
   - component: {fileID: 5785520049716850557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pick
   m_TagString: melee
   m_Icon: {fileID: 0}
@@ -1479,7 +1531,7 @@ GameObject:
   - component: {fileID: 6764471089676358738}
   - component: {fileID: 7682309281262207193}
   - component: {fileID: 7510579333147542733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MyPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1570,7 +1622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8579543922533341766}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NoGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1601,7 +1653,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 666696273766399607}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BulletPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1635,7 +1687,7 @@ GameObject:
   - component: {fileID: 106470842650734019}
   - component: {fileID: 8255154209787918139}
   - component: {fileID: 8342582461268011266}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Grappling Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1741,7 +1793,7 @@ GameObject:
   - component: {fileID: 438588838615458794}
   - component: {fileID: 11531086089019081}
   - component: {fileID: 6563946756726889713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}

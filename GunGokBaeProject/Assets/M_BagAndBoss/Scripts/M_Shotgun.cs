@@ -17,6 +17,9 @@ public class M_Shotgun : MonoBehaviour
 
     public Image crosshair;
 
+    public GameObject bullet;
+    public GameObject bulletPos;
+    public float bulletSpeed = 30f;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,7 @@ public class M_Shotgun : MonoBehaviour
 
         fireTimer += Time.deltaTime;
 
-        if (fireTimer > 3f && crosshair.gameObject.activeSelf == true)
+        if (fireTimer > 1f && crosshair.gameObject.activeSelf == true)
         {
             if (Input.GetButtonDown("Fire1")) //좌클릭
             {
@@ -67,36 +70,23 @@ public class M_Shotgun : MonoBehaviour
 
     private void ShotRayBullet() // ray를 이용한 총알 발사
     {
-        //Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
-        //RaycastHit hitInfo;
-        /*if (Physics.Raycast(ray, out hitInfo, 1000))
+        
+        List<GameObject> bul = new List<GameObject>();
+        for(int i = 0; i < 5; i++)
         {
-            // 피격 이펙트
-            GameObject bE = Instantiate(bulletEffect);
-            bE.transform.position = hitInfo.point;
-            ps = bE.GetComponent<ParticleSystem>();
-            ps.Play();
-        }*/
-
-        RaycastHit hitInfo;
-        List<Ray> rays = new List<Ray>();
-        for (int i = 0; i < 6; i++)
-        {
-            int x = Random.Range(-30, 30);
-            int y = Random.Range(-30, 30);
-            rays.Add(Camera.main.ViewportPointToRay(new Vector2(x, y)));
+            bul.Add(Instantiate(bullet, bulletPos.transform.position, bulletPos.transform.rotation));
         }
 
-        foreach (Ray ray in rays)
+        foreach(GameObject aaa in bul )
         {
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                GameObject bE = Instantiate(bulletEffect);
-                bE.transform.position = hitInfo.point;
-                ps = bE.GetComponent<ParticleSystem>();
-                ps.Play();
-            }
+            float x = Random.Range(-10, 10);
+            float y = Random.Range(-10, 10);
+            
+            aaa.GetComponent<Rigidbody>().AddForce(aaa.transform.TransformDirection(new Vector3(x,y,60)) * Time.deltaTime * bulletSpeed);
+            Destroy(aaa, 1f);
         }
+
+       
     }
 
     void Reload()
