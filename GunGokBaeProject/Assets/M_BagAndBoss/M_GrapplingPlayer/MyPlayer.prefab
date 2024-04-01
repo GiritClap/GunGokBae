@@ -500,7 +500,7 @@ MonoBehaviour:
   crosshair: {fileID: 0}
   bullet: {fileID: 7696604961985615993, guid: 9e571b4235dd0494bb32e7af9b3f00b3, type: 3}
   bulletPos: {fileID: 2442697240866213273}
-  bulletSpeed: 50000
+  bulletSpeed: 5000
 --- !u!1 &4828823464924801054
 GameObject:
   m_ObjectHideFlags: 0
