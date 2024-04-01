@@ -8,9 +8,12 @@ public class C_PlayerItem : MonoBehaviour
     public GameObject gun;
     public GameObject pick;
     public GameObject[] special_gun = new GameObject[3];
+
+    [Header("Special Guns")]
     [SerializeField] GameObject noGun;
     [SerializeField] GameObject grapplingGun;
     [SerializeField] GameObject groundGun;
+
 
     public int specialNum;
 
@@ -25,6 +28,7 @@ public class C_PlayerItem : MonoBehaviour
         special_gun[0] = noGun;
         special_gun[1] = grapplingGun;
         special_gun[2] = groundGun;
+         
 
         player_ItemNum[0] = gun;
         player_ItemNum[1] = pick;
