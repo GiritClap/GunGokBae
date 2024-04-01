@@ -15,6 +15,8 @@ public class M_UpgradePanel : MonoBehaviour
         upgradePanel = GameObject.Find("UpgradePanel");
         upgradePanel.SetActive(false);
         crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+        gunUpgradePanel = GameObject.Find("GunUpgradePanel");
+        gunUpgradePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -23,18 +25,26 @@ public class M_UpgradePanel : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "UpgradeMachine")
+        {
+            Debug.Log("¿‘¿Â");
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "UpgradeMachine")
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 upgradePanel.SetActive(true);
                 crosshair.gameObject.SetActive(false);
             }
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if(Input.GetKey(KeyCode.Escape))
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
