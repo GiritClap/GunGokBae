@@ -9,20 +9,21 @@ public class M_BtnSystem : MonoBehaviour
     public GameObject gunUpgradePanel;
     public GameObject[] gunUpgradeNum;
     public GameObject gunsPanel;
-    public M_OriginalGun originalGun;
+    public M_GunManager manageGun;
     public Image crosshair;
 
     int clickNum = 0;
 
     private void Start()
     {
-        originalGun = GameObject.Find("OriginalGun").GetComponent<M_OriginalGun>();
+        manageGun = GameObject.Find("OriginalGun").GetComponent<M_GunManager>();
     }
+
     private void Update()
     {
-        if (originalGun == null)
+        if (manageGun == null)
         {
-            originalGun = GameObject.Find("OriginalGun").GetComponent<M_OriginalGun>();
+            manageGun = GameObject.Find("OriginalGun").GetComponent<M_GunManager>();
         }
     }
     public void GunBtn()
@@ -50,6 +51,7 @@ public class M_BtnSystem : MonoBehaviour
     {
         if (clickNum > 4)
         {
+            GunReset();
             gunUpgradePanel.SetActive(false);
             gunsPanel.SetActive(true);
             return;
@@ -61,24 +63,32 @@ public class M_BtnSystem : MonoBehaviour
     public void ShotgunBtn()
     {
         crosshair.gameObject.SetActive(true);
-        originalGun.ChooseShotgun();
+        manageGun.ChooseShotgun();
         gunsPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void MachinegunBtn()
     {
         crosshair.gameObject.SetActive(true);
-        originalGun.ChooseMachinegun();
+        manageGun.ChooseMachinegun();
         gunsPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
     }
 
     public void SniperBtn()
     {
         crosshair.gameObject.SetActive(true);
-        originalGun.ChooseSniper();
+        manageGun.ChooseSniper();
         gunsPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
     }
+
+
 
 }
