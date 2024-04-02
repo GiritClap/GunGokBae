@@ -19,11 +19,11 @@ TagManager:
   - gun3
   - gun2
   - melee
-  - gun_heal
   - stone4
   - stone5
   - Bullet
   - UpgradeMachine
+  - Heal
   layers:
   - Default
   - TransparentFX

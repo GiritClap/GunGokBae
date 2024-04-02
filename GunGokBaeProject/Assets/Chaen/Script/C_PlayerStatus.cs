@@ -9,6 +9,11 @@ public class C_PlayerStatus : MonoBehaviour
     public int curHp;
     public int maxHp;
 
+    // ศ๚ รั
+    float healTimer;
+    float healTime;
+    public bool isHealBullet;
+
     // Start is called before the first frame update
 
     void Awake()
@@ -18,13 +23,22 @@ public class C_PlayerStatus : MonoBehaviour
     }
     void Start()
     {
-        Update();
+        UpdateHp();
+        healTime = 0.0f;
+        healTimer = 1.0f;
+        isHealBullet = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         //UpdateHp();
+        if (isHealBullet)
+        {
+            HealBottom();
+        }
+        isHealBullet = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -35,6 +49,15 @@ public class C_PlayerStatus : MonoBehaviour
             this.attack();
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Heal") { 
+                isHealBullet = true;
+        }
+
+    }
+
 
     public void attack()
     {
@@ -62,5 +85,19 @@ public class C_PlayerStatus : MonoBehaviour
     void UpdateHp()
     {
         hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+    }
+
+    public void HealBottom()
+    {
+        healTime += Time.deltaTime;
+        if(healTime >= healTimer)
+        {
+            if (curHp < maxHp)
+            {
+                curHp += 5;
+                UpdateHp();
+            }
+            healTime = 0.0f;
+        }
     }
 }
