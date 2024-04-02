@@ -33,7 +33,7 @@ public class C_PlayerItem : MonoBehaviour
         player_ItemNum[0] = gun;
         player_ItemNum[1] = pick;
         player_ItemNum[2] = special_gun[1];
-        nowItem = player_ItemNum[1];
+        nowItem = player_ItemNum[0];
     }
 
     // Update is called once per frame

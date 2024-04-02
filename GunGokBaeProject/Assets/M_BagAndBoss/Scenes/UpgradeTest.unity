@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &133918017 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2442697240866213273, guid: 536da8058672df6438655d142c4c41c6, type: 3}
-  m_PrefabInstance: {fileID: 1195299560}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &554402976
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -516,10 +511,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5537047129056890217, guid: 536da8058672df6438655d142c4c41c6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6409119467410129534, guid: 536da8058672df6438655d142c4c41c6, type: 3}
       propertyPath: crosshair
       value: 
@@ -532,20 +523,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 7792453602751184210, guid: 536da8058672df6438655d142c4c41c6, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4616197622464230308, guid: 536da8058672df6438655d142c4c41c6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1955358276}
-    - targetCorrespondingSourceObject: {fileID: 4616197622464230308, guid: 536da8058672df6438655d142c4c41c6, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1955358277}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 536da8058672df6438655d142c4c41c6, type: 3}
 --- !u!1 &1588345606
 GameObject:
@@ -904,46 +885,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1955358269 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4616197622464230308, guid: 536da8058672df6438655d142c4c41c6, type: 3}
-  m_PrefabInstance: {fileID: 1195299560}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1955358276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955358269}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ccbc7f1115d0748aa0673f4f8f47f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletEffect: {fileID: 7962392344137173328, guid: 2dc515018292c3f47a84efbc62e0aced, type: 3}
-  bulletCntText: {fileID: 0}
-  fireTimer: 0.1
-  crosshair: {fileID: 0}
---- !u!114 &1955358277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955358269}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0355faf9404a1824598016128f6598bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletEffect: {fileID: 9128742924368708704, guid: a3b0391a716715c479d2f672a1f6a962, type: 3}
-  bulletCntText: {fileID: 0}
-  fireTimer: 2
-  crosshair: {fileID: 0}
-  bullet: {fileID: 5139862559012081820, guid: 5fb0657f4e9f21b42acc554fa6d58bd6, type: 3}
-  bulletPos: {fileID: 133918017}
-  bulletSpeed: 500
 --- !u!1 &1969278879
 GameObject:
   m_ObjectHideFlags: 0

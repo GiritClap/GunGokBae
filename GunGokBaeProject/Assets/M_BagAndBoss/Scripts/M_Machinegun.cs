@@ -24,7 +24,6 @@ public class M_Machinegun : MonoBehaviour
         bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
         crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
-
     }
 
     // Update is called once per frame

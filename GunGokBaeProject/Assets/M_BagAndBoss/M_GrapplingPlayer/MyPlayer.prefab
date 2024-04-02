@@ -372,6 +372,8 @@ GameObject:
   - component: {fileID: 7457071512604230061}
   - component: {fileID: 5537047129056890217}
   - component: {fileID: 7792453602751184210}
+  - component: {fileID: 1741025898454723694}
+  - component: {fileID: 8903141816888991986}
   m_Layer: 6
   m_Name: OriginalGun
   m_TagString: Untagged
@@ -473,7 +475,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4616197622464230308}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c58070abef35e047a30ebb2f52e7c9d, type: 3}
   m_Name: 
@@ -482,6 +484,10 @@ MonoBehaviour:
   bulletCntText: {fileID: 0}
   fireTimer: 3
   crosshair: {fileID: 0}
+  originalGun: {fileID: 5537047129056890217}
+  sniper: {fileID: 8903141816888991986}
+  shotgun: {fileID: 7792453602751184210}
+  machinegun: {fileID: 1741025898454723694}
 --- !u!114 &7792453602751184210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,7 +495,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4616197622464230308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 465fbce14f60af3449958e26725a7658, type: 3}
   m_Name: 
@@ -501,6 +507,41 @@ MonoBehaviour:
   bullet: {fileID: 7696604961985615993, guid: 9e571b4235dd0494bb32e7af9b3f00b3, type: 3}
   bulletPos: {fileID: 2442697240866213273}
   bulletSpeed: 8500
+--- !u!114 &1741025898454723694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616197622464230308}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5ccbc7f1115d0748aa0673f4f8f47f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletEffect: {fileID: 7962392344137173328, guid: 2dc515018292c3f47a84efbc62e0aced, type: 3}
+  bulletCntText: {fileID: 0}
+  fireTimer: 0.1
+  crosshair: {fileID: 0}
+--- !u!114 &8903141816888991986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4616197622464230308}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0355faf9404a1824598016128f6598bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletEffect: {fileID: 9128742924368708704, guid: a3b0391a716715c479d2f672a1f6a962, type: 3}
+  bulletCntText: {fileID: 0}
+  fireTimer: 2
+  crosshair: {fileID: 0}
+  bullet: {fileID: 5139862559012081820, guid: 5fb0657f4e9f21b42acc554fa6d58bd6, type: 3}
+  bulletPos: {fileID: 2442697240866213273}
+  bulletSpeed: 500
 --- !u!1 &4828823464924801054
 GameObject:
   m_ObjectHideFlags: 0
