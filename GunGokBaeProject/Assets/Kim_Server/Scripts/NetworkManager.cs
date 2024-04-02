@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
@@ -23,6 +24,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         print("서버접속완료");
         PhotonNetwork.LocalPlayer.NickName = NickNameInput.text; //UI에 작성한 닉네임을 받아 옴
+
+   
     }
 
 
@@ -35,7 +38,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void JoinLobby() => PhotonNetwork.JoinLobby(); //로비 접속(예 )광장)
 
-    public override void OnJoinedLobby() => print("로비접속완료"); //방 들어가기
+    public override void OnJoinedLobby()=> print("로비접속완료"); //방 들어가기     
+  
 
 
     // 이 밑 함수 들은 Join 나 OnConnectedToMaster 가 되어 있어야 사용 가능
@@ -51,7 +55,16 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public override void OnCreatedRoom() => print("방만들기완료");
 
-    public override void OnJoinedRoom() => print("방참가완료");
+    public override void OnJoinedRoom()
+    {
+        print("방참가완료");
+
+        SceneManager.LoadScene("Fire Planet");
+
+        PhotonNetwork.Instantiate("MyPlayer", Vector3.zero, Quaternion.identity);
+    }
+
+     
 
     public override void OnCreateRoomFailed(short returnCode, string message) => print("방만들기실패");
 
