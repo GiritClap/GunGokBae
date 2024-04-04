@@ -61,7 +61,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         SceneManager.LoadScene("Fire Planet");
 
-        PhotonNetwork.Instantiate("MyPlayer", Vector3.zero, Quaternion.identity);
+        PhotonNetwork.Instantiate("MyPlayer", Vector3.zero + new Vector3(0,2,0), Quaternion.identity);
     }
 
      
