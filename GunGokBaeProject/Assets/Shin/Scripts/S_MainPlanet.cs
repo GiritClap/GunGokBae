@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class S_BossPotal : MonoBehaviour
+public class S_MainPlanet : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
-    {   
-            SceneManager.LoadScene("Shin_BossScene");
-  
+    {
+        SceneManager.LoadScene("Shin_TestPlanet");
+
     }
 }

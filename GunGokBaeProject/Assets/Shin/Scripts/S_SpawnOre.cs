@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class S_SpawnOre : MonoBehaviour
 {
-    public GameObject[] oreArray = new GameObject[4]; //스폰 시킬 아이템
+    public GameObject[] oreArray; //스폰 시킬 아이템
     public GameObject rangeObject; //스폰 할 위치 오브젝트
     BoxCollider rangeCollider; // 스폰할 위치 오브젝트 콜라이더
     public int oreCount; // 스폰할 아이템 갯수
@@ -14,7 +14,7 @@ public class S_SpawnOre : MonoBehaviour
     {
         rangeCollider = rangeObject.GetComponent<BoxCollider>();
         for(int i = 0; i<oreCount; i++){
-            int randomInt = Random.Range(0,4);
+            int randomInt = Random.Range(0,oreArray.Length);
             GameObject spawnOre = Instantiate(oreArray[randomInt],RandomPosition(), Quaternion.identity);
         }
     }
