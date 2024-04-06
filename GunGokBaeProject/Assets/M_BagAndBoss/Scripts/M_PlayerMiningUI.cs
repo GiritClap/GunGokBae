@@ -25,11 +25,15 @@ public class M_PlayerMiningUI : MonoBehaviour
        
         if (Input.GetKey(KeyCode.Tab))
         {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             uiManager.SetActive(true);
             crosshair.gameObject.SetActive(false);
         }
         if(Input.GetKeyUp(KeyCode.Tab))
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             uiManager.SetActive(false);
             crosshair.gameObject.SetActive(true);
         }

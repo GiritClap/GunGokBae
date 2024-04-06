@@ -13,9 +13,9 @@ public class C_HealGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
-        bulletCntText.text = "HealGun";
-        crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+        //bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
+        //bulletCntText.text = "HealGun";
+        //crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
     }
 
     // Update is called once per frame

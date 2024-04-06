@@ -45,18 +45,24 @@ public class C_EnemyCtrl : MonoBehaviour
         if (other.tag == "player_attack")
         {
             Debug.Log(other.gameObject.name + " Ãæµ¹");
-            attack();
+            Attack();
+        }
+
+        if(other.tag == "rocket_attack")
+        {
+            Debug.Log(other.gameObject.name + " Ãæµ¹");
+            RocketAttack();
         }
 
         // Èú ÃÑ
         else if(other.tag == "gun_heal")
         {
             Debug.Log(other.gameObject.name + " Èú");
-            heal();
+            Heal();
         }
     }
 
-    public void attack()
+    public void Attack()
     {
         curHp -= 10;
         hpBar.rectTransform.localScale = new Vector3((float)curHp/ (float)maxHp, 1f, 1f);
@@ -66,7 +72,17 @@ public class C_EnemyCtrl : MonoBehaviour
         }
     }
 
-    public void heal()
+    public void RocketAttack()
+    {
+        curHp -= 100;
+        hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+        if (curHp <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Heal()
     {
         curHp += 10;
         hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
