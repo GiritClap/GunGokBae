@@ -7,13 +7,14 @@ public class C_PlayerItem : MonoBehaviour
     //수정 예정
     public GameObject gun;
     public GameObject pick;
-    public GameObject[] special_gun = new GameObject[4];
+    public GameObject[] special_gun = new GameObject[5];
 
     [Header("Special Guns")]
     [SerializeField] GameObject noGun;
     [SerializeField] GameObject grapplingGun;
     [SerializeField] GameObject groundGun;
     [SerializeField] GameObject healGun;
+    [SerializeField] GameObject rocketGun;
 
 
     public int specialNum;
@@ -30,11 +31,12 @@ public class C_PlayerItem : MonoBehaviour
         special_gun[1] = grapplingGun;
         special_gun[2] = groundGun;
         special_gun[3] = healGun;
+        special_gun[4] = rocketGun;
          
 
         player_ItemNum[0] = gun;
         player_ItemNum[1] = pick;
-        player_ItemNum[2] = special_gun[2];
+        player_ItemNum[2] = special_gun[4];
         nowItem = player_ItemNum[0];
     }
 

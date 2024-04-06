@@ -26,6 +26,7 @@ TagManager:
   - Heal
   - Potal_Map
   - Spaceship
+  - rocket_attack
   layers:
   - Default
   - TransparentFX
