@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class C_GroundGun : MonoBehaviour
+public class C_HealGun : MonoBehaviour
 {
     public GameObject bulletFactory;
     public Transform firePosition;
@@ -14,14 +14,14 @@ public class C_GroundGun : MonoBehaviour
     void Start()
     {
         bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
-        bulletCntText.text = "GroundGun";
+        bulletCntText.text = "HealGun";
         crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bulletCntText.text = "GroundGun";
+        bulletCntText.text = "HealGun";
 
         if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //ÁÂÅ¬¸¯
         {

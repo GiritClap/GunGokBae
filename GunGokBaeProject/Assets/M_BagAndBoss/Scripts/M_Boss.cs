@@ -51,12 +51,16 @@ public class M_Boss : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("whatIsPlayer").transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
+        if(player == null)
+        {
+            player = GameObject.FindWithTag("whatIsPlayer").transform;
+        }
 
         pTimer += Time.deltaTime * 1f;
         if (pTimer > 10.0f)

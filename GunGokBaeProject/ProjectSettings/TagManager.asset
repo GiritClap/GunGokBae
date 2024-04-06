@@ -24,6 +24,8 @@ TagManager:
   - Bullet
   - UpgradeMachine
   - Heal
+  - Potal_Map
+  - Spaceship
   layers:
   - Default
   - TransparentFX
