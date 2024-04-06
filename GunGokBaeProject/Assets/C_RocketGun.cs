@@ -20,9 +20,9 @@ public class C_RocketGun : MonoBehaviour
         gunTimer = 45f;
         isShot = false;
 
-        bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
-        bulletCntText.text = "GroundGun";
-        crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+        //bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
+        //bulletCntText.text = "GroundGun";
+        //crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
     }
 
     // Update is called once per frame

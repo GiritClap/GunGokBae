@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class M_TextOnScreen : MonoBehaviour
 {
     public Text[] stone;
-    public Image[] imgs;
+    public Button[] btns;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +24,10 @@ public class M_TextOnScreen : MonoBehaviour
         stone[4].text = "stone5 : " + M_BagManager.Instance.GetStone5().ToString();
 
 
-        imgs[0].gameObject.SetActive(M_BagManager.Instance.GetGun());
-        imgs[1].gameObject.SetActive(M_BagManager.Instance.GetGun2());
-        imgs[2].gameObject.SetActive(M_BagManager.Instance.GetGun3());
+        btns[0].gameObject.SetActive(M_BagManager.Instance.GetGun());
+        btns[1].gameObject.SetActive(M_BagManager.Instance.GetGun2());
+        btns[2].gameObject.SetActive(M_BagManager.Instance.GetGun3());
+        btns[3].gameObject.SetActive(M_BagManager.Instance.GetGun4());
 
 
     }
