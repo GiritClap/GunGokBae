@@ -14,6 +14,8 @@ public class M_RideSpaceship : MonoBehaviour
     public GameObject playerCam;
     public GameObject spaceshipCam;
 
+    bool space1 = false;
+
     private void Start()
     {
         spaceshipDrive = false;
@@ -62,24 +64,26 @@ public class M_RideSpaceship : MonoBehaviour
             SpaceshipCon.enabled = true;
 
             player.transform.parent.SetParent(spaceship);
-            player.gameObject.SetActive(false);
+            player.transform.parent.gameObject.SetActive(false);
 
             playerCam.gameObject.SetActive(false);
             spaceshipCam.gameObject.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            space1 = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && space1)
         {
-
+            // 요거 수정 요망
        
 
             SpaceshipCon.enabled = false;
 
             player.transform.parent.SetParent(null);
-            player.gameObject.SetActive(true);
+            player.transform.parent.gameObject.SetActive(true);
 
             playerCam.gameObject.SetActive(true);
             spaceshipCam.gameObject.SetActive(false);
@@ -89,6 +93,7 @@ public class M_RideSpaceship : MonoBehaviour
 
             //Vector3 ori
             player.transform.position = this.transform.position;
+            space1 = false;
 
         }
     }
