@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class M_RideSpaceship : MonoBehaviour
+public class M_GunnerSpaceshipR : MonoBehaviour
 {
-    public MonoBehaviour SpaceshipCon;
     public Transform spaceship;
     public Transform player;
 
@@ -16,19 +15,8 @@ public class M_RideSpaceship : MonoBehaviour
 
     private void Start()
     {
+
         spaceshipDrive = false;
-        if (SpaceshipCon == null)
-        {
-            SpaceshipCon = GameObject.Find("Spaceship").GetComponent<M_ShipController>();
-            SpaceshipCon.enabled = false;
-        }
-        else
-        {
-            return;
-        }
-
-
-
     }
 
     private void Update()
@@ -44,12 +32,11 @@ public class M_RideSpaceship : MonoBehaviour
         if (spaceship == null)
         {
             spaceship = GameObject.Find("Spaceship").transform;
-            SpaceshipCon = GameObject.Find("Spaceship").GetComponent<M_ShipController>();
-            SpaceshipCon.enabled = false;
+
         }
         if (spaceshipCam == null)
         {
-            spaceshipCam = GameObject.Find("RiderSpaceshipCamera");
+            spaceshipCam = GameObject.Find("GunnerSpaceshipCameraR");
         }
 
         if (spaceshipDrive == false)
@@ -59,7 +46,7 @@ public class M_RideSpaceship : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && spaceshipDrive)
         {
-            SpaceshipCon.enabled = true;
+
 
             player.transform.parent.SetParent(spaceship);
             player.gameObject.SetActive(false);
@@ -73,10 +60,8 @@ public class M_RideSpaceship : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
+         
 
-       
-
-            SpaceshipCon.enabled = false;
 
             player.transform.parent.SetParent(null);
             player.gameObject.SetActive(true);
@@ -87,8 +72,8 @@ public class M_RideSpaceship : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            //Vector3 ori
             player.transform.position = this.transform.position;
+
 
         }
     }
