@@ -58,8 +58,8 @@ public class M_GunnerSpaceshipL : MonoBehaviour
             playerCam.gameObject.SetActive(false);
             spaceshipCam.gameObject.SetActive(true);
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+         /*   Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;*/
 
             space1 = true;
         }
@@ -74,8 +74,8 @@ public class M_GunnerSpaceshipL : MonoBehaviour
             playerCam.gameObject.SetActive(true);
             spaceshipCam.gameObject.SetActive(false);
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+         /*   Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;*/
 
             space1 = false;
         }
