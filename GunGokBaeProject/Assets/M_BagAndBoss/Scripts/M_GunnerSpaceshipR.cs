@@ -48,7 +48,7 @@ public class M_GunnerSpaceshipR : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && spaceshipDrive)
         {
 
-            player.transform.parent.SetParent(spaceship);
+            //player.transform.parent.SetParent(spaceship);
             player.transform.parent.gameObject.SetActive(false);
 
             playerCam.gameObject.SetActive(false);
@@ -64,7 +64,7 @@ public class M_GunnerSpaceshipR : MonoBehaviour
          
 
 
-            player.transform.parent.SetParent(null);
+            //player.transform.parent.SetParent(null);
             player.transform.parent.gameObject.SetActive(true);
 
             playerCam.gameObject.SetActive(true);
@@ -73,7 +73,6 @@ public class M_GunnerSpaceshipR : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            player.transform.position = this.transform.position;
             space1 = false;
 
         }

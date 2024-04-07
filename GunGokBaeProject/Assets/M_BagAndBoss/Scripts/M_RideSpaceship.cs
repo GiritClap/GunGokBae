@@ -1,3 +1,4 @@
+using Photon.Pun.Demo.PunBasics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +64,7 @@ public class M_RideSpaceship : MonoBehaviour
         {
             SpaceshipCon.enabled = true;
 
-            player.transform.parent.SetParent(spaceship);
+            //player.transform.parent.SetParent(spaceship);
             player.transform.parent.gameObject.SetActive(false);
 
             playerCam.gameObject.SetActive(false);
@@ -82,7 +83,7 @@ public class M_RideSpaceship : MonoBehaviour
 
             SpaceshipCon.enabled = false;
 
-            player.transform.parent.SetParent(null);
+            //player.transform.parent.SetParent(null);
             player.transform.parent.gameObject.SetActive(true);
 
             playerCam.gameObject.SetActive(true);
@@ -91,8 +92,6 @@ public class M_RideSpaceship : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            //Vector3 ori
-            player.transform.position = this.transform.position;
             space1 = false;
 
         }

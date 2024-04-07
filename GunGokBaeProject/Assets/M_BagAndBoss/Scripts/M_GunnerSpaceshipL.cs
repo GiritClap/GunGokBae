@@ -7,6 +7,7 @@ public class M_GunnerSpaceshipL : MonoBehaviour
     public Transform spaceship;
     public Transform player;
 
+
     bool spaceshipDrive;
 
     [Header("Cameras")]
@@ -27,6 +28,7 @@ public class M_GunnerSpaceshipL : MonoBehaviour
         {
             player = GameObject.Find("Player").transform;
         }
+
         if (playerCam == null)
         {
             playerCam = GameObject.Find("PlayerCamera");
@@ -34,7 +36,7 @@ public class M_GunnerSpaceshipL : MonoBehaviour
         if (spaceship == null)
         {
             spaceship = GameObject.Find("Spaceship").transform;
-            
+
         }
         if (spaceshipCam == null)
         {
@@ -48,9 +50,9 @@ public class M_GunnerSpaceshipL : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && spaceshipDrive)
         {
-          
 
-            player.transform.parent.SetParent(spaceship);
+
+            //player.transform.parent.SetParent(spaceship);
             player.transform.parent.gameObject.SetActive(false);
 
             playerCam.gameObject.SetActive(false);
@@ -58,14 +60,15 @@ public class M_GunnerSpaceshipL : MonoBehaviour
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
             space1 = true;
         }
 
         if (Input.GetKeyDown(KeyCode.F) && space1)
         {
-        
 
-            player.transform.parent.SetParent(null);
+
+            //player.transform.parent.SetParent(null);
             player.transform.parent.gameObject.SetActive(true);
 
             playerCam.gameObject.SetActive(true);
@@ -74,7 +77,6 @@ public class M_GunnerSpaceshipL : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            player.transform.position = this.transform.position;
             space1 = false;
         }
     }

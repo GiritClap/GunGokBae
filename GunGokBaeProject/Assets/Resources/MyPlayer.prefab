@@ -1483,10 +1483,10 @@ GameObject:
   - component: {fileID: 762987833473431586}
   - component: {fileID: 8550501980728382936}
   - component: {fileID: 276041891842931475}
-  - component: {fileID: 7465135184320089563}
   - component: {fileID: 6621758016055521977}
   - component: {fileID: 6409119467410129534}
   - component: {fileID: 7324728521201882789}
+  - component: {fileID: 1285443008005441936}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1503,7 +1503,7 @@ Transform:
   m_GameObject: {fileID: 6045510570272384111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -20.58, y: -6.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1533,7 +1533,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -1567,7 +1567,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxSlopeAngle: 45
-  cam: {fileID: 7465135184320089563}
+  cam: {fileID: 0}
   grappleFov: 94.2
   orientation: {fileID: 3483417359925546057}
   state: 0
@@ -1908,31 +1908,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 0
---- !u!114 &7465135184320089563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6045510570272384111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbeb9ff899020cf4bba0c367151844ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sensX: 10
-  sensY: 10
-  multiplier: 0.1
-  orientation: {fileID: 3483417359925546057}
-  camHolder: {fileID: 6626562902248823648}
-  useFluentFov: 0
-  pm: {fileID: 0}
-  rb: {fileID: 0}
-  cam: {fileID: 0}
-  minMovementSpeed: 0
-  maxMovementSpeed: 0
-  minFov: 0
-  maxFov: 0
 --- !u!114 &6621758016055521977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1976,6 +1951,31 @@ MonoBehaviour:
   curHp: 0
   maxHp: 0
   isHealBullet: 0
+--- !u!114 &1285443008005441936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6045510570272384111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbeb9ff899020cf4bba0c367151844ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensX: 10
+  sensY: 10
+  multiplier: 0.1
+  orientation: {fileID: 3483417359925546057}
+  camHolder: {fileID: 6626562902248823648}
+  useFluentFov: 0
+  pm: {fileID: 0}
+  rb: {fileID: 0}
+  cam: {fileID: 0}
+  minMovementSpeed: 0
+  maxMovementSpeed: 0
+  minFov: 0
+  maxFov: 0
 --- !u!1 &6324179800705302506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2754,10 +2754,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &45108816630015686
 MonoBehaviour:
@@ -2945,6 +2945,7 @@ GameObject:
   - component: {fileID: 2709418184690576603}
   - component: {fileID: 2080974958472397698}
   - component: {fileID: 5851547870489826718}
+  - component: {fileID: 6155641209129704771}
   m_Layer: 6
   m_Name: Heal Gun
   m_TagString: Untagged
@@ -3082,6 +3083,22 @@ MonoBehaviour:
   firePosition: {fileID: 4564686876636059892}
   bulletCntText: {fileID: 2843510452814893009}
   crosshair: {fileID: 6989679786777050426}
+--- !u!114 &6155641209129704771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7773591491308446897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc6a896798410c54b9d853ceb6313f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletFactory: {fileID: 6556538501949169681, guid: 80893cdbe6ce6524cadf31d15d52c2ee, type: 3}
+  firePosition: {fileID: 4564686876636059892}
+  bulletCntText: {fileID: 0}
+  crosshair: {fileID: 0}
 --- !u!1 &7886259215844021197
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,7 +3700,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8645338124920512051, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 400
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8645338124920512051, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 8686108618082238750, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
       propertyPath: btns.Array.size
