@@ -24,7 +24,7 @@ public class C_PlayerStatus : MonoBehaviour
     void Start()
     {
         UpdateHp();
-        healTime = 0.0f;
+        healTime = 5.0f;
         healTimer = 1.0f;
         isHealBullet = false;
 
@@ -38,12 +38,10 @@ public class C_PlayerStatus : MonoBehaviour
         {
             HealBottom();
         }
-        isHealBullet = false;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.tag + " Ãæµ¹");
         if(collision.gameObject.tag == "Enemy")
         {
             this.attack();
@@ -90,7 +88,7 @@ public class C_PlayerStatus : MonoBehaviour
     public void HealBottom()
     {
         healTime += Time.deltaTime;
-        if(healTime >= healTimer)
+        if(healTime > healTimer)
         {
             if (curHp < maxHp)
             {
@@ -98,6 +96,7 @@ public class C_PlayerStatus : MonoBehaviour
                 UpdateHp();
             }
             healTime = 0.0f;
+            isHealBullet = false;
         }
     }
 }

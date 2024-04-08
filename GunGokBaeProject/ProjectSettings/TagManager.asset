@@ -27,6 +27,7 @@ TagManager:
   - Potal_Map
   - Spaceship
   - rocket_attack
+  - gun4
   layers:
   - Default
   - TransparentFX

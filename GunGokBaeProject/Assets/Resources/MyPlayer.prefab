@@ -1503,7 +1503,7 @@ Transform:
   m_GameObject: {fileID: 6045510570272384111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.58, y: -6.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2944,7 +2944,6 @@ GameObject:
   - component: {fileID: 6202170127744454514}
   - component: {fileID: 2709418184690576603}
   - component: {fileID: 2080974958472397698}
-  - component: {fileID: 5851547870489826718}
   - component: {fileID: 6155641209129704771}
   m_Layer: 6
   m_Name: Heal Gun
@@ -3067,7 +3066,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5851547870489826718
+--- !u!114 &6155641209129704771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3083,22 +3082,6 @@ MonoBehaviour:
   firePosition: {fileID: 4564686876636059892}
   bulletCntText: {fileID: 2843510452814893009}
   crosshair: {fileID: 6989679786777050426}
---- !u!114 &6155641209129704771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7773591491308446897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc6a896798410c54b9d853ceb6313f01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletFactory: {fileID: 6556538501949169681, guid: 80893cdbe6ce6524cadf31d15d52c2ee, type: 3}
-  firePosition: {fileID: 4564686876636059892}
-  bulletCntText: {fileID: 0}
-  crosshair: {fileID: 0}
 --- !u!1 &7886259215844021197
 GameObject:
   m_ObjectHideFlags: 0
