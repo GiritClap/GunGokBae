@@ -17,7 +17,7 @@ public class UnityWebRequestExample : MonoBehaviour
 
     IEnumerator LoadFromPhp()
     {
-        string url = "http://localhost//index.php";
+        string url = "http://localhost//Login.php";
         WWW www = new WWW(url);
         Debug.Log("Ready2");
         yield return www;
