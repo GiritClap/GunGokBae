@@ -14,6 +14,8 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField New_IDInputField;
     public TMP_InputField New_PassInputField;
 
+    public GameObject LoginPanel;
+    public GameObject CAPanel;
 
     public string LoginUrl;
     public string CreateAccountUrl;
@@ -44,31 +46,40 @@ public class LoginManager : MonoBehaviour
         Debug.Log(webRequest.text);
 
     }
-    public void CreateAcBtn()
-    {
-        StartCoroutine(CreateAcCo());
-    }
-    IEnumerator CreateAcCo()
-    {
-        yield return null;
-    }
         public void CreateBtn()
     {
         StartCoroutine(CreateCo());
     }
     IEnumerator CreateCo()
     {
-        Debug.Log(IDInputField.text);
-        Debug.Log(PassInputField.text);
+        Debug.Log(New_IDInputField.text);
+        Debug.Log(New_PassInputField.text);
 
         WWWForm form = new();
-        form.AddField("Input_user", IDInputField.text);
-        form.AddField("Input_pass", PassInputField.text);
+        form.AddField("Input_user", New_IDInputField.text);
+        form.AddField("Input_pass", New_PassInputField.text);
 
         WWW webRequest = new(CreateAccountUrl, form);
         yield return webRequest;
         Debug.Log(webRequest.text);
+
+        LoginPanel.SetActive(true);
+        CAPanel.SetActive(false);
     }
+
+    public void OpenCreatPanelBtn()
+    {
+        LoginPanel.SetActive(false);
+        CAPanel.SetActive(true);
+    }
+
+    public void back()
+    {
+        LoginPanel.SetActive(true);
+        CAPanel.SetActive(false);
+    }
+
+
 }
 
 
