@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 public class LoginManager : MonoBehaviour
 {
@@ -10,43 +11,63 @@ public class LoginManager : MonoBehaviour
     public TMP_InputField IDInputField;
     public TMP_InputField PassInputField;
     //[Header("CreateAccountPanel")]
-    public TMP_InputField New_IDInputFiled;
+    public TMP_InputField New_IDInputField;
     public TMP_InputField New_PassInputField;
 
 
     public string LoginUrl;
+    public string CreateAccountUrl;
     // Start is called before the first frame update
     void Start()
     {
-        LoginUrl = "http://localhost//Login.php";
+        LoginUrl = "http://localhost/Login.php";
+        CreateAccountUrl = "http://localhost/CreateAccount.php";
     }
+
 
     public void LoginBtn()
     {
         StartCoroutine(LoginCo());
     }
+
     IEnumerator LoginCo()
     {
         Debug.Log(IDInputField.text);
         Debug.Log(PassInputField.text);
 
-        WWWForm form = new WWWForm();
+        WWWForm form = new();
         form.AddField("Input_user", IDInputField.text);
         form.AddField("Input_pass", PassInputField.text);
 
-        WWW webRequest = new WWW(LoginUrl, form);
+        WWW webRequest = new(LoginUrl, form);
         yield return webRequest;
-
         Debug.Log(webRequest.text);
-    }
 
-    public void CreateBtn()
+    }
+    public void CreateAcBtn()
+    {
+        StartCoroutine(CreateAcCo());
+    }
+    IEnumerator CreateAcCo()
+    {
+        yield return null;
+    }
+        public void CreateBtn()
     {
         StartCoroutine(CreateCo());
     }
     IEnumerator CreateCo()
     {
-        yield return null;
+        Debug.Log(IDInputField.text);
+        Debug.Log(PassInputField.text);
+
+        WWWForm form = new();
+        form.AddField("Input_user", IDInputField.text);
+        form.AddField("Input_pass", PassInputField.text);
+
+        WWW webRequest = new(CreateAccountUrl, form);
+        yield return webRequest;
+        Debug.Log(webRequest.text);
     }
 }
 

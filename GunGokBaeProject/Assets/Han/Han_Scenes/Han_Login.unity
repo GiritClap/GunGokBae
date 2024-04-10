@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: join
+  m_Text: Create Account
 --- !u!222 &197928706
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2698,9 +2698,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IDInputField: {fileID: 503354721}
   PassInputField: {fileID: 1697611500}
-  New_IDInputFiled: {fileID: 583823201}
+  New_IDInputField: {fileID: 0}
   New_PassInputField: {fileID: 328411898}
   LoginUrl: 
+  CreateAccountUrl: 
 --- !u!1 &1382697946
 GameObject:
   m_ObjectHideFlags: 0
