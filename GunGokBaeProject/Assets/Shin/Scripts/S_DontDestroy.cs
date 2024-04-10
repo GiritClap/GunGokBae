@@ -4,16 +4,31 @@ using UnityEngine;
 
 public class S_DontDestroy : MonoBehaviour
 {
-    private static S_DontDestroy s_Instance = null;
+    private static S_DontDestroy instance;
 
     private void Awake()
     {
-        if(s_Instance)
+        if (null == instance)
         {
-            DestroyImmediate(this.gameObject);
-            return;
+            instance = this;
+
+            DontDestroyOnLoad(this.gameObject);
         }
-        s_Instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    public static S_DontDestroy Instance
+    {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
     }
 }

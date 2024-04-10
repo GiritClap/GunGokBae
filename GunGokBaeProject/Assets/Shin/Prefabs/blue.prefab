@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cnt: 0
-  gun: {fileID: 5672515945403278467, guid: a49a8a2854ea5c44e8892cba452039c2, type: 3}
+  gun: {fileID: 0}
   ore: {fileID: 4792818897808135272, guid: 80d0f41f67f92b84795c45af1a16c202, type: 3}
