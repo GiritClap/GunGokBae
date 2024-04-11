@@ -28,17 +28,28 @@ public class C_EnemyCtrl : MonoBehaviour
     {
         // 타게팅 방식 : 씬 내에서 player태그 가진사람 -> 문제점 : 가장 먼저 접속한 사람한테 고정
         // 추후에 변경
-        if(target == null)
+/*        if(target == null)
         {
             target = GameObject.FindWithTag("Player").transform;
-        }
+        }*/
+
         transform.Translate(Vector3.forward * Time.deltaTime);
         transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
-        //nmAgent.SetDestination(target.position);
+        if(target != null)
+        {
+            nmAgent.SetDestination(target.position);
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
+
+        // 적 추적
+        if (other.tag == "Player")
+        {
+            target = other.gameObject.transform;
+        }
+
         Debug.Log(other.gameObject.name);
 
         // 기본 총 공격
@@ -55,11 +66,14 @@ public class C_EnemyCtrl : MonoBehaviour
         }
 
         // 힐 총
-        else if(other.tag == "gun_heal")
+        if(other.tag == "gun_heal")
         {
             Debug.Log(other.gameObject.name + " 힐");
             Heal();
         }
+
+
+
     }
 
     public void Attack()
