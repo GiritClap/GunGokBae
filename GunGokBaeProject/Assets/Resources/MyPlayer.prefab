@@ -766,7 +766,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: AttackGok
+  m_Text: SpeedGok
 --- !u!1 &2064552731642056274
 GameObject:
   m_ObjectHideFlags: 0
@@ -2837,6 +2837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 7
   sprintSpeed: 10
+  canSprint: 0
   swingSpeed: 15
   groundDrag: 4
   jumpForce: 12
@@ -3459,7 +3460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1f8609775c002a498509f67a6c45a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMoveSpeed: {fileID: 0}
+  playerMoveSpeed: {fileID: 7187911929845703676}
   melee: {fileID: 7814844639231416216}
   bulletCntText: {fileID: 0}
   crosshair: {fileID: 0}
@@ -3493,7 +3494,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originalGok: {fileID: 6540303131558800523}
-  attackGok: {fileID: 5305610909115722178}
+  speedGok: {fileID: 5305610909115722178}
   defenseGok: {fileID: 6794556802571090984}
 --- !u!1 &6520068738175403870
 GameObject:
@@ -3794,7 +3795,7 @@ GameObject:
   - component: {fileID: 1194204501954459050}
   - component: {fileID: 288379349671790182}
   m_Layer: 5
-  m_Name: AttackGok
+  m_Name: SpeedGok
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3904,7 +3905,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 9196979020964269988}
         m_TargetAssemblyTypeName: M_BtnSystem, Assembly-CSharp
-        m_MethodName: AttackGokBtn
+        m_MethodName: SpeedGokBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

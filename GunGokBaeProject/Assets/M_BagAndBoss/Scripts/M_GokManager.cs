@@ -5,27 +5,27 @@ using UnityEngine;
 public class M_GokManager : MonoBehaviour
 {
     public M_Gok originalGok;
-    public M_AttackGok attackGok;
+    public M_SpeedGok speedGok;
     public M_DefenseGok defenseGok;
    
-    public void ChooseAttackGok()
+    public void ChooseSpeedGok()
     {
         originalGok.enabled = false;
         defenseGok.enabled = false;
-        attackGok.enabled = true;
+        speedGok.enabled = true;
     }
 
     public void ChooseDefenseGok()
     {
         originalGok.enabled = false;
         defenseGok.enabled = true;
-        attackGok.enabled = false;
+        speedGok.enabled = false;
     }
 
     public void ResetToOriginalGok()
     {
         originalGok.enabled = true;
         defenseGok.enabled = false;
-        attackGok.enabled = false;
+        speedGok.enabled = false;
     }
 }

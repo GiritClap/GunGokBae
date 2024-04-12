@@ -9,6 +9,7 @@ public class PlayerMovementGrappling : MonoBehaviour
     private float moveSpeed;
     public float walkSpeed;
     public float sprintSpeed;
+    public bool canSprint = false;
     public float swingSpeed;
 
     public float groundDrag;
@@ -163,7 +164,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         }
 
         // Mode - Sprinting
-        else if (grounded && Input.GetKey(sprintKey))
+        else if (grounded && Input.GetKey(sprintKey) && canSprint)
         {
             state = MovementState.sprinting;
             moveSpeed = sprintSpeed;

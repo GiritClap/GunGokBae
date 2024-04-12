@@ -137,10 +137,10 @@ public class M_BtnSystem : MonoBehaviour
         clickGokNum++;
     }
 
-    public void AttackGokBtn()
+    public void SpeedGokBtn()
     {
         crosshair.gameObject.SetActive(true);
-        manageGok.ChooseAttackGok();
+        manageGok.ChooseSpeedGok();
         goksPanel.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

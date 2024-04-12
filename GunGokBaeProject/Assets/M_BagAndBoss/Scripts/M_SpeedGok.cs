@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class M_AttackGok : MonoBehaviour
+public class M_SpeedGok : MonoBehaviour
 {
     public PlayerMovementGrappling playerMoveSpeed;
     public Collider melee;
@@ -40,11 +40,11 @@ public class M_AttackGok : MonoBehaviour
 
         if (Input.GetButton("Fire2") && crosshair.gameObject.activeSelf == true) //우클릭 -> 누르는동안 공격시스템 작동
         {
-
+            playerMoveSpeed.ChangeWalkSpeed(15);
         }
         if (Input.GetButtonUp("Fire2"))
         {
-
+            playerMoveSpeed.ChangeWalkSpeed(7);
         }
     }
 }
