@@ -319,28 +319,36 @@ public class PlayerMovementGrappling : MonoBehaviour
         return velocityXZ + velocityY;
     }
 
+    public void ChangeWalkSpeed(int a)
+    {
+        walkSpeed = a;
+    }
+    public void ResetWalkSpeed(int a)
+    {
+        walkSpeed = a;
+    }
     #region Text & Debugging
 
-  /*  public TextMeshProUGUI text_speed;
-    public TextMeshProUGUI text_mode;
-    private void TextStuff()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+    /*  public TextMeshProUGUI text_speed;
+      public TextMeshProUGUI text_mode;
+      private void TextStuff()
+      {
+          Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        if (OnSlope())
-            text_speed.SetText("Speed: " + Round(rb.velocity.magnitude, 1) + " / " + Round(moveSpeed, 1));
+          if (OnSlope())
+              text_speed.SetText("Speed: " + Round(rb.velocity.magnitude, 1) + " / " + Round(moveSpeed, 1));
 
-        else
-            text_speed.SetText("Speed: " + Round(flatVel.magnitude, 1) + " / " + Round(moveSpeed, 1));
+          else
+              text_speed.SetText("Speed: " + Round(flatVel.magnitude, 1) + " / " + Round(moveSpeed, 1));
 
-        text_mode.SetText(state.ToString());
-    }
+          text_mode.SetText(state.ToString());
+      }
 
-    public static float Round(float value, int digits)
-    {
-        float mult = Mathf.Pow(10.0f, (float)digits);
-        return Mathf.Round(value * mult) / mult;
-    }*/
+      public static float Round(float value, int digits)
+      {
+          float mult = Mathf.Pow(10.0f, (float)digits);
+          return Mathf.Round(value * mult) / mult;
+      }*/
 
     #endregion
 }

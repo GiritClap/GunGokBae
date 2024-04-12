@@ -7,6 +7,7 @@ public class M_UpgradePanel : MonoBehaviour
 {
     public GameObject upgradePanel;
     public GameObject gunUpgradePanel;
+    public GameObject gokUpgradePanel;
     public Image crosshair;
 
     // Start is called before the first frame update
@@ -17,6 +18,8 @@ public class M_UpgradePanel : MonoBehaviour
         crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
         gunUpgradePanel = GameObject.Find("GunUpgradePanel");
         gunUpgradePanel.SetActive(false);
+        gokUpgradePanel = GameObject.Find("GokUpgradePanel");
+        gokUpgradePanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,7 +32,7 @@ public class M_UpgradePanel : MonoBehaviour
     {
         if (other.gameObject.tag == "UpgradeMachine")
         {
-            Debug.Log("입장");
+            Debug.Log("업그레이드 시스템 입장");
         }
     }
 
@@ -65,6 +68,7 @@ public class M_UpgradePanel : MonoBehaviour
             Cursor.visible = false;
             upgradePanel.SetActive(false);
             gunUpgradePanel.SetActive(false);
+            gokUpgradePanel.SetActive(false);
             crosshair.gameObject.SetActive(true);
 
         }
