@@ -90,6 +90,8 @@ public class M_BtnSystem : MonoBehaviour
             sniperUpgradeBtns[i].interactable = false;
         }
 
+        manageGun.ResetToOriginalGun();
+
         clickGunNum = 0;
     }
 
