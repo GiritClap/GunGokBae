@@ -32,6 +32,7 @@ public class M_Sniper : MonoBehaviour
             crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
         }
 
+        damage = 10;
     }
 
     // Update is called once per frame
@@ -96,8 +97,29 @@ public class M_Sniper : MonoBehaviour
         }
     }
 
+    public void ResetToLevel1()
+    {
+        damage = 10;
+        max_Bullet_Cnt = 15;
+    }
+
     public void UpdateDamage(float a)
     {
         damage += a;
+    }
+
+    public void UpgradeMaxBulletCnt(float a)
+    {
+        max_Bullet_Cnt += a;
+    }
+
+    public float CurrentDamage()
+    {
+        return damage;
+    }
+
+    public float CurrentMaxBulletCnt()
+    {
+        return max_Bullet_Cnt;
     }
 }

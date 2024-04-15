@@ -31,6 +31,7 @@ public class M_OriginalGun : MonoBehaviour
         {
             crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
         }
+        damage = 3f;
 
     }
 
@@ -102,10 +103,30 @@ public class M_OriginalGun : MonoBehaviour
             max_Bullet_Cnt = 0;
         }
     }
+    public void ResetToLevel1()
+    {
+        damage = 3;
+        max_Bullet_Cnt = 70;
+    }
 
     public void UpdateDamage(float a)
     {
         damage += a;
     }
-    
+
+    public void UpgradeMaxBulletCnt(float a)
+    {
+        max_Bullet_Cnt += a;
+    }
+
+    public float CurrentDamage()
+    {
+        return damage;
+    }
+
+    public float CurrentMaxBulletCnt()
+    {
+        return max_Bullet_Cnt;
+    }
+
 }

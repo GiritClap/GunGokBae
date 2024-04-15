@@ -10674,9 +10674,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 30
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 30
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -12267,6 +12267,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level
       objectReference: {fileID: 0}
+    - target: {fileID: 3365248811515091480, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3365248811515091480, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3489439231021632426, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12316,9 +12324,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: gunLevel
+      value: 
+      objectReference: {fileID: 517222738577297958}
+    - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
       propertyPath: goksPanel
       value: 
       objectReference: {fileID: 1804161736625227871}
+    - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: gunBullet
+      value: 
+      objectReference: {fileID: 1186160921027350366}
+    - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: gunDamage
+      value: 
+      objectReference: {fileID: 4860043539048771419}
     - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
       propertyPath: manageGok
       value: 
@@ -12327,6 +12347,10 @@ PrefabInstance:
       propertyPath: manageGun
       value: 
       objectReference: {fileID: 2055339674281303641}
+    - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: gunCurrent
+      value: 
+      objectReference: {fileID: 2054241110226633870}
     - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
       propertyPath: sniperBuild
       value: 
@@ -12571,6 +12595,14 @@ PrefabInstance:
       propertyPath: btns.Array.data[3]
       value: 
       objectReference: {fileID: 1304594844532574956}
+    - target: {fileID: 9058853473739586077, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9058853473739586077, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 621064031781453910, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
     m_RemovedGameObjects:
@@ -12611,6 +12643,28 @@ PrefabInstance:
       addedObject: {fileID: 6292165628903397947}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+--- !u!114 &517222738577297958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4172690278467438432, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+  m_PrefabInstance: {fileID: 4523255478349763910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1186160921027350366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3365248811515091480, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+  m_PrefabInstance: {fileID: 4523255478349763910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1196572400646639148 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3341319794228255594, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
@@ -12653,6 +12707,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9187546372875706080, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
   m_PrefabInstance: {fileID: 4523255478349763910}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4860043539048771419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9058853473739586077, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+  m_PrefabInstance: {fileID: 4523255478349763910}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6989679786777050426 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6901063153282607228, guid: e95f0a79e193a0d4da722141a115608d, type: 3}

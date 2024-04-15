@@ -38,15 +38,28 @@ public class M_BtnSystem : MonoBehaviour
     public M_GunManager manageGun;
     public M_GokManager manageGok;
     public Image crosshair;
+
+    [Header("Gun Info Text")]
     public Text gunLevel;
+    public Text gunCurrent;
+    public Text gunDamage;
+    public Text gunBullet;
+
+    bool isOriginalGun = true;
+    bool chooseMachinegun = false;
+    bool chooseShotgun = false;
+    bool chooseSniper = false;
 
     int clickGokNum = 0;
-    int clickGunNum = 0;    
+    int clickGunNum = 0;
+
+  
 
     private void Start()
     {
         manageGun = GameObject.Find("OriginalGun").GetComponent<M_GunManager>();
         //manageGok = GameObject.Find("Pick").GetComponent<M_GokManager>();
+       
     }
 
     private void Update()
@@ -60,6 +73,32 @@ public class M_BtnSystem : MonoBehaviour
             manageGok = GameObject.Find("Pick").GetComponent<M_GokManager>();
         }
         gunLevel.text = "Level : " + clickGunNum.ToString();
+        
+
+        if(isOriginalGun)
+        {
+            gunCurrent.text = "CurrentGun : " + manageGun.OriginalGunName();
+            gunDamage.text = "Damage : " + manageGun.CurrentOriginalGunDamage().ToString();
+            gunBullet.text = "Bullet : " + manageGun.CurrentOriginalGunMaxBulletCnt().ToString();
+        }
+        if(chooseMachinegun)
+        {
+            gunCurrent.text = "CurrentGun : " + manageGun.MachinegunName();
+            gunDamage.text = "Damage : " + manageGun.CurrentMachinegunDamage().ToString();
+            gunBullet.text = "Bullet : " + manageGun.CurrentMachinegunMaxBulletCnt().ToString();
+        }
+        if(chooseShotgun)
+        {
+            gunCurrent.text = "CurrentGun : " + manageGun.ShotgunName();
+            gunDamage.text = "Damage : " + manageGun.CurrentShotgunDamage().ToString();
+            gunBullet.text = "Bullet : " + manageGun.CurrentShotgunMaxBulletCnt().ToString();
+        }
+        if(chooseSniper)
+        {
+            gunCurrent.text = "CurrentGun : " + manageGun.SniperName();
+            gunDamage.text = "Damage : " + manageGun.CurrentSniperDamage().ToString();
+            gunBullet.text = "Bullet : " + manageGun.CurrentSniperMaxBulletCnt().ToString();
+        }
     }
 
     //여기서부터 기본총 업그레이드
@@ -92,6 +131,11 @@ public class M_BtnSystem : MonoBehaviour
 
         manageGun.ResetToOriginalGun();
 
+        isOriginalGun = true;
+        chooseMachinegun = false;
+        chooseShotgun = false;
+        chooseSniper = false;
+
         clickGunNum = 0;
     }
 
@@ -99,6 +143,23 @@ public class M_BtnSystem : MonoBehaviour
     {
         // 수정중
         clickGunNum++;
+        if(isOriginalGun)
+        {
+            manageGun.UpgradeOriginalGun();
+        }
+        if(chooseMachinegun)
+        {
+            manageGun.UpgradeMachinegun();
+        }
+        if(chooseShotgun)
+        {
+            manageGun.UpgradeShotgun();
+        }
+        if(chooseSniper)
+        {
+            manageGun.UpgradeSniper();
+        }
+
         if(clickGunNum == 3)
         {
             gunsPanel.SetActive(true);
@@ -140,6 +201,8 @@ public class M_BtnSystem : MonoBehaviour
 
     public void ShotgunBtn()
     {
+        chooseShotgun = true;
+        isOriginalGun = false;
         shotgunBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseShotgun();
         gunsPanel.SetActive(false);
@@ -148,6 +211,8 @@ public class M_BtnSystem : MonoBehaviour
 
     public void MachinegunBtn()
     {
+        chooseMachinegun = true;
+        isOriginalGun = false;
         machinegunBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseMachinegun();
         gunsPanel.SetActive(false);
@@ -157,6 +222,8 @@ public class M_BtnSystem : MonoBehaviour
 
     public void SniperBtn()
     {
+        chooseSniper = true;
+        isOriginalGun = false;
         sniperBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseSniper();
         gunsPanel.SetActive(false);
