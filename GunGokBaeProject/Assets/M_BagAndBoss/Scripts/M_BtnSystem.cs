@@ -5,16 +5,40 @@ using UnityEngine.UI;
 
 public class M_BtnSystem : MonoBehaviour
 {
+    [Header("In Gun")]
     public GameObject upgradePanel;
     public GameObject gunUpgradePanel;
-    public GameObject[] gunUpgradeNum;
+    //public GameObject[] gunUpgradeNum;
     public GameObject gunsPanel;
+
+    [Header("In Gok")]
     public GameObject gokUpgradePanel;
     public GameObject[] gokUpgradeNum;
     public GameObject goksPanel;
+
+    [Header("UpgradeGunBtns In GUP")]
+    public Button machinegunBtnInGUP;
+    public Button shotgunBtnInGUP;
+    public Button sniperBtnInGUP;
+
+    [Header("UpgradeGun Builds")]
+    public RectTransform machinegunBuild;
+    public RectTransform shotgunBuild;
+    public RectTransform sniperBuild;
+
+    [Header("MachinegunBuild Upgrade Btns")]
+    public Button[] machinegunUpgradeBtns; // 0 = lv5_1, 1 = lv7_1, 2 = lv10_1, 3 = lv5_2, 4 = lv7_2, 5 = lv10_2
+
+    [Header("ShotgunBuild Upgrade Btns")]
+    public Button[] shotgunUpgradeBtns; // 0 = lv5_1, 1 = lv7_1, 2 = lv10_1, 3 = lv5_2, 4 = lv7_2, 5 = lv10_2
+
+    [Header("SniperBuild Upgrade Btns")]
+    public Button[] sniperUpgradeBtns; // 0 = lv5_1, 1 = lv7_1, 2 = lv10_1, 3 = lv5_2, 4 = lv7_2, 5 = lv10_2
+
     public M_GunManager manageGun;
     public M_GokManager manageGok;
     public Image crosshair;
+    public Text gunLevel;
 
     int clickGokNum = 0;
     int clickGunNum = 0;    
@@ -35,6 +59,7 @@ public class M_BtnSystem : MonoBehaviour
         {
             manageGok = GameObject.Find("Pick").GetComponent<M_GokManager>();
         }
+        gunLevel.text = "Level : " + clickGunNum.ToString();
     }
 
     //여기서부터 기본총 업그레이드
@@ -53,54 +78,121 @@ public class M_BtnSystem : MonoBehaviour
 
     public void GunReset()
     {
-        for (int i = 0; i < gunUpgradeNum.Length; i++)
+        // 수정중
+        machinegunBtnInGUP.gameObject.SetActive(false);
+        shotgunBtnInGUP.gameObject.SetActive(false);
+        sniperBtnInGUP.gameObject.SetActive(false);
+
+        for(int i = 0; i < machinegunUpgradeBtns.Length; i++)
         {
-            gunUpgradeNum[i].SetActive(false);
+            machinegunUpgradeBtns[i].interactable = false;
+            shotgunUpgradeBtns[i].interactable = false;
+            sniperUpgradeBtns[i].interactable = false;
         }
+
         clickGunNum = 0;
     }
 
     public void GunUpgrade()
     {
-        if (clickGunNum > 4)
-        {
-            GunReset();
-            gunUpgradePanel.SetActive(false);
-            gunsPanel.SetActive(true);
-            return;
-        }
-        gunUpgradeNum[clickGunNum].SetActive(true);
+        // 수정중
         clickGunNum++;
+        if(clickGunNum == 3)
+        {
+            gunsPanel.SetActive(true);
+        }
+        if(clickGunNum == 5)
+        {
+            machinegunUpgradeBtns[0].interactable = true;
+            machinegunUpgradeBtns[3].interactable = true;
+
+            shotgunUpgradeBtns[0].interactable = true;
+            shotgunUpgradeBtns[3].interactable = true;
+
+            sniperUpgradeBtns[0].interactable = true;
+            sniperUpgradeBtns[3].interactable = true;
+        }
+        if(clickGunNum == 7)
+        {
+            machinegunUpgradeBtns[1].interactable = true;
+            machinegunUpgradeBtns[4].interactable = true;
+
+            shotgunUpgradeBtns[1].interactable = true;
+            shotgunUpgradeBtns[4].interactable = true;
+
+            sniperUpgradeBtns[1].interactable = true;
+            sniperUpgradeBtns[4].interactable = true;
+        }
+        if(clickGunNum == 10)
+        {
+            machinegunUpgradeBtns[2].interactable = true;
+            machinegunUpgradeBtns[5].interactable = true;
+
+            shotgunUpgradeBtns[2].interactable = true;
+            shotgunUpgradeBtns[5].interactable = true;
+
+            sniperUpgradeBtns[2].interactable = true;
+            sniperUpgradeBtns[5].interactable = true;
+        }
     }
 
     public void ShotgunBtn()
     {
-        crosshair.gameObject.SetActive(true);
+        shotgunBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseShotgun();
         gunsPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
     }
 
     public void MachinegunBtn()
     {
-        crosshair.gameObject.SetActive(true);
+        machinegunBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseMachinegun();
         gunsPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
 
     }
 
     public void SniperBtn()
     {
-        crosshair.gameObject.SetActive(true);
+        sniperBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseSniper();
         gunsPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
 
     }
+
+    // 여기부터 총 업그레이드 이후 버튼들
+    public void MachinegunBuildBtn()
+    {
+        machinegunBuild.gameObject.SetActive(true);
+        machinegunBuild.SetAsLastSibling();
+    }
+    public void MachinegunCancel()
+    {
+        machinegunBuild.gameObject.SetActive(false);
+    }
+
+    public void ShotgunBuildBtn()
+    {
+        shotgunBuild.gameObject.SetActive(true);
+        shotgunBuild.SetAsLastSibling();
+    }
+    public void ShotgunCancel()
+    {
+        shotgunBuild.gameObject.SetActive(false);
+    }
+
+    public void SniperBuildBtn()
+    {
+        sniperBuild.gameObject.SetActive(true);
+        sniperBuild.SetAsLastSibling();
+    }
+    public void SniperCancel()
+    {
+        sniperBuild.gameObject.SetActive(false);
+    }
+
 
     // 여기서부터 곡괭이 업그레이드
     public void GokBtn()
@@ -154,4 +246,6 @@ public class M_BtnSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    
 }

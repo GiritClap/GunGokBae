@@ -28,6 +28,10 @@ TagManager:
   - Spaceship
   - rocket_attack
   - gun4
+  - OriginalGun
+  - Shotgun
+  - Sniper
+  - Machinegun
   layers:
   - Default
   - TransparentFX

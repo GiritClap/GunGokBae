@@ -8,6 +8,7 @@ public class M_Shotgun : MonoBehaviour
     float cur_Bullet_Cnt = 0; // 현재 총알수
     float max_Bullet_Cnt = 30; // 총 총알수
     float reload_Bullet_Cnt = 7; // 장전 할 수 있는 총알 수
+    public float damage = 0; // 데미지
     public GameObject bulletEffect;
     ParticleSystem ps;
     public Text bulletCntText;
@@ -26,13 +27,17 @@ public class M_Shotgun : MonoBehaviour
     {
         bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
-        crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+        if(crosshair == null)
+        {
+            crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+        }
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        this.gameObject.tag = "Shotgun";
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
 
         timer += Time.deltaTime;
@@ -101,5 +106,10 @@ public class M_Shotgun : MonoBehaviour
             cur_Bullet_Cnt = max_Bullet_Cnt;
             max_Bullet_Cnt = 0;
         }
+    }
+
+    public void UpdateDamage(float a)
+    {
+        damage += a;
     }
 }

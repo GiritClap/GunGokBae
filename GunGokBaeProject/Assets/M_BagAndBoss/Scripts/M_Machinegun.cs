@@ -8,6 +8,7 @@ public class M_Machinegun : MonoBehaviour
     float cur_Bullet_Cnt = 0; // ÇöÀç ÃÑ¾Ë¼ö
     float max_Bullet_Cnt = 150; // ÃÑ ÃÑ¾Ë¼ö
     float reload_Bullet_Cnt = 30; // ÀåÀü ÇÒ ¼ö ÀÖ´Â ÃÑ¾Ë ¼ö
+    public float damage = 0; // ÃÑ µ¥¹ÌÁö
     public GameObject bulletEffect;
     ParticleSystem ps;
     public Text bulletCntText;
@@ -23,12 +24,17 @@ public class M_Machinegun : MonoBehaviour
     {
         bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
-        crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+
+        if (crosshair == null)
+        {
+            crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        this.gameObject.tag = "Machinegun";
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
 
         timer += Time.deltaTime;
@@ -92,5 +98,10 @@ public class M_Machinegun : MonoBehaviour
             cur_Bullet_Cnt = max_Bullet_Cnt;
             max_Bullet_Cnt = 0;
         }
+    }
+
+    public void UpdateDamage(float a)
+    {
+        damage += a;
     }
 }
