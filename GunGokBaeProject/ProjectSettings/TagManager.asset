@@ -32,6 +32,7 @@ TagManager:
   - Shotgun
   - Sniper
   - Machinegun
+  - Taunt
   layers:
   - Default
   - TransparentFX

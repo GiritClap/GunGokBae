@@ -10,6 +10,7 @@ public class C_EnemyAttack : MonoBehaviour
     public Transform target;
     NavMeshAgent nmAgent;
 
+    bool Taunt; // 도발 허수아비
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,11 @@ public class C_EnemyAttack : MonoBehaviour
     private void OnTriggerStay(Collider other) // Find 단점 해결하려고 일정 영역에 들어 왔을 때 타겟 지정
     {
         // 적 추적
-        if (other.tag == "Player")
+       if(other.tag == "Taunt") { // 도발 허수아비가 우선으로 타겟이 되게 함
+            target = other.gameObject.transform;
+       }
+
+        else if (other.tag == "Player" && target == null) // 이미 타겟이 있을 경우엔 작동 안하고 타겟이 없을 때만 플레이어 타겟으로 지정
         {
             target = other.gameObject.transform;
         }
