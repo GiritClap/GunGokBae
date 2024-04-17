@@ -16,7 +16,7 @@ public class C_HpControl : MonoBehaviour
     void Update()
     {
         // 플레이어가 start보다 늦게 생성되기때문에 업데이트를 통해 꾸준히 검사 
-        if(cam == null)
+        if (cam == null)
         {
             cam = Camera.main.transform;
         }

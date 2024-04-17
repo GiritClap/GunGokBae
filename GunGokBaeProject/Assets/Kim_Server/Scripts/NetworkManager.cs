@@ -4,96 +4,179 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
+    [Header("DisconnectPanel")]
+    public InputField NickNameInput;
+
+    [Header("LobbyPanel")]
+    public GameObject LobbyPanel;
+    public InputField RoomInput;
+    public Text WelcomeText;
+    public Text LobbyInfoText;
+    public Button[] CellBtn;
+    public Button PreviousBtn;
+    public Button NextBtn;
+
+    [Header("RoomPanel")]
+    public GameObject RoomPanel;
+    public Text ListText;
+    public Text RoomInfoText;
+    public Text[] ChatText;
+    public InputField ChatInput;
+
+    [Header("ETC")]
     public Text StatusText;
-    public InputField roomInput, NickNameInput;
+    public PhotonView PV;
+
+    List<RoomInfo> myList = new List<RoomInfo>();
+    int currentPage = 1, maxPage, multiple;
 
 
-    void Awake() => Screen.SetResolution(1920, 1080, false);
-
-    void Update() => StatusText.text = PhotonNetwork.NetworkClientState.ToString();
-
-
-
-    public void Connect() => PhotonNetwork.ConnectUsingSettings(); //함수 호출 (OnConnectedToMaster)
-
-    public override void OnConnectedToMaster() //콜백 함수  (ConnectUsingSettings)
+    #region 방리스트 갱신
+    // ◀버튼 -2 , ▶버튼 -1 , 셀 숫자
+    public void MyListClick(int num)
     {
-        print("서버접속완료");
-        PhotonNetwork.LocalPlayer.NickName = NickNameInput.text; //UI에 작성한 닉네임을 받아 옴
-
-   
+        if (num == -2) --currentPage;
+        else if (num == -1) ++currentPage;
+        else PhotonNetwork.JoinRoom(myList[multiple + num].Name);
+        MyListRenewal();
     }
 
+    void MyListRenewal()
+    {
+        // 최대페이지
+        maxPage = (myList.Count % CellBtn.Length == 0) ? myList.Count / CellBtn.Length : myList.Count / CellBtn.Length + 1;
+
+        // 이전, 다음버튼
+        PreviousBtn.interactable = (currentPage <= 1) ? false : true;
+        NextBtn.interactable = (currentPage >= maxPage) ? false : true;
+
+        // 페이지에 맞는 리스트 대입
+        multiple = (currentPage - 1) * CellBtn.Length;
+        for (int i = 0; i < CellBtn.Length; i++)
+        {
+            CellBtn[i].interactable = (multiple + i < myList.Count) ? true : false;
+            CellBtn[i].transform.GetChild(0).GetComponent<Text>().text = (multiple + i < myList.Count) ? myList[multiple + i].Name : "";
+            CellBtn[i].transform.GetChild(1).GetComponent<Text>().text = (multiple + i < myList.Count) ? myList[multiple + i].PlayerCount + "/" + myList[multiple + i].MaxPlayers : "";
+        }
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        int roomCount = roomList.Count;
+        for (int i = 0; i < roomCount; i++)
+        {
+            if (!roomList[i].RemovedFromList)
+            {
+                if (!myList.Contains(roomList[i])) myList.Add(roomList[i]);
+                else myList[myList.IndexOf(roomList[i])] = roomList[i];
+            }
+            else if (myList.IndexOf(roomList[i]) != -1) myList.RemoveAt(myList.IndexOf(roomList[i]));
+        }
+        MyListRenewal();
+    }
+    #endregion
 
 
-    public void Disconnect() => PhotonNetwork.Disconnect(); //함수 호출 (OnDisconnected)
+    #region 서버연결
+    void Awake() => Screen.SetResolution(1920, 1080, false);
 
-    public override void OnDisconnected(DisconnectCause cause) => print("연결끊김"); //콜백 함수  (Disconnect)
+    void Update()
+    {
+        StatusText.text = PhotonNetwork.NetworkClientState.ToString();
+        LobbyInfoText.text = (PhotonNetwork.CountOfPlayers - PhotonNetwork.CountOfPlayersInRooms) + "로비 / " + PhotonNetwork.CountOfPlayers + "접속";
+    }
+
+    public void Connect() => PhotonNetwork.ConnectUsingSettings();
+
+    public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
+
+    public override void OnJoinedLobby()
+    {
+        LobbyPanel.SetActive(true);
+        RoomPanel.SetActive(false);
+        PhotonNetwork.LocalPlayer.NickName = NickNameInput.text;
+        WelcomeText.text = PhotonNetwork.LocalPlayer.NickName + "님 환영합니다";
+        myList.Clear();
+    }
+
+    public void Disconnect() => PhotonNetwork.Disconnect();
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        LobbyPanel.SetActive(false);
+        RoomPanel.SetActive(false);
+    }
+    #endregion
 
 
-
-    public void JoinLobby() => PhotonNetwork.JoinLobby(); //로비 접속(예 )광장)
-
-    public override void OnJoinedLobby()=> print("로비접속완료"); //방 들어가기     
-  
-
-
-    // 이 밑 함수 들은 Join 나 OnConnectedToMaster 가 되어 있어야 사용 가능
-    public void CreateRoom() => PhotonNetwork.CreateRoom(roomInput.text, new RoomOptions { MaxPlayers = 5 });
-
-    public void JoinRoom() => PhotonNetwork.JoinRoom(roomInput.text);
-
-    public void JoinOrCreateRoom() => PhotonNetwork.JoinOrCreateRoom(roomInput.text, new RoomOptions { MaxPlayers = 5 }, null);
+    #region 방
+    public void CreateRoom() => PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 4 });
 
     public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
 
     public void LeaveRoom() => PhotonNetwork.LeaveRoom();
 
-    public override void OnCreatedRoom() => print("방만들기완료");
-
     public override void OnJoinedRoom()
     {
-        print("방참가완료");
-
-        SceneManager.LoadScene("Fire Planet");
-
-        PhotonNetwork.Instantiate("MyPlayer", Vector3.zero + new Vector3(0,2,0), Quaternion.identity);
+        RoomPanel.SetActive(true);
+        RoomRenewal();
+        ChatInput.text = "";
+        for (int i = 0; i < ChatText.Length; i++) ChatText[i].text = "";
     }
 
-     
+    public override void OnCreateRoomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
 
-    public override void OnCreateRoomFailed(short returnCode, string message) => print("방만들기실패");
+    public override void OnJoinRandomFailed(short returnCode, string message) { RoomInput.text = ""; CreateRoom(); }
 
-    public override void OnJoinRoomFailed(short returnCode, string message) => print("방참가실패");
-
-    public override void OnJoinRandomFailed(short returnCode, string message) => print("방랜덤참가실패");
-
-
-
-    [ContextMenu("정보")]
-    void Info()
+    public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        if (PhotonNetwork.InRoom)
-        {
-            print("현재 방 이름 : " + PhotonNetwork.CurrentRoom.Name);
-            print("현재 방 인원수 : " + PhotonNetwork.CurrentRoom.PlayerCount);
-            print("현재 방 최대인원수 : " + PhotonNetwork.CurrentRoom.MaxPlayers);
+        RoomRenewal();
+        ChatRPC("<color=yellow>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
+    }
 
-            string playerStr = "방에 있는 플레이어 목록 : ";
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++) playerStr += PhotonNetwork.PlayerList[i].NickName + ", ";
-            print(playerStr);
-        }
-        else
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        RoomRenewal();
+        ChatRPC("<color=yellow>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
+    }
+
+    void RoomRenewal()
+    {
+        ListText.text = "";
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+            ListText.text += PhotonNetwork.PlayerList[i].NickName + ((i + 1 == PhotonNetwork.PlayerList.Length) ? "" : ", ");
+        RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
+    }
+    #endregion
+
+
+    #region 채팅
+    public void Send()
+    {
+        PV.RPC("ChatRPC", RpcTarget.All, PhotonNetwork.NickName + " : " + ChatInput.text);
+        ChatInput.text = "";
+    }
+
+    [PunRPC] // RPC는 플레이어가 속해있는 방 모든 인원에게 전달한다
+    void ChatRPC(string msg)
+    {
+        bool isInput = false;
+        for (int i = 0; i < ChatText.Length; i++)
+            if (ChatText[i].text == "")
+            {
+                isInput = true;
+                ChatText[i].text = msg;
+                break;
+            }
+        if (!isInput) // 꽉차면 한칸씩 위로 올림
         {
-            print("접속한 인원 수 : " + PhotonNetwork.CountOfPlayers);
-            print("방 개수 : " + PhotonNetwork.CountOfRooms);
-            print("모든 방에 있는 인원 수 : " + PhotonNetwork.CountOfPlayersInRooms);
-            print("로비에 있는지? : " + PhotonNetwork.InLobby);
-            print("연결됐는지? : " + PhotonNetwork.IsConnected);
+            for (int i = 1; i < ChatText.Length; i++) ChatText[i - 1].text = ChatText[i].text;
+            ChatText[ChatText.Length - 1].text = msg;
         }
     }
+    #endregion
 }
