@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class UnityWebRequestExample : MonoBehaviour
+public class Han_UnityWebRequestExample : MonoBehaviour
 {
     void Start()
     {

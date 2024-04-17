@@ -1,0 +1,1 @@
+{"inventory":["gun","pick","healgun"],"score":30}
