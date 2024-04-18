@@ -7,30 +7,16 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Text;
 
-[System.Serializable]
-public class SaveData //저장할 데이터 쭉 적기
-{
-    public string[] inventory = new string[3];
-    public int score;
-
-}
 /*public class SaveData //플레이어 위치 저장하는 튜토리얼
 {
     public Vector3 playerPos;
     public Vector3 playerRot;
 }*/
 
-public class AcceptAllCertificates : CertificateHandler
+
+public class Han_SaveNLoad_Json_Server : MonoBehaviour
 {
-    protected override bool ValidateCertificate(byte[] certificateData)
-    {
-        // 모든 인증서를 수락합니다.
-        return true;
-    }
-}
-public class Han_SaveNLoad : MonoBehaviour
-{
-    private string dataUrl =  "http://localhost/dataTest.php"; //php URL
+    private string dataUrl =  "http://localhost/SaveToJson.php"; //php URL
 
     public Text dataTxt;
     private SaveData saveData = new();

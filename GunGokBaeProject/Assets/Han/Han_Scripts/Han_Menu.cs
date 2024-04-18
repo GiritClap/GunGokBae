@@ -26,13 +26,20 @@ public class Han_Menu : MonoBehaviour
     }
 
     [SerializeField]
-    private Han_SaveNLoad theSaveNLoad;
+    private Han_SaveNLoad_DB theSaveNLoadDB;
+    [SerializeField]
+    private Han_SaveNLoad_Json_Server theSaveNLoadJson;
     
     // Start is called before the first frame update
-    public void SaveBtn()
+    public void SaveDBBtn()
     {
         Debug.Log("ClickSave");
-        theSaveNLoad.SaveData();
+        theSaveNLoadDB.SaveData();
+    }
+    public void SaveServerBtn()
+    {
+        Debug.Log("ClickSave");
+        theSaveNLoadJson.SaveData();
     }
 
     public void ExitBtn()
