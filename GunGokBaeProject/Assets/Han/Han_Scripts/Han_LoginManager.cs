@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
 
-public class LoginManager : MonoBehaviour
+public class Han_LoginManager : MonoBehaviour
 {
     //[Header("LoginPanel")]
     public TMP_InputField IDInputField;
@@ -38,10 +38,10 @@ public class LoginManager : MonoBehaviour
         Debug.Log(PassInputField.text);
 
         WWWForm form = new();
-        form.AddField("Input_user", IDInputField.text);
-        form.AddField("Input_pass", PassInputField.text);
+        form.AddField("Input_user", IDInputField.text); //user 웹(PHP파일로)으로 전송
+        form.AddField("Input_pass", PassInputField.text); //pass 웹(PHP파일로)으로 전송
 
-        WWW webRequest = new(LoginUrl, form);
+        WWW webRequest = new(LoginUrl, form);  //저장된 URL로 이동
         yield return webRequest;
         Debug.Log(webRequest.text);
 
