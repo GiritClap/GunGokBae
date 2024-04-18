@@ -14,7 +14,7 @@ public class M_SpeedGok : MonoBehaviour
     void Start()
     {
         bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
-        bulletCntText.text = "AttackGok";
+        bulletCntText.text = "SpeedGok";
         crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
         playerMoveSpeed = GameObject.Find("Player").GetComponent<PlayerMovementGrappling>();
 
@@ -23,7 +23,7 @@ public class M_SpeedGok : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bulletCntText.text = "AttackGok";
+        bulletCntText.text = "SpeedGok";
 
         if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //ÁÂÅ¬¸¯ -> ±¤¹° Ã¤±¤
         {
