@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Kim_Server/kimTest.unity
-    guid: c7d4e71f4f3600846a28617795bfa306
+    path: Assets/Kim_Server/K_server.unity
+    guid: 736888e80bddbfb4e8c49dfe60941161
   - enabled: 1
     path: Assets/Chaen/Scenes/Fire Planet.unity
     guid: 0a99d216a39b8ff4eae2ede09461d13a

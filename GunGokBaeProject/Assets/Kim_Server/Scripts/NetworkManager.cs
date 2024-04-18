@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     [Header("DisconnectPanel")]
+    public GameObject DisconnectPanel;
     public InputField NickNameInput;
 
     [Header("LobbyPanel")]
@@ -90,7 +91,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         LobbyInfoText.text = (PhotonNetwork.CountOfPlayers - PhotonNetwork.CountOfPlayersInRooms) + "로비 / " + PhotonNetwork.CountOfPlayers + "접속";
     }
 
-    public void Connect() => PhotonNetwork.ConnectUsingSettings();
+    public void Connect()
+    {
+        PhotonNetwork.ConnectUsingSettings();
+        DisconnectPanel.SetActive(false);
+    }
 
     public override void OnConnectedToMaster() => PhotonNetwork.JoinLobby();
 
@@ -114,7 +119,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     #region 방
-    public void CreateRoom() => PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 4 });
+    public void CreateRoom()
+    {
+        LobbyPanel.SetActive(false);
+        PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 4 });
+    }
 
     public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
 
