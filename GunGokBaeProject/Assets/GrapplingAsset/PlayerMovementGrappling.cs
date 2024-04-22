@@ -46,6 +46,9 @@ public class PlayerMovementGrappling : MonoBehaviour
 
     public Transform orientation;
 
+    [Header("Animation")]
+    public Animator anim;
+
     float horizontalInput;
     float verticalInput;
 
@@ -62,7 +65,8 @@ public class PlayerMovementGrappling : MonoBehaviour
         walking,
         sprinting,
         crouching,
-        air
+        air,
+        idle
     }
 
     public bool freeze;
@@ -78,6 +82,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
+        anim = GameObject.Find("SM_Chr_ScifiWorlds_SpaceSuit_Male_01").GetComponent<Animator>();
     }
 
     private void Update()
@@ -94,6 +99,15 @@ public class PlayerMovementGrappling : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        if(state == MovementState.walking)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
 
         //TextStuff();
     }
@@ -141,6 +155,11 @@ public class PlayerMovementGrappling : MonoBehaviour
             moveSpeed = 0;
             rb.velocity = Vector3.zero;
         }
+        // Mode - Idle
+        else if (rb.velocity.magnitude <= 0.5f)
+        {
+            state = MovementState.idle;
+        }
 
         // Mode - Grappling
         else if (activeGrapple)
@@ -177,6 +196,7 @@ public class PlayerMovementGrappling : MonoBehaviour
             moveSpeed = walkSpeed;
         }
 
+        
         // Mode - Air
         else
         {
