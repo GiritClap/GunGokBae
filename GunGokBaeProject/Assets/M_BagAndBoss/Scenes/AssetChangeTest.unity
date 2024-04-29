@@ -351,6 +351,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyPlayer_Editing
       objectReference: {fileID: 0}
+    - target: {fileID: 2716246453921581825, guid: e468f8a70d9962045be2f49af3eb3da1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716246453921581825, guid: e468f8a70d9962045be2f49af3eb3da1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716246453921581825, guid: e468f8a70d9962045be2f49af3eb3da1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2716246453921581825, guid: e468f8a70d9962045be2f49af3eb3da1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 360
+      objectReference: {fileID: 0}
     - target: {fileID: 2814052670483744502, guid: e468f8a70d9962045be2f49af3eb3da1, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

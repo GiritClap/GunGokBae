@@ -9,6 +9,14 @@ public class M_GunManager : MonoBehaviour
     public M_Shotgun shotgun;
     public M_Machinegun machinegun;
 
+    public Mesh[] meshes;
+    public MeshFilter meshFilter;
+
+    private void Start()
+    {
+        meshFilter = GetComponent<MeshFilter>();
+    }
+
 
     public string OriginalGunName()
     {
