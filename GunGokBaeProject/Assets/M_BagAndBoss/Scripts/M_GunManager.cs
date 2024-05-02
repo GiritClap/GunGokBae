@@ -9,12 +9,16 @@ public class M_GunManager : MonoBehaviour
     public M_Shotgun shotgun;
     public M_Machinegun machinegun;
 
-    public Mesh[] meshes;
+    [Header("Mesh And Material")]
+    public Mesh[] meshes; // 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼
     public MeshFilter meshFilter;
+    public Material[] mat;// 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼
+    public MeshRenderer meshRenderer; 
 
     private void Start()
     {
         meshFilter = GetComponent<MeshFilter>();
+        meshRenderer = GetComponent<MeshRenderer>();
     }
 
 
@@ -43,7 +47,12 @@ public class M_GunManager : MonoBehaviour
         machinegun.enabled = true;
         originalGun.enabled = false;
         sniper.enabled = false;
-        shotgun.enabled = false;    
+        shotgun.enabled = false;
+        meshFilter.sharedMesh = meshes[1];
+        meshRenderer.material = mat[1];
+        this.transform.localPosition = new Vector3(0.375f, -0.9f, 0.55f);
+        this.transform.localScale = new Vector3(2, 2, 2);
+
     }
 
     public void ChooseSniper()
@@ -52,6 +61,10 @@ public class M_GunManager : MonoBehaviour
         originalGun.enabled = false;
         shotgun.enabled = false;
         machinegun.enabled = false;
+        meshFilter.sharedMesh = meshes[3];
+        meshRenderer.material = mat[3];
+        this.transform.localPosition = new Vector3(0.336f, -0.74f, 0.508f);
+        this.transform.localScale = new Vector3(2, 2, 1.6f);
     }
 
     public void ChooseShotgun()
@@ -60,6 +73,11 @@ public class M_GunManager : MonoBehaviour
         originalGun.enabled = false;
         sniper.enabled = false;
         machinegun.enabled = false;
+        meshFilter.sharedMesh = meshes[2];
+        meshRenderer.material = mat[2];
+        this.transform.localPosition = new Vector3(0.33f, -0.9f, 0.632f);
+        this.transform.localScale = new Vector3(3, 2, 1.3f);
+
     }
 
     public void ResetToOriginalGun()
@@ -68,6 +86,10 @@ public class M_GunManager : MonoBehaviour
         shotgun.enabled= false;
         sniper.enabled = false;
         machinegun.enabled = false;
+        meshFilter.sharedMesh = meshes[0];
+        meshRenderer.material = mat[0];
+        this.transform.localPosition = new Vector3(0.076f, -1.005f, 0.772f);
+        this.transform.localScale = new Vector3(2,2,2);
 
         originalGun.ResetToLevel1();
         machinegun.ResetToLevel1();
