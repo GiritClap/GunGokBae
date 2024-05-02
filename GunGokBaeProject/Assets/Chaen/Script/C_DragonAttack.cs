@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class C_EnemyAttack : MonoBehaviour
+
+public class C_DragonAttack : MonoBehaviour
 {
-    public float rotSpeed = 10 ;
+    public float rotSpeed = 10;
 
     // AI
     public Transform target;
@@ -17,7 +18,7 @@ public class C_EnemyAttack : MonoBehaviour
     private bool isAttack = false;
 
     // 애니메이션
-    //private Animator ani;
+    private Animator ani;
 
     bool Taunt; // 도발 허수아비
 
@@ -25,7 +26,7 @@ public class C_EnemyAttack : MonoBehaviour
     void Start()
     {
         nmAgent = GetComponent<NavMeshAgent>();
-        //ani = GetComponent<Animator>();
+        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -40,7 +41,19 @@ public class C_EnemyAttack : MonoBehaviour
 
         else if (target != null) // 타겟 생성시 타겟 따라감
         {
+            float distance = Vector3.Distance(target.transform.position, this.transform.position);
+            transform.LookAt(target);
             nmAgent.SetDestination(target.position);
+
+            if (distance <= 10.0f)
+            {
+                nmAgent.Stop();
+                if (isAttack == false)
+                {
+                    ani.SetBool("Idle", true);
+                    StartCoroutine(Attack());
+                }
+            }
         }
     }
 
@@ -48,10 +61,10 @@ public class C_EnemyAttack : MonoBehaviour
     IEnumerator Attack()
     {
         isAttack = true;
-        //ani.SetBool("Attack", true);    
+        ani.SetBool("Attack", true);
         yield return new WaitForSeconds(0.5f);
         ShotBullet(); // 총알 발사
-        //ani.SetBool("Attack", false);
+        ani.SetBool("Attack", false);
         yield return new WaitForSeconds(3.0f);
         isAttack = false;
     }
@@ -61,9 +74,10 @@ public class C_EnemyAttack : MonoBehaviour
     private void OnTriggerStay(Collider other) // Find 단점 해결하려고 일정 영역에 들어 왔을 때 타겟 지정
     {
         // 적 추적
-       if(other.tag == "Taunt") { // 도발 허수아비가 우선으로 타겟이 되게 함
+        if (other.tag == "Taunt")
+        { // 도발 허수아비가 우선으로 타겟이 되게 함
             target = other.gameObject.transform;
-       }
+        }
 
         else if (other.tag == "Player" && target == null) // 이미 타겟이 있을 경우엔 작동 안하고 타겟이 없을 때만 플레이어 타겟으로 지정
         {

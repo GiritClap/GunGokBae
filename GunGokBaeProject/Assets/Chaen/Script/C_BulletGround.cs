@@ -9,7 +9,6 @@ public class C_BulletGround : MonoBehaviour
     public Transform ground_Position;
 
     public float BulletSpeed = 500;
-    float destroyTime = 0;
 
 
     // Start is called before the first frame update
@@ -22,11 +21,7 @@ public class C_BulletGround : MonoBehaviour
     void Update()
     {
         // ÃÑ¾Ë 3ÃÊ µÚ ÆÄ±«
-        destroyTime += Time.deltaTime;
-        if(destroyTime > 3.0f)
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject, 3f);
     }
 
     private void OnCollisionEnter(Collision collision)
