@@ -42,7 +42,7 @@ public class C_DragonAttack : MonoBehaviour
         else if (target != null) // Å¸°Ù »ý¼º½Ã Å¸°Ù µû¶ó°¨
         {
             float distance = Vector3.Distance(target.transform.position, this.transform.position);
-            transform.LookAt(target);
+            transform.LookAt(target); // Å¸°ÙÀ» ¹Ù¶óº½
             nmAgent.SetDestination(target.position);
 
             if (distance <= 10.0f)
