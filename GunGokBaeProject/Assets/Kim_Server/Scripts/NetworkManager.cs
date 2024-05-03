@@ -33,7 +33,37 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public PhotonView PV;
 
     List<RoomInfo> myList = new List<RoomInfo>();
+    List<PlayerInfo> players = new List<PlayerInfo>();
     int currentPage = 1, maxPage, multiple;
+
+
+
+    public void OnClickIamReady()
+    {
+        foreach(PlayerInfo player in players)
+        {
+            player.isReady = true;
+        }
+    }
+
+    private void CheckAllPlayersReady()
+    {
+        bool allPlayersReady = true;
+
+        foreach (PlayerInfo player in players)
+        {
+            if (!player.isReady)
+            {
+                allPlayersReady = false;
+                break;
+            }
+        }
+
+        if (allPlayersReady)
+        {
+            Debug.Log("All players are ready!");
+        }
+    }
 
 
     #region 방리스트 갱신
@@ -145,12 +175,21 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         RoomRenewal();
         ChatRPC("<color=yellow>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
+
+        // 새 플레이어 추가
+        PlayerInfo player = new PlayerInfo();
+        player.name = newPlayer.NickName;
+        player.isReady = false; // 새 플레이어는 준비되지 않은 상태로 시작
+        players.Add(player);
+
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         RoomRenewal();
         ChatRPC("<color=yellow>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
+        // 나간 플레이어 제거
+        players.RemoveAll(p => p.name == otherPlayer.NickName);
     }
 
     void RoomRenewal()
@@ -162,6 +201,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
+    public class PlayerInfo
+    {
+        public string name;
+        public bool isReady;
+    }
 
     #region 채팅
     public void Send()
