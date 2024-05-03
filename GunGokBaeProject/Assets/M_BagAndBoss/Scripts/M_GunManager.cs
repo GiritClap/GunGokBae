@@ -13,14 +13,21 @@ public class M_GunManager : MonoBehaviour
     public Mesh[] meshes; // 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼
     public MeshFilter meshFilter;
     public Material[] mat;// 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼
-    public MeshRenderer meshRenderer; 
+    public MeshRenderer meshRenderer;
+
+    
+    public int currentWeapon = 0; // 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼
 
     private void Start()
     {
-        meshFilter = GetComponent<MeshFilter>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshFilter = transform.GetChild(1).GetComponent<MeshFilter>();
+        meshRenderer = transform.GetChild(1).GetComponent<MeshRenderer>();
     }
 
+    public int CurrentWep()
+    {
+        return currentWeapon;
+    }
 
     public string OriginalGunName()
     {
@@ -50,23 +57,11 @@ public class M_GunManager : MonoBehaviour
         shotgun.enabled = false;
         meshFilter.sharedMesh = meshes[1];
         meshRenderer.material = mat[1];
-        this.transform.localPosition = new Vector3(0.375f, -0.9f, 0.55f);
-        this.transform.localScale = new Vector3(2, 2, 2);
+        transform.GetChild(1).transform.localPosition = new Vector3(0.375f, -0.9f, 0.55f);
+        transform.GetChild(1).transform.localScale = new Vector3(2, 2, 2);
 
+        currentWeapon = 1;
     }
-
-    public void ChooseSniper()
-    {
-        sniper.enabled = true;
-        originalGun.enabled = false;
-        shotgun.enabled = false;
-        machinegun.enabled = false;
-        meshFilter.sharedMesh = meshes[3];
-        meshRenderer.material = mat[3];
-        this.transform.localPosition = new Vector3(0.336f, -0.74f, 0.508f);
-        this.transform.localScale = new Vector3(2, 2, 1.6f);
-    }
-
     public void ChooseShotgun()
     {
         shotgun.enabled = true;
@@ -75,8 +70,25 @@ public class M_GunManager : MonoBehaviour
         machinegun.enabled = false;
         meshFilter.sharedMesh = meshes[2];
         meshRenderer.material = mat[2];
-        this.transform.localPosition = new Vector3(0.33f, -0.9f, 0.632f);
-        this.transform.localScale = new Vector3(3, 2, 1.3f);
+        transform.GetChild(1).transform.localPosition = new Vector3(0.33f, -0.9f, 0.632f);
+        transform.GetChild(1).transform.localScale = new Vector3(3, 2, 1.3f);
+
+        currentWeapon = 2;
+
+    }
+    
+    public void ChooseSniper()
+    {
+        sniper.enabled = true;
+        originalGun.enabled = false;
+        shotgun.enabled = false;
+        machinegun.enabled = false;
+        meshFilter.sharedMesh = meshes[3];
+        meshRenderer.material = mat[3];
+        transform.GetChild(1).transform.localPosition = new Vector3(0.336f, -0.74f, 0.508f);
+        transform.GetChild(1).transform.localScale = new Vector3(2, 2, 1.6f);
+
+        currentWeapon = 3;
 
     }
 
@@ -88,13 +100,16 @@ public class M_GunManager : MonoBehaviour
         machinegun.enabled = false;
         meshFilter.sharedMesh = meshes[0];
         meshRenderer.material = mat[0];
-        this.transform.localPosition = new Vector3(0.076f, -1.005f, 0.772f);
-        this.transform.localScale = new Vector3(2,2,2);
+        transform.GetChild(1).transform.localPosition = new Vector3(0.076f, -1.005f, 0.772f);
+        transform.GetChild(1).transform.localScale = new Vector3(2,2,2);
 
         originalGun.ResetToLevel1();
         machinegun.ResetToLevel1();
         shotgun.ResetToLevel1();
         sniper.ResetToLevel1();
+
+        currentWeapon = 0;
+
     }
 
     public void UpgradeOriginalGun() 

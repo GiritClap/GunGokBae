@@ -28,7 +28,7 @@ public class M_TextOnScreen : MonoBehaviour
         btns[1].gameObject.SetActive(M_BagManager.Instance.GetGun2());
         btns[2].gameObject.SetActive(M_BagManager.Instance.GetGun3());
         btns[3].gameObject.SetActive(M_BagManager.Instance.GetGun4());
-
+        btns[4].gameObject.SetActive(M_BagManager.Instance.GetGun5());
 
     }
 }

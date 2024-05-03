@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations.Rigging;
 
 public class M_BtnSystem : MonoBehaviour
 {
@@ -45,6 +46,9 @@ public class M_BtnSystem : MonoBehaviour
     public Text gunDamage;
     public Text gunBullet;
 
+    [Header("Original Guns Rigs")]
+    public Rig[] oriRigs;
+
     bool isOriginalGun = true;
     bool chooseMachinegun = false;
     bool chooseShotgun = false;
@@ -53,11 +57,10 @@ public class M_BtnSystem : MonoBehaviour
     int clickGokNum = 0;
     int clickGunNum = 0;
 
-  
-
+   
     private void Start()
     {
-        manageGun = GameObject.Find("OriginalGun").GetComponent<M_GunManager>();
+        //manageGun = GameObject.Find("PlayerCamera").GetComponent<M_GunManager>();
         //manageGok = GameObject.Find("Pick").GetComponent<M_GokManager>();
        
     }
@@ -66,7 +69,7 @@ public class M_BtnSystem : MonoBehaviour
     {
         if (manageGun == null)
         {
-            manageGun = GameObject.Find("OriginalGun").GetComponent<M_GunManager>();
+            manageGun = GameObject.Find("PlayerCamera").GetComponent<M_GunManager>();
         }
         if(manageGok == null)
         {
@@ -137,6 +140,12 @@ public class M_BtnSystem : MonoBehaviour
         chooseSniper = false;
 
         clickGunNum = 0;
+
+        for (int i = 0; i < oriRigs.Length; i++)
+        {
+            oriRigs[i].weight = 1;
+        }
+        oriRigs[0].weight = 1;
     }
 
     public void GunUpgrade()
@@ -206,7 +215,12 @@ public class M_BtnSystem : MonoBehaviour
         shotgunBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseShotgun();
         gunsPanel.SetActive(false);
-        
+
+        for(int i = 0; i < oriRigs.Length; i++)
+        {
+            oriRigs[i].weight = 1;
+        }
+        oriRigs[2].weight = 1;
     }
 
     public void MachinegunBtn()
@@ -216,8 +230,12 @@ public class M_BtnSystem : MonoBehaviour
         machinegunBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseMachinegun();
         gunsPanel.SetActive(false);
-        
 
+        for (int i = 0; i < oriRigs.Length; i++)
+        {
+            oriRigs[i].weight = 1;
+        }
+        oriRigs[1].weight = 1;
     }
 
     public void SniperBtn()
@@ -227,8 +245,12 @@ public class M_BtnSystem : MonoBehaviour
         sniperBtnInGUP.gameObject.SetActive(true);
         manageGun.ChooseSniper();
         gunsPanel.SetActive(false);
-        
 
+        for (int i = 0; i < oriRigs.Length; i++)
+        {
+            oriRigs[i].weight = 1;
+        }
+        oriRigs[3].weight = 1;
     }
 
     // 여기부터 총 업그레이드 이후 버튼들

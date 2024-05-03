@@ -24,6 +24,16 @@ public class M_PlayerBody : MonoBehaviour
             M_BagManager.Instance.SetGun3(true);
             Destroy(collision.gameObject);
         }
+        if (collision.collider.tag == "gun4")
+        {
+            M_BagManager.Instance.SetGun4(true);
+            Destroy(collision.gameObject);
+        }
+        if (collision.collider.tag == "gun5")
+        {
+            M_BagManager.Instance.SetGun5(true);
+            Destroy(collision.gameObject);
+        }
 
 
 

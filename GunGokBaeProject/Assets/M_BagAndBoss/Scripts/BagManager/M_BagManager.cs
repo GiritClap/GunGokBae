@@ -18,6 +18,7 @@ public class M_BagManager : MonoBehaviour
     public bool gun2 = false;
     public bool gun3 = false;
     public bool gun4 = false;
+    public bool gun5 = false;
 
 
     private void Awake()
@@ -99,7 +100,6 @@ public class M_BagManager : MonoBehaviour
     {
         return gun;
     }
-
     public void SetGun(bool n)
     {
         gun = n;
@@ -109,27 +109,35 @@ public class M_BagManager : MonoBehaviour
     {
         return gun2;
     }
-
     public void SetGun2(bool n)
     {
         gun2 = n;
     }
+
     public bool GetGun3()
     {
         return gun3;
     }
-
     public void SetGun3(bool n)
     {
         gun3 = n;
     }
+
     public bool GetGun4()
     {
         return gun4;
     }
-
     public void SetGun4(bool n)
     {
         gun4 = n;
+    }
+
+    public bool GetGun5()
+    {
+        return gun5;
+    }
+    public void SetGun5(bool n)
+    {
+        gun5 = n;
     }
 }
