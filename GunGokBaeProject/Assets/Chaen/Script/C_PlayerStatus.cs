@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class C_PlayerStatus : MonoBehaviour
 {
     public Image hpBar;
+    public Text hpText;
     public int curHp;
     public int maxHp;
 
@@ -83,6 +84,7 @@ public class C_PlayerStatus : MonoBehaviour
     void UpdateHp()
     {
         hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f);
+        hpText.text = curHp.ToString() + " / " + maxHp.ToString();
     }
 
     public void HealBottom()
