@@ -10,41 +10,41 @@ public class M_Boss : MonoBehaviour
 
     public Transform player;
 
-    //whatisground ·¹ÀÌ¾î¿¡¼­¸¸ ¿òÁ÷ÀÓ
+    //whatisground ï¿½ï¿½ï¿½Ì¾î¿¡ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public LayerMask whatIsGround, whatIsPlayer;
 
     public GameObject meleeWeapon;
 
-    //ÆÐÅÏ1,2¿¡ »ç¿ëÇÒ ÇÁ¸®Æé
+    //ï¿½ï¿½ï¿½ï¿½1,2ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public GameObject pattern01;
     public GameObject pattern02;
 
     public GameObject pattern03;
 
-    //ÆÐÅÏ Å¸ÀÌ¸Ó
+    //ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½
     float pTimer;
     bool isP01;
     bool isP02;
     bool isP03;
     bool isP03_1;
 
-    //º¸½º Ã¼·Â
+    //ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½
     public Slider bossHp;
     float maxBossHp = 100f;
     public float currentBossHp = 100f;
 
 
-    //ÆÐÆ®·Ñ
+    //ï¿½ï¿½Æ®ï¿½ï¿½
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
 
-    //°ø°Ý
+    //ï¿½ï¿½ï¿½ï¿½
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
-    //»óÅÂ
-    // ÆÐÅÏ¸¶´Ù ½Ã¾ß¹üÀ§¿Í °ø°Ý¹üÀ§ ºÐº°
+    //ï¿½ï¿½ï¿½ï¿½
+    // ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½ï¿½ ï¿½Ã¾ß¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¹ï¿½ï¿½ï¿½ ï¿½Ðºï¿½
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
@@ -76,21 +76,21 @@ public class M_Boss : MonoBehaviour
         }
         else
         {
-            //º¸½º¸÷ ½Ã¾ß, °ø°Ý°¡´É¹üÀ§
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½, ï¿½ï¿½ï¿½Ý°ï¿½ï¿½É¹ï¿½ï¿½ï¿½
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         }
 
         if (isP03_1 == true)
         {
-            Debug.Log("½¸");
+            Debug.Log("ï¿½ï¿½");
             transform.Rotate(Vector3.up * Time.deltaTime * 72);
         }
 
         /*if(pTimer > 7.0f)
         {
             isP01 = true;
-            //º¸½º¸÷ ½Ã¾ß, °ø°Ý°¡´É¹üÀ§
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½, ï¿½ï¿½ï¿½Ý°ï¿½ï¿½É¹ï¿½ï¿½ï¿½
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange + 1000f, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange + 1000f, whatIsPlayer);
             pTimer = 0f;
@@ -98,7 +98,7 @@ public class M_Boss : MonoBehaviour
         else
         {
             isP01 = false;
-            //º¸½º¸÷ ½Ã¾ß, °ø°Ý°¡´É¹üÀ§
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¾ï¿½, ï¿½ï¿½ï¿½Ý°ï¿½ï¿½É¹ï¿½ï¿½ï¿½
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         }
@@ -157,7 +157,7 @@ public class M_Boss : MonoBehaviour
         Debug.DrawRay(walkPoint, -transform.up * 12f, Color.red);
         if (Physics.Raycast(walkPoint, -transform.up, 12f, whatIsGround))
         {
-            Debug.Log("ÀÎ½Ä");
+            Debug.Log("ï¿½Î½ï¿½");
             walkPointSet = true;
         }
     }
@@ -168,7 +168,7 @@ public class M_Boss : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        //ÀÚ±â À§Ä¡¿¡ ¼­±â
+        //ï¿½Ú±ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         //agent.SetDestination(transform.position);
         agent.ResetPath();
         Vector3 targetPos = new Vector3(player.position.x, transform.position.y, player.position.z);
@@ -180,7 +180,7 @@ public class M_Boss : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //°ø°Ý ÄÚµå ÀÛ¼º
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½Û¼ï¿½
             if (isP01)
             {
                 StartCoroutine("Pattern01");
@@ -236,7 +236,7 @@ public class M_Boss : MonoBehaviour
         meleeWeapon.SetActive(false);
     }
 
-    // ÇÃ·¹ÀÌ¾î ¹ß¹Ø¿¡¼­ °ø°Ý
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ß¹Ø¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     IEnumerator Pattern01()
     {
         isP01 = false;
@@ -246,7 +246,7 @@ public class M_Boss : MonoBehaviour
 
     }
 
-    // ÀüÃ¼¸Ê ¹ß¹Ø ½Ã°£Â÷ ·£´ý°ø°Ý
+    // ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ß¹ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     IEnumerator Pattern02()
     {
         isP02 = false;
@@ -265,7 +265,7 @@ public class M_Boss : MonoBehaviour
 
     }
 
-    //Á¦ÀÚ¸® ÇÑ¹ÙÄû µ¹¸é¼­ °ø°Ý(¸®ÀÚ¸ùºê·¡½º°°Àº ´À³¦)
+    //ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½é¼­ ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½Ú¸ï¿½ï¿½ê·¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     IEnumerator Pattern03()
     {
         isP03 = false;
