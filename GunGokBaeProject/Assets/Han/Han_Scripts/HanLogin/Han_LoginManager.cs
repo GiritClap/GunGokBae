@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement ;
+
 
 public class Han_LoginManager : MonoBehaviour
 {
@@ -17,9 +18,14 @@ public class Han_LoginManager : MonoBehaviour
     public GameObject LoginPanel;
     public GameObject CAPanel;
 
-    public string LoginUrl;
-    public string CreateAccountUrl;
-    // Start is called before the first frame update
+
+    public Text loginText;
+    public Text createText;
+
+    private string LoginUrl;
+    private string CreateAccountUrl;
+
+
     void Start()
     {
         LoginUrl = "http://localhost/Login.php";
@@ -44,6 +50,24 @@ public class Han_LoginManager : MonoBehaviour
         WWW webRequest = new(LoginUrl, form);  //저장된 URL로 이동
         yield return webRequest;
         Debug.Log(webRequest.text);
+        loginText.text = webRequest.text;
+
+        // 메시지 분석
+        if (webRequest.text.Contains("Success to connect to database!"))
+        {
+            if (webRequest.text.Contains("Login successful!!"))
+            {
+                // 로그인 성공
+                // 다른 스크립트에 id와 pw를 넘겨줍니다.
+                Han_AccountManager.Instance.id = IDInputField.text;
+                Han_AccountManager.Instance.pw = PassInputField.text;
+
+                // 다음 씬으로 이동
+                int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+                SceneManager.LoadScene(currentSceneIndex + 1);
+            }
+        }
+
 
     }
         public void CreateBtn()
@@ -65,6 +89,7 @@ public class Han_LoginManager : MonoBehaviour
 
         LoginPanel.SetActive(true);
         CAPanel.SetActive(false);
+        createText.text = webRequest.text;
     }
 
     public void OpenCreatPanelBtn()
