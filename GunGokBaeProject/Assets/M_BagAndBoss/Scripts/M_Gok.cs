@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Animations.Rigging;
 
 public class M_Gok : MonoBehaviour
 {
     public Collider melee;
     public Text bulletCntText;
     public Image crosshair;
+
+    public Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +33,22 @@ public class M_Gok : MonoBehaviour
 
             melee.enabled = true;
 
+            StartCoroutine("StartPicking");
+
         }
         if (Input.GetButtonUp("Fire1"))
         {
             melee.enabled = false;
         }
     }
+
+    IEnumerator StartPicking()
+    {
+        anim.SetBool("Picking", true);
+        yield return new WaitForSeconds(1.2f);
+        anim.SetBool("Picking", false);
+
+    }
+
 }
+

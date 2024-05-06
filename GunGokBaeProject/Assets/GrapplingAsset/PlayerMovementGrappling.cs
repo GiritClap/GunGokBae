@@ -47,7 +47,7 @@ public class PlayerMovementGrappling : MonoBehaviour
     public Transform orientation;
 
     [Header("Animation")]
-    //public Animator anim;
+   // public Animator anim;
 
     float horizontalInput;
     float verticalInput;
@@ -82,7 +82,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
-        //anim = GameObject.Find("SM_Chr_ScifiWorlds_SpaceSuit_Male_01").GetComponent<Animator>();
+        //anim = GameObject.Find("SM_Chr_ScifiWorlds_Scavenger_02").GetComponent<Animator>();
     }
 
     private void Update()
@@ -106,7 +106,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         }
         else
         {
-           // anim.SetBool("IsWalking", false);
+          // anim.SetBool("IsWalking", false);
         }
 
         //TextStuff();

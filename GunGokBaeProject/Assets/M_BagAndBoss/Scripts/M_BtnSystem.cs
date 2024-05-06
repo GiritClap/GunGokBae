@@ -49,6 +49,9 @@ public class M_BtnSystem : MonoBehaviour
     [Header("Original Guns Rigs")]
     public Rig[] oriRigs;
 
+    [Header("Original Guns in Model")]
+    public GameObject[] oriGuns;
+
     bool isOriginalGun = true;
     bool chooseMachinegun = false;
     bool chooseShotgun = false;
@@ -146,6 +149,13 @@ public class M_BtnSystem : MonoBehaviour
             oriRigs[i].weight = 1;
         }
         oriRigs[0].weight = 1;
+
+        for (int i = 0; i < oriGuns.Length; i++)
+        {
+            oriGuns[i].SetActive(false);
+        }
+        oriGuns[0].SetActive(true);
+
     }
 
     public void GunUpgrade()
@@ -207,22 +217,6 @@ public class M_BtnSystem : MonoBehaviour
             sniperUpgradeBtns[5].interactable = true;
         }
     }
-
-    public void ShotgunBtn()
-    {
-        chooseShotgun = true;
-        isOriginalGun = false;
-        shotgunBtnInGUP.gameObject.SetActive(true);
-        manageGun.ChooseShotgun();
-        gunsPanel.SetActive(false);
-
-        for(int i = 0; i < oriRigs.Length; i++)
-        {
-            oriRigs[i].weight = 1;
-        }
-        oriRigs[2].weight = 1;
-    }
-
     public void MachinegunBtn()
     {
         chooseMachinegun = true;
@@ -236,7 +230,35 @@ public class M_BtnSystem : MonoBehaviour
             oriRigs[i].weight = 1;
         }
         oriRigs[1].weight = 1;
+
+        for (int i = 0; i < oriGuns.Length; i++)
+        {
+            oriGuns[i].SetActive(false);
+        }
+        oriGuns[1].SetActive(true);
     }
+    public void ShotgunBtn()
+    {
+        chooseShotgun = true;
+        isOriginalGun = false;
+        shotgunBtnInGUP.gameObject.SetActive(true);
+        manageGun.ChooseShotgun();
+        gunsPanel.SetActive(false);
+
+        for(int i = 0; i < oriRigs.Length; i++)
+        {
+            oriRigs[i].weight = 1;
+        }
+        oriRigs[2].weight = 1;
+
+        for (int i = 0; i < oriGuns.Length; i++)
+        {
+            oriGuns[i].SetActive(false);
+        }
+        oriGuns[2].SetActive(true);
+    }
+
+   
 
     public void SniperBtn()
     {
@@ -251,6 +273,12 @@ public class M_BtnSystem : MonoBehaviour
             oriRigs[i].weight = 1;
         }
         oriRigs[3].weight = 1;
+
+        for (int i = 0; i < oriGuns.Length; i++)
+        {
+            oriGuns[i].SetActive(false);
+        }
+        oriGuns[3].SetActive(true);
     }
 
     // 여기부터 총 업그레이드 이후 버튼들
