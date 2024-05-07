@@ -14,6 +14,8 @@ public class C_PlayerItem : MonoBehaviour
     public GameObject[] m_Special_Gun = new GameObject[6]; // 0 = ¾øÀ½, 1 = °¥°í¸®ÃÑ, 2 = ±×¶ó¿îµå ÃÑ, 3 = Èú ÃÑ, 4 = ·ÎÄÏ ÃÑ, 5 = µµ¹ß ÃÑ
     [Header("Original Guns in Model")] // ³²ÀÌ º¼ ±âº»ÃÑ ¿ÀºêÁ§Æ®µé
     public GameObject[] m_Original_Gun; // 0 = ±ÇÃÑ, 1 = ¸Ó½Å°Ç, 2 = ¼¦°Ç, 3 = ½º³ªÀÌÆÛ
+    [Header("Pick in Model")]
+    public GameObject m_Pick;
 
     public int specialNum;
 
@@ -53,7 +55,7 @@ public class C_PlayerItem : MonoBehaviour
         {
             m_Original_Gun[i].SetActive(false);
         }
-
+        m_Pick.SetActive(false);
 
         if (gunManager.CurrentWep() == 0)
         {
@@ -98,6 +100,7 @@ public class C_PlayerItem : MonoBehaviour
             {
                 m_Special_Gun[i].SetActive(false);
             }
+            m_Pick.SetActive(false);
 
             player_ItemNum[0].SetActive(true);
             player_ItemNum[1].SetActive(false);
@@ -132,6 +135,24 @@ public class C_PlayerItem : MonoBehaviour
             player_ItemNum[1].SetActive(true);
             player_ItemNum[2].SetActive(false);
             nowItem = player_ItemNum[1];
+            m_Pick.SetActive(true);
+
+            for (int i = 0; i < specRigs.Length; i++)
+            {
+                specRigs[i].weight = 0;
+            }
+            for (int i = 0; i < oriRigs.Length; i++)
+            {
+                oriRigs[i].weight = 0;
+            }
+            for (int i = 0; i < m_Original_Gun.Length; i++)
+            {
+                m_Original_Gun[i].SetActive(false);
+            }
+            for (int i = 0; i < m_Special_Gun.Length; i++)
+            {
+                m_Special_Gun[i].SetActive(false);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -152,6 +173,8 @@ public class C_PlayerItem : MonoBehaviour
             {
                 m_Special_Gun[i].SetActive(false);
             }
+            m_Pick.SetActive(false);
+
             player_ItemNum[0].SetActive(false);
             player_ItemNum[1].SetActive(false);
             player_ItemNum[2].SetActive(true);
@@ -204,6 +227,8 @@ public class C_PlayerItem : MonoBehaviour
         {
             m_Special_Gun[i].SetActive(false);
         }
+        m_Pick.SetActive(false);
+
         m_Special_Gun[0].SetActive(true);
         player_ItemNum[2].SetActive(true);
 
@@ -233,6 +258,8 @@ public class C_PlayerItem : MonoBehaviour
         {
             m_Special_Gun[i].SetActive(false);
         }
+        m_Pick.SetActive(false);
+
         m_Special_Gun[1].SetActive(true);
 
         bulletCntText.text = "Grappling Gun";
@@ -264,6 +291,8 @@ public class C_PlayerItem : MonoBehaviour
         {
             m_Special_Gun[i].SetActive(false);
         }
+        m_Pick.SetActive(false);
+
         m_Special_Gun[2].SetActive(true);
 
         bulletCntText.text = "Ground Gun";
@@ -295,6 +324,8 @@ public class C_PlayerItem : MonoBehaviour
         {
             m_Special_Gun[i].SetActive(false);
         }
+        m_Pick.SetActive(false);
+
         m_Special_Gun[3].SetActive(true);
 
         bulletCntText.text = "Heal Gun";
@@ -326,6 +357,8 @@ public class C_PlayerItem : MonoBehaviour
         {
             m_Special_Gun[i].SetActive(false);
         }
+        m_Pick.SetActive(false);
+
         m_Special_Gun[4].SetActive(true);
 
         bulletCntText.text = "Rocket Gun";
@@ -357,6 +390,8 @@ public class C_PlayerItem : MonoBehaviour
         {
             m_Special_Gun[i].SetActive(false);
         }
+        m_Pick.SetActive(false);
+
         m_Special_Gun[5].SetActive(true);
 
         bulletCntText.text = "Taunt Gun";

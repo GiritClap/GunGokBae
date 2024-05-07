@@ -9,8 +9,11 @@ public class M_Gok : MonoBehaviour
     public Collider melee;
     public Text bulletCntText;
     public Image crosshair;
+    public GameObject pick;
 
     public Animator anim;
+
+    float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -25,30 +28,27 @@ public class M_Gok : MonoBehaviour
     void Update()
     {
         bulletCntText.text = "Gok";
-
-        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //ÁÂÅ¬¸¯
+        timer += 1f * Time.deltaTime;
+        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true && timer > 1.3f && pick.gameObject.activeSelf == true) //ÁÂÅ¬¸¯
         {
 
             Debug.Log("melee true");
 
             melee.enabled = true;
-
-            StartCoroutine("StartPicking");
-
+            anim.SetBool("Picking", true);
+            Invoke("StopPicking", 1.2f);
+            timer = 0;
         }
         if (Input.GetButtonUp("Fire1"))
         {
             melee.enabled = false;
+            
         }
     }
 
-    IEnumerator StartPicking()
+    void StopPicking()
     {
-        anim.SetBool("Picking", true);
-        yield return new WaitForSeconds(1.2f);
         anim.SetBool("Picking", false);
-
     }
-
 }
 
