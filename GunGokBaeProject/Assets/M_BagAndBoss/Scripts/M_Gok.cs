@@ -18,9 +18,7 @@ public class M_Gok : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
         bulletCntText.text = "Gok";
-        crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
 
     }
 
