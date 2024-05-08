@@ -6,71 +6,143 @@ using static UnityEditor.Progress;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Text;
+using MySql.Data.MySqlClient;
+using System;
 
-[System.Serializable]
-public class SaveData //ÀúÀåÇÒ µ¥ÀÌÅÍ Âß Àû±â
+
+public class SaveData //ì €ì¥í•  ë°ì´í„° ì­‰ ì ê¸°
 {
-    public string[] inventory = new string[3];
-    public int score;
 
+
+    //player ì •ë³´
+    public bool ishost = false; //í˜¸ìŠ¤íŠ¸ ì—¬ë¶€, í˜¸ìŠ¤íŠ¸ 1 í´ë¼ 0
+    public string id; //ì•„ì´ë””
+    public string pw; //ë¹„ë°€ë²ˆí˜¸
+    public string nickname; //ë‹‰ë„¤ì„
+
+    //----------------------------------------------
+    
+    //ê²Œì„ ìºë¦­í„° ì •ë³´
+    public int playerHp;    //í”Œë ˆì´ì–´ ì²´ë ¥
+    public Vector3 playerPos; //í”Œë ˆì´ì–´ ìœ„ì¹˜
+    public Vector3 playerRot; //í”Œë ˆì´ì–´ ìœ„ì¹˜
+    
+    public int level; //ë ˆë²¨
+    public int totalExp; //ì „ì²´ ê²½í—˜ì¹˜?
+    public int currentExp; //í˜„ì¬ ê²½í—˜ì¹˜
+    public int maxExp; //ìµœëŒ€ ê²½í—˜ì¹˜
+    public int gold; //ê³¨ë“œ?
+    //----------------------------------------------
+    public string[] inventory = new string[6]; //ì¸ë²¤í† ë¦¬ ê³¡ê´­ì´, ë°°ëƒ¥, ì´, íŠ¹ìˆ˜ì´ ë“±ë“±
+    public int currentWep;      //ë“¤ê³  ìˆëŠ” í˜„ì¬ ì´ê¸°
+
+    //----------------------------------------------
+    //ì´ê¸° ì •ë³´ ì¶”ê°€
+    public String gunName0; //ì´ê¸°ì´ë¦„
+    public bool special_gun0; //íŠ¹ìˆ˜ì´ê¸° ì—¬ë¶€ ì¼ë°˜ì´ 0 íŠ¹ìˆ˜ì´ 1
+    public int bulletCntInMag0; //ì´ì•Œ ê°¯ìˆ˜
+    public int bulletMaxInMag0; //ìµœëŒ€ ì´ì•Œ ê°¯ìˆ˜
+    public int bulletInMag0; //íƒ„ì°½ì— ë‚¨ì€ ì´ì•Œ
+    //ê°•í™” ì •ë³´ ì¶”ê°€
+    //----------------------------------------------
+
+    //ê´‘ë¬¼ ì •ë³´ ì¶”ê°€
+    public int meneral0; //ê´‘ë¬¼
+    public int meneral1; //ê´‘ë¬¼
+    public int meneral2; //ê´‘ë¬¼
+    public int meneral3; //ê´‘ë¬¼
+    
+    //----------------------------------------------------------------------
+    //----------------------------------------------------------------------
+    //hostì¼ê²½ìš° ì—…ë°ì´íŠ¸ ì •ë³´
+    //ê²Œì„ ì •ë³´
+
+    //íŠ¹ìˆ˜ ë¬´ê¸° ì–´ë””ê¹Œì§€ ë¨¹ì—ˆë‚˜???
+    //í˜„ì¬ ë°œê²¬ëœ ì¸¡ìˆ˜ì´ ì¶”ê°€
+    public string[] special_gun = new string[6];    //íŠ¹ìˆ˜ë¬´ê¸°
+    public int specialNum;          //íŠ¹ìˆ˜ë¬´ê¸° ê°¯ìˆ˜
+    public int currentSpecialGun;   //í˜„ì¬ íŠ¹ìˆ˜ë¬´ê¸°
+    //----------------------------------------------
+    //ê²Œì„ ì •ë³´ gameManager
+
+    public int sceneLevel;  //ì”¬ ë ˆë²¨
+    //public int currentStage;    //í˜„ì¬ ìŠ¤í…Œì´ì§€
+    //í˜„ì¬ ì§„í–‰ ìƒí™© ë²ˆí˜¸? ì¶”ê°€
+    //ìš°ì£¼ì„  ì •ë³´ ì¶”ê°€
 }
-/*public class SaveData //ÇÃ·¹ÀÌ¾î À§Ä¡ ÀúÀåÇÏ´Â Æ©Åä¸®¾ó
-{
-    public Vector3 playerPos;
-    public Vector3 playerRot;
-}*/
 
 public class AcceptAllCertificates : CertificateHandler
 {
     protected override bool ValidateCertificate(byte[] certificateData)
     {
-        // ¸ğµç ÀÎÁõ¼­¸¦ ¼ö¶ôÇÕ´Ï´Ù.
+        // ëª¨ë“  ì¸ì¦ì„œë¥¼ ìˆ˜ë½í•©ë‹ˆë‹¤.
         return true;
     }
 }
 public class Han_SaveNLoad_DB : MonoBehaviour
 {
-    private const string V = "http://localhost/dataTest.php";
-    private string dataUrl = V; //php URL
+    private const string S = "http://localhost/saveData.php";
+    private string saveDataUrl = S; //php URL
+
+    private const string L = "http://localhost/loadData.php";
+    private string LoadDataUrl = L; //php URL
 
     public Text dataTxt;
     private SaveData saveData = new();
 
+        private static Han_SaveNLoad_DB instance_Han_SaveNLoad_DB = null;
+        void Awake()
+    {
+        if (null == instance_Han_SaveNLoad_DB)
+        {
+            //ì´ í´ë˜ìŠ¤ ì¸ìŠ¤í„´ìŠ¤ê°€ íƒ„ìƒí–ˆì„ ë•Œ ì „ì—­ë³€ìˆ˜ instanceì— ê²Œì„ë§¤ë‹ˆì € ì¸ìŠ¤í„´ìŠ¤ê°€ ë‹´ê²¨ìˆì§€ ì•Šë‹¤ë©´, ìì‹ ì„ ë„£ì–´ì¤€ë‹¤.
+            instance_Han_SaveNLoad_DB = this;
+            //ì”¬ ì „í™˜ì´ ë˜ë”ë¼ë„ íŒŒê´´ë˜ì§€ ì•Šê²Œ í•œë‹¤.            //gameObjectë§Œìœ¼ë¡œë„ ì´ ìŠ¤í¬ë¦½íŠ¸ê°€ ì»´í¬ë„ŒíŠ¸ë¡œì„œ ë¶™ì–´ìˆëŠ” Hierarchyìƒì˜ ê²Œì„ì˜¤ë¸Œì íŠ¸ë¼ëŠ” ëœ»ì´ì§€ë§Œ, í—·ê°ˆë¦¼ ë°©ì§€ë¥¼ ìœ„í•´ thisë¥¼ ë¶™ì—¬ì£¼ê¸°ë„ í•œë‹¤.
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            //ë§Œì•½ ì”¬ ì´ë™ì´ ë˜ì—ˆëŠ”ë° ê·¸ ì”¬ì—ë„ Hierarchyì— GameMgrì´ ì¡´ì¬í•  ìˆ˜ë„ ìˆë‹¤.
+            //ê·¸ëŸ´ ê²½ìš°ì—” ì´ì „ ì”¬ì—ì„œ ì‚¬ìš©í•˜ë˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ê³„ì† ì‚¬ìš©í•´ì£¼ëŠ” ê²½ìš°ê°€ ë§ì€ ê²ƒ ê°™ë‹¤.
+            //ê·¸ë˜ì„œ ì´ë¯¸ ì „ì—­ë³€ìˆ˜ì¸ instanceì— ì¸ìŠ¤í„´ìŠ¤ê°€ ì¡´ì¬í•œë‹¤ë©´ ìì‹ (ìƒˆë¡œìš´ ì”¬ì˜ GameMgr)ì„ ì‚­ì œí•´ì¤€ë‹¤.
+            Destroy(this.gameObject);
+        }
+    }
     void Start()
     {
 
     }
     public void SaveData()
     {
-        //°´Ã¼¿¡ ´ëÀÌÅÍ ÀúÀå
+        //ê°ì²´ì— ëŒ€ì´í„° ì €ì¥
         saveData.inventory[0] = "gun";
         saveData.inventory[1] = "pick";
         saveData.inventory[2] = "healgun";
-        saveData.score = 30;
 
-        //jsonÆÄÀÏ·Î º¯°æ
+
+        //jsoníŒŒì¼ë¡œ ë³€ê²½
         string json = JsonUtility.ToJson(saveData);
 
-        StartCoroutine(PostRequest(dataUrl, json));
+        StartCoroutine(PostRequest(saveDataUrl, json));
     }
-        //jsonÆÄÀÏÀ» mysql·Î º¸³»±âÀ§ÇÏ¿© À¥¸®Äõ½ºÆ®
+        //jsoníŒŒì¼ì„ mysqlë¡œ ë³´ë‚´ê¸°ìœ„í•˜ì—¬ ì›¹ë¦¬ì¿¼ìŠ¤íŠ¸
         IEnumerator PostRequest(string url, string json)
     {
-        var request = new UnityWebRequest(url, "POST"); //Post¿äÃ»
+        var request = new UnityWebRequest(url, "POST"); //Postìš”ì²­
 
-        // SSL ÀÎÁõ¼­ °ËÁõÀ» ºñÈ°¼ºÈ­ÇÕ´Ï´Ù.
+        // SSL ì¸ì¦ì„œ ê²€ì¦ì„ ë¹„í™œì„±í™”í•©ë‹ˆë‹¤.
         request.certificateHandler = new AcceptAllCertificates();
 
-        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);        // JSON ¹®ÀÚ¿­À» ¹ÙÀÌÆ® ¹è¿­·Î º¯È¯ÇÕ´Ï´Ù.
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);        // ¿äÃ» º»¹®¿¡ JSON µ¥ÀÌÅÍ¸¦ ¼³Á¤ÇÕ´Ï´Ù.
-        request.downloadHandler = new DownloadHandlerBuffer();        // ¿äÃ»ÀÇ ÀÀ´äÀ» Ã³¸®ÇÒ ÇÚµé·¯¸¦ ¼³Á¤ÇÕ´Ï´Ù.
-        request.SetRequestHeader("Content-Type", "application/json");        // ¿äÃ» Çì´õ¿¡ Content-TypeÀ» ¼³Á¤ÇÕ´Ï´Ù.
+        byte[] bodyRaw = Encoding.UTF8.GetBytes(json);        // JSON ë¬¸ìì—´ì„ ë°”ì´íŠ¸ ë°°ì—´ë¡œ ë³€í™˜í•©ë‹ˆë‹¤.
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);        // ìš”ì²­ ë³¸ë¬¸ì— JSON ë°ì´í„°ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+        request.downloadHandler = new DownloadHandlerBuffer();        // ìš”ì²­ì˜ ì‘ë‹µì„ ì²˜ë¦¬í•  í•¸ë“¤ëŸ¬ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
+        request.SetRequestHeader("Content-Type", "application/json");        // ìš”ì²­ í—¤ë”ì— Content-Typeì„ ì„¤ì •í•©ë‹ˆë‹¤.
 
-        // ¿äÃ»À» º¸³À´Ï´Ù. ÀÌ´Â ºñµ¿±âÀûÀ¸·Î Ã³¸®µÇ¹Ç·Î yield returnÀ» »ç¿ëÇÏ¿© ¿Ï·á¸¦ ±â´Ù¸³´Ï´Ù.
+        // ìš”ì²­ì„ ë³´ëƒ…ë‹ˆë‹¤. ì´ëŠ” ë¹„ë™ê¸°ì ìœ¼ë¡œ ì²˜ë¦¬ë˜ë¯€ë¡œ yield returnì„ ì‚¬ìš©í•˜ì—¬ ì™„ë£Œë¥¼ ê¸°ë‹¤ë¦½ë‹ˆë‹¤.
         yield return request.SendWebRequest();
 
 
-        if (request.result != UnityWebRequest.Result.Success)     // ¿äÃ»ÀÌ ¼º°øÀûÀ¸·Î ¿Ï·áµÇ¾ú´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+        if (request.result != UnityWebRequest.Result.Success)     // ìš”ì²­ì´ ì„±ê³µì ìœ¼ë¡œ ì™„ë£Œë˜ì—ˆëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
         {
             Debug.Log(request.error);
         }
@@ -79,22 +151,45 @@ public class Han_SaveNLoad_DB : MonoBehaviour
             Debug.Log("Form upload complete!");
         }
     }
+    
+     public IEnumerator LoadData()
+    {
+        using (UnityWebRequest www = UnityWebRequest.Get(LoadDataUrl))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                // ë°ì´í„° ì²˜ë¦¬
+                string data = www.downloadHandler.text;
+                SaveData saveData = JsonUtility.FromJson<SaveData>(data);
+
+                // ë°ì´í„° ì‚¬ìš©
+                // ì˜ˆ: í”Œë ˆì´ì–´ ìœ„ì¹˜ ì„¤ì •, ì ìˆ˜ í‘œì‹œ ë“±
+            }
+        }
+    }
+
 }
 
-//jsonÀ¸·Î Å¬¶óÀÌ¾ğÆ®¿¡ ÀúÀå //jsonÀ¸·Î Å¬¶óÀÌ¾ğÆ®¿¡ ÀúÀå //jsonÀ¸·Î Å¬¶óÀÌ¾ğÆ®¿¡ ÀúÀå //jsonÀ¸·Î Å¬¶óÀÌ¾ğÆ®¿¡ ÀúÀå //jsonÀ¸·Î Å¬¶óÀÌ¾ğÆ®¿¡ ÀúÀå
-/*    //json ÆÄÀÏ·Î ÀúÀå½Ã µğ·ºÅä¸®, ÆÄÀÏÀÌ¸§ÀúÀå
-    //private string SAVE_DATA_DIRECTORY; //µğ·ºÅä¸® °æ·Î
-    //private string SAVE_FILENAME = "/DataSaveTest.txt"; //ÆÄÀÏ ÀÌ¸§ //³ªÁß¿¡´Â ID_data Çü½ÄÀ¸·Î ÀúÀåÇÏ¿© ±¸º°
+//jsonìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ì— ì €ì¥ //jsonìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ì— ì €ì¥ //jsonìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ì— ì €ì¥ //jsonìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ì— ì €ì¥ //jsonìœ¼ë¡œ í´ë¼ì´ì–¸íŠ¸ì— ì €ì¥
+/*    //json íŒŒì¼ë¡œ ì €ì¥ì‹œ ë””ë ‰í† ë¦¬, íŒŒì¼ì´ë¦„ì €ì¥
+    //private string SAVE_DATA_DIRECTORY; //ë””ë ‰í† ë¦¬ ê²½ë¡œ
+    //private string SAVE_FILENAME = "/DataSaveTest.txt"; //íŒŒì¼ ì´ë¦„ //ë‚˜ì¤‘ì—ëŠ” ID_data í˜•ì‹ìœ¼ë¡œ ì €ì¥í•˜ì—¬ êµ¬ë³„
 
-    //private PlayerController thePlayer; //player position //ÇÃ·¹ÀÌ¾î À§Ä¡ ÀúÀåÇÏ´Â Æ©Åä¸®¾ó
+    //private PlayerController thePlayer; //player position //í”Œë ˆì´ì–´ ìœ„ì¹˜ ì €ì¥í•˜ëŠ” íŠœí† ë¦¬ì–¼
     
 
     void Start()
     {
-        //json ÆÄÀÏ·Î ÀúÀåÇÏ´Â ¹ı
-*//*        SAVE_DATA_DIRECTORY = Application.dataPath + "/Han/Saves/"; //path ÀÔ·Â
+        //json íŒŒì¼ë¡œ ì €ì¥í•˜ëŠ” ë²•
+*//*        SAVE_DATA_DIRECTORY = Application.dataPath + "/Han/Saves/"; //path ì…ë ¥
 
-        if(!Directory.Exists(SAVE_DATA_DIRECTORY))  //µğ·ºÅä¸® ¾øÀ¸¸é »ı¼º
+        if(!Directory.Exists(SAVE_DATA_DIRECTORY))  //ë””ë ‰í† ë¦¬ ì—†ìœ¼ë©´ ìƒì„±
         {
             Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
         }*//*
@@ -102,23 +197,23 @@ public class Han_SaveNLoad_DB : MonoBehaviour
 
     public void SaveData()
     {
-        //thePlayer = FindObjectOfType<PlayerController>(); //ÇÃ·¹ÀÌ¾î À§Ä¡ ÀúÀåÇÏ´Â Æ©Åä¸®¾ó
+        //thePlayer = FindObjectOfType<PlayerController>(); //í”Œë ˆì´ì–´ ìœ„ì¹˜ ì €ì¥í•˜ëŠ” íŠœí† ë¦¬ì–¼
         //saveData.playerPos = thePlayer.transform.position;
         //saveData.playerRot = thePlayer.transform.eulerAngles;
 
-        //°´Ã¼¿¡ ´ëÀÌÅÍ ÀúÀå
+        //ê°ì²´ì— ëŒ€ì´í„° ì €ì¥
         saveData.inventory[0] = "gun";
         saveData.inventory[1] = "pick";
         saveData.inventory[2] = "healgun";
         saveData.score = 30;
 
-        //jsonÀ¸·Î º¯°æ
+        //jsonìœ¼ë¡œ ë³€ê²½
         string json = JsonUtility.ToJson(saveData);
 
-        //ÆÄÀÏ ÀúÀå
-        File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json); //ÆÄÀÏ ÀúÀå
+        //íŒŒì¼ ì €ì¥
+        File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json); //íŒŒì¼ ì €ì¥
 
-        //Debug.Log("ÀúÀå ¿Ï·á");
+        //Debug.Log("ì €ì¥ ì™„ë£Œ");
         //Debug.Log(json);
     }
 
@@ -128,18 +223,18 @@ public class Han_SaveNLoad_DB : MonoBehaviour
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
-            //GameObject player = GameObject.Find("Player") //ÀÌ¸§À¸·Î Ã£À½ -> ÁøÂ¥ ¿À·¡°É¸²
-            //GameObject player = GameObject.FindWithTag("Player") //ÅÂ±×¸¦ ÀÌ¿ëÇÑ °Ë»ö -> ¿À·¡°É¸²
+            //GameObject player = GameObject.Find("Player") //ì´ë¦„ìœ¼ë¡œ ì°¾ìŒ -> ì§„ì§œ ì˜¤ë˜ê±¸ë¦¼
+            //GameObject player = GameObject.FindWithTag("Player") //íƒœê·¸ë¥¼ ì´ìš©í•œ ê²€ìƒ‰ -> ì˜¤ë˜ê±¸ë¦¼
 
 
-            //thePlayer = FindObjectOfType<PlayerController>(); //PlayerControllerÄÄÆ÷³ÍÆ®°¡ ºÙÀº Ã³À½
-            //thePlayer.transform.position = saveData.playerPos; //¹Ş¾Æ¿Â µ¥ÀÌÅÍ¸¦ Ä³¸¯ÅÍ À§Ä¡¿¡ ÀúÀå
-            //thePlayer.transform.eulerAngles = saveData.PlayerRot; // È¸Àü
-            Debug.Log("·Îµå ¿Ï·á");
+            //thePlayer = FindObjectOfType<PlayerController>(); //PlayerControllerì»´í¬ë„ŒíŠ¸ê°€ ë¶™ì€ ì²˜ìŒ
+            //thePlayer.transform.position = saveData.playerPos; //ë°›ì•„ì˜¨ ë°ì´í„°ë¥¼ ìºë¦­í„° ìœ„ì¹˜ì— ì €ì¥
+            //thePlayer.transform.eulerAngles = saveData.PlayerRot; // íšŒì „
+            Debug.Log("ë¡œë“œ ì™„ë£Œ");
             dataTxt.text = saveData.inventory[0]+"\n"+ saveData.inventory[1] + "\n"+ saveData.inventory[2] + "\n" + saveData.score +"\n";
         }
         else
         {
-            Debug.Log("¼¼ÀÌºê ÆÄÀÏÀÌ ¾ø½À´Ï´Ù.");
+            Debug.Log("ì„¸ì´ë¸Œ íŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤.");
         }*/
 
