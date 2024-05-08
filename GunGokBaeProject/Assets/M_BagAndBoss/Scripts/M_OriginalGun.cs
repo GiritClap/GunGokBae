@@ -18,6 +18,7 @@ public class M_OriginalGun : MonoBehaviour
 
     public Image crosshair;
 
+    M_RaycastWeapon weapon;
    
 
 
@@ -32,7 +33,7 @@ public class M_OriginalGun : MonoBehaviour
             crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
         }
         damage = 3f;
-
+        weapon = GetComponent<M_RaycastWeapon>();
     }
 
     // Update is called once per frame
@@ -49,7 +50,8 @@ public class M_OriginalGun : MonoBehaviour
             {
                 if (cur_Bullet_Cnt > 0)
                 {
-                    ShotRayBullet();
+                    weapon.StartFiring();
+                    //ShotRayBullet();
                     cur_Bullet_Cnt--;
                 }
                 else
@@ -59,7 +61,10 @@ public class M_OriginalGun : MonoBehaviour
                 timer = 0;
             }
         }
-
+        if(Input.GetButtonUp("Fire1"))
+        {
+            weapon.StopFiring();
+        }
 
         if (Input.GetKeyDown(KeyCode.R) && cur_Bullet_Cnt != reload_Bullet_Cnt && crosshair.gameObject.activeSelf == true) // ¿Á¿Â¿¸
         {
