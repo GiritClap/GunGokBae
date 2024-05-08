@@ -4,42 +4,45 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
+using System.IO;
+
+using static UnityEditor.Progress;
+
+using UnityEngine.Networking;
+using System.Text;
+using MySql.Data.MySqlClient;
+using System;
+
+
 public class Han_Menu : MonoBehaviour
 {
-    private static Han_Menu instance_Han_Menu = null;
-    void Awake()
+    private Han_SaveNLoad_DB saveNLoad;
+
+
+    private const string S = "http://localhost/saveData.php";
+    private string saveDataUrl = S; //php URL
+
+    private const string L = "http://localhost/loadData.php";
+    private string LoadDataUrl = L; //php URL
+
+    public Text dataTxt;
+    private SaveData saveData = new();
+
+
+
+
+    void Start()
     {
-        if (null == instance_Han_Menu)
-        {
-            //이 클래스 인스턴스가 탄생했을 때 전역변수 instance에 게임매니저 인스턴스가 담겨있지 않다면, 자신을 넣어준다.
-            instance_Han_Menu = this;
-            //씬 전환이 되더라도 파괴되지 않게 한다.            //gameObject만으로도 이 스크립트가 컴포넌트로서 붙어있는 Hierarchy상의 게임오브젝트라는 뜻이지만, 헷갈림 방지를 위해 this를 붙여주기도 한다.
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            //만약 씬 이동이 되었는데 그 씬에도 Hierarchy에 GameMgr이 존재할 수도 있다.
-            //그럴 경우엔 이전 씬에서 사용하던 인스턴스를 계속 사용해주는 경우가 많은 것 같다.
-            //그래서 이미 전역변수인 instance에 인스턴스가 존재한다면 자신(새로운 씬의 GameMgr)을 삭제해준다.
-            Destroy(this.gameObject);
-        }
+        saveNLoad = GameObject.FindObjectOfType<Han_SaveNLoad_DB>();
     }
 
-    [SerializeField]
-    private Han_SaveNLoad_DB theSaveNLoadDB;
-    [SerializeField]
-    private Han_SaveNLoad_Json_Server theSaveNLoadJson;
     
     // Start is called before the first frame update
     public void SaveDBBtn()
     {
         Debug.Log("ClickSave");
-        theSaveNLoadDB.SaveData();
-    }
-    public void SaveServerBtn()
-    {
-        Debug.Log("ClickSave");
-        theSaveNLoadJson.SaveData();
+        saveNLoad.SaveData();
     }
 
     public void ExitBtn()
@@ -64,10 +67,11 @@ public class Han_Menu : MonoBehaviour
             yield return null;
         }
 */
-        //theSaveNLoad = FindObjectOfType<Han_SaveNLoad>(); 다시 불러오기
-        //theSaveNLoad.LoadData();
-        Destroy(gameObject);
-        yield return null; //나중에 지울것
+        saveNLoad.LoadData();
+        //Destroy(gameObject);    //이거 왜 쓰는지 모르겠음
+        yield return null; //나중에 지울것 (위에 씬이동 기다리는거 안쓰면)
 
     }
 }
+
+    
