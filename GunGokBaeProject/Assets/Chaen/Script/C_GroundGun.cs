@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ public class C_GroundGun : MonoBehaviour
     public float bulletSpeed = 30f;
     public ParticleSystem groundGunMuzzleFlash;
 
+    private bool isCool = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +28,17 @@ public class C_GroundGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isCool = this.GetComponentInParent<C_PlayerItem>().isCool;
         bulletCntText.text = "GroundGun";
 
-        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //¡¬≈¨∏Ø
+        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true && !isCool) //¡¬≈¨∏Ø
         {
             groundGunMuzzleFlash.Play();
             ShotBullet();
+            this.GetComponentInParent<C_PlayerItem>().isCool = true;
+            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(10f);
         }
+
     }
 
     private void ShotBullet() // ¿œπ›¿˚¿Œ √—æÀ πﬂªÁ
