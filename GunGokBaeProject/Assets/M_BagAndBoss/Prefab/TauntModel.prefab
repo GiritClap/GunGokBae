@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2079489157052772968
+--- !u!1 &864131849829863281
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6455451631502715161}
-  - component: {fileID: 3662616641541678382}
-  - component: {fileID: 8107578288918982615}
-  - component: {fileID: 7546675655316494954}
-  - component: {fileID: 3021341186544432880}
-  - component: {fileID: 6683308493256476192}
+  - component: {fileID: 7446307163998812053}
+  - component: {fileID: 254898204390037579}
+  - component: {fileID: 6897548355620921040}
+  - component: {fileID: 3785092154752772360}
+  - component: {fileID: -4268204729972725953}
+  - component: {fileID: 2063963456832591093}
   m_Layer: 0
-  m_Name: Bullet_Taunt
+  m_Name: TauntModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6455451631502715161
+--- !u!4 &7446307163998812053
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079489157052772968}
+  m_GameObject: {fileID: 864131849829863281}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.4838727, y: -0.19975263, z: -3.269338}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3662616641541678382
+--- !u!33 &254898204390037579
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079489157052772968}
+  m_GameObject: {fileID: 864131849829863281}
   m_Mesh: {fileID: 4300000, guid: 3f944baf59b70184884a2e70d08fbc8a, type: 3}
---- !u!23 &8107578288918982615
+--- !u!23 &6897548355620921040
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079489157052772968}
+  m_GameObject: {fileID: 864131849829863281}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a1fbe6dcd307d0f4380a3512ff62be0d, type: 2}
+  - {fileID: 2100000, guid: acd8f714506fd6540a36a074eb7f1491, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,34 +86,25 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7546675655316494954
-SphereCollider:
+--- !u!114 &3785092154752772360
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079489157052772968}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_GameObject: {fileID: 864131849829863281}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &3021341186544432880
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9de7cb25e89d68345ba7ee4240b13756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &-4268204729972725953
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079489157052772968}
+  m_GameObject: {fileID: 864131849829863281}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -132,19 +123,28 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 3
---- !u!114 &6683308493256476192
-MonoBehaviour:
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!136 &2063963456832591093
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2079489157052772968}
+  m_GameObject: {fileID: 864131849829863281}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f8f8d3a8f85714588ba3a785af0b8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet_Taunt: {fileID: 864131849829863281, guid: 7d9c0dc33a79f41459a5d6ac738e21a6, type: 3}
-  Taunt_Position: {fileID: 0}
+  serializedVersion: 2
+  m_Radius: 0.17881145
+  m_Height: 0.6802191
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.07642096, z: 0}

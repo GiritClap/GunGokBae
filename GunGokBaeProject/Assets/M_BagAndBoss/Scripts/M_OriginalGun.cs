@@ -50,7 +50,7 @@ public class M_OriginalGun : MonoBehaviour
             {
                 if (cur_Bullet_Cnt > 0)
                 {
-                    weapon.StartFiring();
+                    weapon.StartPistolFiring();
                     //ShotRayBullet();
                     cur_Bullet_Cnt--;
                 }
@@ -63,7 +63,7 @@ public class M_OriginalGun : MonoBehaviour
         }
         if(Input.GetButtonUp("Fire1"))
         {
-            weapon.StopFiring();
+            weapon.StopPistolFiring();
         }
 
         if (Input.GetKeyDown(KeyCode.R) && cur_Bullet_Cnt != reload_Bullet_Cnt && crosshair.gameObject.activeSelf == true) // 재장전
@@ -79,7 +79,7 @@ public class M_OriginalGun : MonoBehaviour
         }
     }
 
-    private void ShotRayBullet() // ray를 이용한 총알 발사
+    /*private void ShotRayBullet() // ray를 이용한 총알 발사
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
         RaycastHit hitInfo;
@@ -93,7 +93,7 @@ public class M_OriginalGun : MonoBehaviour
             ps = bE.GetComponent<ParticleSystem>();
             ps.Play();
         }
-    }
+    }*/
 
     void Reload()
     {

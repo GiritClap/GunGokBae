@@ -7,16 +7,10 @@ public class C_BulletTaunt : MonoBehaviour
     public GameObject bullet_Taunt;
     public Transform Taunt_Position;
 
-    public float BulletSpeed = 500;
     float destroyTime = 0;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * BulletSpeed);
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
@@ -36,8 +30,7 @@ public class C_BulletTaunt : MonoBehaviour
 
     void isCol() //물체랑 충돌했을 때
     {
+        GameObject taunt = Instantiate(bullet_Taunt, this.transform.position + new Vector3(0,1,0), Quaternion.identity);
         Destroy(gameObject);
-        GameObject taunt = Instantiate(bullet_Taunt);
-        taunt.transform.position = this.transform.position;
     }
 }

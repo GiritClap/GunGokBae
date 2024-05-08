@@ -10,6 +10,10 @@ public class C_GroundGun : MonoBehaviour
     public Text bulletCntText;
     public Image crosshair;
 
+    public GameObject bulletDirection;
+    public float bulletSpeed = 30f;
+    public ParticleSystem groundGunMuzzleFlash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +29,15 @@ public class C_GroundGun : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //좌클릭
         {
+            groundGunMuzzleFlash.Play();
             ShotBullet();
         }
     }
 
     private void ShotBullet() // 일반적인 총알 발사
     {
-        GameObject bullet = Instantiate(bulletFactory);
-        bullet.transform.position = firePosition.position;
-        bullet.transform.forward = firePosition.forward;
+        GameObject bul = Instantiate(bulletFactory, firePosition.transform.position, firePosition.transform.rotation);
+        bul.GetComponent<Rigidbody>().AddForce((bulletDirection.transform.position - firePosition.transform.position) * Time.deltaTime * bulletSpeed * 700f);
+        Destroy(bul, 5f);
     }
 }

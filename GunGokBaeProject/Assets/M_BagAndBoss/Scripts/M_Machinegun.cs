@@ -17,6 +17,7 @@ public class M_Machinegun : MonoBehaviour
     float timer = 0;
 
     public Image crosshair;
+    M_RaycastWeapon weapon;
 
 
     // Start is called before the first frame update
@@ -30,6 +31,9 @@ public class M_Machinegun : MonoBehaviour
             crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
         }
         damage = 1;
+
+        weapon = GetComponent<M_RaycastWeapon>();
+
     }
 
     // Update is called once per frame
@@ -46,7 +50,8 @@ public class M_Machinegun : MonoBehaviour
             {
                 if (cur_Bullet_Cnt > 0)
                 {
-                    ShotRayBullet();
+                    weapon.StartMachinegunFiring();
+                    //ShotRayBullet();
                     cur_Bullet_Cnt--;
                 }
                 else
@@ -56,7 +61,10 @@ public class M_Machinegun : MonoBehaviour
                 timer = 0;
             }
         }
-
+        if (Input.GetButtonUp("Fire1"))
+        {
+            weapon.StopMachinegunFiring();
+        }
 
         if (Input.GetKeyDown(KeyCode.R) && cur_Bullet_Cnt != reload_Bullet_Cnt && crosshair.gameObject.activeSelf == true) // 재장전
         {
@@ -71,7 +79,7 @@ public class M_Machinegun : MonoBehaviour
         }
     }
 
-    private void ShotRayBullet() // ray를 이용한 총알 발사
+   /* private void ShotRayBullet() // ray를 이용한 총알 발사
     {
         Ray ray = Camera.main.ScreenPointToRay(new Vector3(Camera.main.pixelWidth / 2, Camera.main.pixelHeight / 2));
         RaycastHit hitInfo;
@@ -85,7 +93,7 @@ public class M_Machinegun : MonoBehaviour
             ps = bE.GetComponent<ParticleSystem>();
             ps.Play();
         }
-    }
+    }*/
 
     void Reload()
     {
