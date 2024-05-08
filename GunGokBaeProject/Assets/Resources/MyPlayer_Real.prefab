@@ -901,7 +901,7 @@ MonoBehaviour:
   crosshair: {fileID: 3654781307027579350}
   bullet: {fileID: 5139862559012081820, guid: 5fb0657f4e9f21b42acc554fa6d58bd6, type: 3}
   bulletPos: {fileID: 1318121907779630628}
-  bulletSpeed: 500
+  bulletSpeed: 100
   bulletDirection: {fileID: 1002701748996539809}
   sniperMuzzleFlash: {fileID: 6237722629056890422}
 --- !u!114 &7766580638919359415
@@ -54550,15 +54550,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54791,7 +54791,7 @@ MonoBehaviour:
   bulletCntText: {fileID: 836686609893151502}
   crosshair: {fileID: 3654781307027579350}
   bulletDirection: {fileID: 1002701748996539809}
-  bulletSpeed: 30
+  bulletSpeed: 10
   tauntGunMuzzleFlash: {fileID: 8997700136023401361}
 --- !u!4 &359407347151051549 stripped
 Transform:
@@ -56062,7 +56062,7 @@ MonoBehaviour:
   bulletCntText: {fileID: 836686609893151502}
   crosshair: {fileID: 3654781307027579350}
   bulletDirection: {fileID: 1002701748996539809}
-  bulletSpeed: 30
+  bulletSpeed: 20
   groundGunMuzzleFlash: {fileID: 1908337439273620675}
 --- !u!1001 &1782163061814069657
 PrefabInstance:
@@ -56882,12 +56882,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198586439706424864, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198586439706424864, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 198586439706424864, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198994897263029524, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
+      propertyPath: playOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 199066132636078472, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
       propertyPath: m_Materials.Array.size
@@ -57349,7 +57357,7 @@ MonoBehaviour:
   bulletCntText: {fileID: 836686609893151502}
   crosshair: {fileID: 3654781307027579350}
   bulletDirection: {fileID: 1002701748996539809}
-  bulletSpeed: 30
+  bulletSpeed: 10
   healGunMuzzleFlash: {fileID: 27273259925166133}
 --- !u!1001 &5686626492533787031
 PrefabInstance:
@@ -58038,7 +58046,7 @@ MonoBehaviour:
   bulletCntText: {fileID: 836686609893151502}
   textGunTime: {fileID: 6157992696905441952}
   crosshair: {fileID: 3654781307027579350}
-  gunTimer: 45
+  gunTimer: 3
   bulletDirection: {fileID: 1002701748996539809}
   bulletSpeed: 30
   rocketGunMuzzleFlash: {fileID: 4214783812879978108}
