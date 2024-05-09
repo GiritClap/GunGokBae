@@ -11,13 +11,19 @@ public class C_RocketGun : MonoBehaviour
     public Text textGunTime;
     public Image crosshair;
 
-    [SerializeField] float gunTimer;
+    [SerializeField] float gunTimer = 45f;
     private float nowTime;
     private bool isShot;
+
+    public GameObject bulletDirection;
+    public float bulletSpeed = 30f;
+    public ParticleSystem rocketGunMuzzleFlash;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        gunTimer = 45f;
+   
         isShot = false;
 
         //bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
@@ -49,6 +55,7 @@ public class C_RocketGun : MonoBehaviour
 
             if(nowTime < 0)
             {
+                rocketGunMuzzleFlash.Play();
                 ShotBullet();
                 isShot = false;
             }
@@ -61,9 +68,9 @@ public class C_RocketGun : MonoBehaviour
 
     private void ShotBullet() // 일반적인 총알 발사
     {
-        GameObject bullet = Instantiate(bulletFactory);
-        bullet.transform.position = firePosition.position;
-        bullet.transform.forward = firePosition.forward;
+        GameObject bul = Instantiate(bulletFactory, firePosition.transform.position, firePosition.transform.rotation);
+        bul.GetComponent<Rigidbody>().AddForce((bulletDirection.transform.position - firePosition.transform.position) * Time.deltaTime * bulletSpeed * 700f);
+        Destroy(bul, 5f);
     }
 
 }

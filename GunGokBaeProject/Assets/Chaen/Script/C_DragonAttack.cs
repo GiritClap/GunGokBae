@@ -34,6 +34,9 @@ public class C_DragonAttack : MonoBehaviour
     {
         if (target == null) // 타겟 없을 시 빙글빙글 돌고 있음 => 추후 일정범위 돌아다니는 거로 수정 예정
         {
+
+            ani.SetBool("Idle", false);
+            isAttack = false;
             rotSpeed = 10;
             this.transform.Translate(Vector3.forward * Time.deltaTime);
             this.transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
@@ -41,6 +44,8 @@ public class C_DragonAttack : MonoBehaviour
 
         else if (target != null) // 타겟 생성시 타겟 따라감
         {
+
+            ani.SetBool("Idle", false);
             rotSpeed = 10;
             float distance = Vector3.Distance(target.transform.position, this.transform.position);
             Vector3 dir = target.transform.position - this.transform.position;
@@ -50,7 +55,6 @@ public class C_DragonAttack : MonoBehaviour
 
             if (distance <= 10.0f)
             {
-                nmAgent.Stop();
                 if (isAttack == false)
                 {
                     ani.SetBool("Idle", true);
@@ -63,6 +67,7 @@ public class C_DragonAttack : MonoBehaviour
     // 공격
     IEnumerator Attack()
     {
+        nmAgent.isStopped = true;
         isAttack = true;
         ani.SetBool("Attack", true);
         yield return new WaitForSeconds(0.5f);
@@ -70,6 +75,7 @@ public class C_DragonAttack : MonoBehaviour
         ani.SetBool("Attack", false);
         yield return new WaitForSeconds(3.0f);
         isAttack = false;
+        nmAgent.isStopped = false;
     }
 
 

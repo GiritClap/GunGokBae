@@ -9,8 +9,7 @@ public class M_Shotgun : MonoBehaviour
     float max_Bullet_Cnt = 30; // 총 총알수
     float reload_Bullet_Cnt = 7; // 장전 할 수 있는 총알 수
     public float damage = 0; // 데미지
-    public GameObject bulletEffect;
-    ParticleSystem ps;
+ 
     public Text bulletCntText;
 
     public float fireTimer = 0; // 발사속도
@@ -22,6 +21,8 @@ public class M_Shotgun : MonoBehaviour
     public GameObject bulletPos;
     public float bulletSpeed = 30f;
 
+
+    public ParticleSystem shotgunMuzzleFlash;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +51,7 @@ public class M_Shotgun : MonoBehaviour
                 if (cur_Bullet_Cnt > 0)
                 {
                     ShotRayBullet();
+                    shotgunMuzzleFlash.Play();
                     cur_Bullet_Cnt--;
                 }
                 else
@@ -74,7 +76,7 @@ public class M_Shotgun : MonoBehaviour
         }
     }
 
-    private void ShotRayBullet() // ray를 이용한 총알 발사
+    private void ShotRayBullet() 
     {
         
         List<GameObject> bul = new List<GameObject>();

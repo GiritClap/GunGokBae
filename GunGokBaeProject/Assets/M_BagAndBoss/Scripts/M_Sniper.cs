@@ -9,8 +9,6 @@ public class M_Sniper : MonoBehaviour
     float max_Bullet_Cnt = 15; // 총 총알수
     float reload_Bullet_Cnt = 4; // 장전 할 수 있는 총알 수
     public float damage = 0; // 데미지
-    public GameObject bulletEffect;
-    ParticleSystem ps;
     public Text bulletCntText;
 
     public float fireTimer = 0; // 발사속도
@@ -21,6 +19,9 @@ public class M_Sniper : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletPos;
     public float bulletSpeed = 30f;
+
+    public GameObject bulletDirection;
+    public ParticleSystem sniperMuzzleFlash;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +51,7 @@ public class M_Sniper : MonoBehaviour
                 if (cur_Bullet_Cnt > 0)
                 {
                     ShotRayBullet();
+                    sniperMuzzleFlash.Play();
                     cur_Bullet_Cnt--;
                 }
                 else
@@ -76,9 +78,9 @@ public class M_Sniper : MonoBehaviour
 
     private void ShotRayBullet() // ray를 이용한 총알 발사
     {
-
+        
         GameObject bul = Instantiate(bullet, bulletPos.transform.position, bulletPos.transform.rotation);
-        bul.GetComponentInChildren<Rigidbody>().AddForce(bul.transform.TransformDirection(Vector3.forward) * Time.deltaTime * bulletSpeed * 10000f);
+        bul.GetComponent<Rigidbody>().AddForce((bulletDirection.transform.position - bulletPos.transform.position) * Time.deltaTime * bulletSpeed * 1000f);
         Destroy(bul, 5f);
 
     }

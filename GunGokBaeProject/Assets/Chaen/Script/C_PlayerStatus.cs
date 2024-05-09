@@ -45,7 +45,7 @@ public class C_PlayerStatus : MonoBehaviour
     {
         if(collision.gameObject.tag == "Enemy")
         {
-            this.attack();
+            //this.Attack();
         }
     }
 
@@ -58,11 +58,11 @@ public class C_PlayerStatus : MonoBehaviour
     }
 
 
-    public void attack()
+    public void Attack(int damage)
     {
         if(curHp > 0)
         {
-            curHp -= 10;
+            curHp -= damage;
             UpdateHp();
         }
 

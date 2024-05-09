@@ -16,4 +16,13 @@ public class C_EnemyBullet : MonoBehaviour
     {
         Destroy(gameObject, 3f);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<C_PlayerStatus>().Attack(5);
+            Destroy(gameObject);
+        }
+    }
 }

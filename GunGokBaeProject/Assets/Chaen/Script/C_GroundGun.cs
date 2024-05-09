@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,12 @@ public class C_GroundGun : MonoBehaviour
     public Transform firePosition;
     public Text bulletCntText;
     public Image crosshair;
+
+    public GameObject bulletDirection;
+    public float bulletSpeed = 30f;
+    public ParticleSystem groundGunMuzzleFlash;
+
+    private bool isCool = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,18 +28,23 @@ public class C_GroundGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isCool = this.GetComponentInParent<C_PlayerItem>().isCool;
         bulletCntText.text = "GroundGun";
 
-        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //¡¬≈¨∏Ø
+        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true && !isCool) //¡¬≈¨∏Ø
         {
+            groundGunMuzzleFlash.Play();
             ShotBullet();
+            this.GetComponentInParent<C_PlayerItem>().isCool = true;
+            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(10f);
         }
+
     }
 
     private void ShotBullet() // ¿œπ›¿˚¿Œ √—æÀ πﬂªÁ
     {
-        GameObject bullet = Instantiate(bulletFactory);
-        bullet.transform.position = firePosition.position;
-        bullet.transform.forward = firePosition.forward;
+        GameObject bul = Instantiate(bulletFactory, firePosition.transform.position, firePosition.transform.rotation);
+        bul.GetComponent<Rigidbody>().AddForce((bulletDirection.transform.position - firePosition.transform.position) * Time.deltaTime * bulletSpeed * 700f);
+        Destroy(bul, 5f);
     }
 }

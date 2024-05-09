@@ -31,7 +31,7 @@ public class Han_SaveNLoad_Json_Server : MonoBehaviour
         saveData.inventory[0] = "gun";
         saveData.inventory[1] = "pick";
         saveData.inventory[2] = "healgun";
-        saveData.score = 30;
+        //saveData.score = 30;
 
         //json파일로 변경
         string json = JsonUtility.ToJson(saveData);

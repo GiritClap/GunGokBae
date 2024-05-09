@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.SocialPlatforms;
 
 public class C_PlayerItem : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class C_PlayerItem : MonoBehaviour
     public Text bulletCntText;
 
 
+
     [Header("Original Gun Rigs")] // ±âº»ÃÑ ÆÈ¸ð¾ç
     public M_GunManager gunManager;
     public Rig[] oriRigs; // 0 = ±ÇÃÑ, 1 = ¸Ó½Å°Ç, 2 = ¼¦°Ç, 3 = ½º³ªÀÌÆÛ
@@ -36,9 +38,32 @@ public class C_PlayerItem : MonoBehaviour
 
     int currentSpecialGun = 0; // 0 = ¾øÀ½, 1 = °¥°í¸®ÃÑ, 2 = ±×¶ó¿îµå ÃÑ, 3 = Èú ÃÑ, 4 = ·ÎÄÏ ÃÑ, 5 = µµ¹ß ÃÑ
 
+
+
+    // Ã¤Àº UI ºÎºÐ
+    public Image itemFrameImg1; // ±âº» ÃÑ ¼±ÅÃ Å×µÎ¸®
+    public Image itemFrameImg2; // °î±ªÀÌ ¼±ÅÃ Å×µÎ¸®
+    public Image itemFrameImg3; // Æ¯¼ö ÃÑ ¼±ÅÃ Å×µÎ¸®
+
+    public Image nowspecialGunImg;
+    public Sprite [] specialGunImg = new Sprite[6]; // 0 = ¾øÀ½, 1 = °¥°í¸®ÃÑ, 2 = ±×¶ó¿îµå ÃÑ, 3 = Èú ÃÑ, 4 = ·ÎÄÏ ÃÑ, 5 = µµ¹ß ÃÑ
+
+    // Æ¯¼öÃÑ ÄðÅ¸ÀÓ °ü·Ã
+    public bool isCool = false;
+    public Text coolTxt;
+    public Image coolImg;
+    public float cooldown;
+
     // Start is called before the first frame update
     void Start()
     {
+        //this.GetComponent<Image>().sprite = nowspecialGunImg.sprite;
+
+        nowspecialGunImg.sprite = specialGunImg[0];
+        isCool = false;
+        itemFrameImg1.gameObject.SetActive(true);
+        itemFrameImg2.gameObject.SetActive(false);
+        itemFrameImg3.gameObject.SetActive(false);
 
         player_ItemNum[0] = gun;
         player_ItemNum[1] = pick;
@@ -84,6 +109,11 @@ public class C_PlayerItem : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+
+            itemFrameImg1.gameObject.SetActive(true);
+            itemFrameImg2.gameObject.SetActive(false);
+            itemFrameImg3.gameObject.SetActive(false);
+
             for (int i = 0; i < specRigs.Length; i++)
             {
                 specRigs[i].weight = 0;
@@ -134,6 +164,11 @@ public class C_PlayerItem : MonoBehaviour
             player_ItemNum[0].SetActive(false);
             player_ItemNum[1].SetActive(true);
             player_ItemNum[2].SetActive(false);
+
+            itemFrameImg1.gameObject.SetActive(false);
+            itemFrameImg2.gameObject.SetActive(true);
+            itemFrameImg3.gameObject.SetActive(false);
+
             nowItem = player_ItemNum[1];
             m_Pick.SetActive(true);
 
@@ -157,6 +192,7 @@ public class C_PlayerItem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
+
             for (int i = 0; i < specRigs.Length; i++)
             {
                 specRigs[i].weight = 0;
@@ -179,6 +215,10 @@ public class C_PlayerItem : MonoBehaviour
             player_ItemNum[1].SetActive(false);
             player_ItemNum[2].SetActive(true);
             nowItem = player_ItemNum[2];
+
+            itemFrameImg1.gameObject.SetActive(false);
+            itemFrameImg2.gameObject.SetActive(false);
+            itemFrameImg3.gameObject.SetActive(true);
 
             if (currentSpecialGun == 0)
             {
@@ -211,10 +251,35 @@ public class C_PlayerItem : MonoBehaviour
                 m_Special_Gun[5].SetActive(true);
             }
         }
+
+        //ÃÑ ÄðÅ¸ÀÓ
+        if (isCool)
+        {
+            coolTxt.gameObject.SetActive(true);
+            coolImg.gameObject.SetActive(true);
+            cooldown -= Time.deltaTime;
+            if (cooldown <= 0)
+            {
+                isCool = false;
+                coolImg.gameObject.SetActive(false);
+                coolTxt.gameObject.SetActive(false);
+            }
+        }
+        coolTxt.text = cooldown.ToString("F0");
+    }
+
+    public void SetCooldownTime(float cooltime)
+    {
+        cooldown = cooltime;
     }
 
     public void ChangeNoGun()
     {
+        nowspecialGunImg.sprite = specialGunImg[0];
+        itemFrameImg1.gameObject.SetActive(false);
+        itemFrameImg2.gameObject.SetActive(false);
+        itemFrameImg3.gameObject.SetActive(true);
+
         player_ItemNum[0].SetActive(false);
         player_ItemNum[1].SetActive(false);
         player_ItemNum[2].SetActive(false);
@@ -246,6 +311,11 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeGrappling()
     {
+        nowspecialGunImg.sprite = specialGunImg[1];
+        itemFrameImg1.gameObject.SetActive(false);
+        itemFrameImg2.gameObject.SetActive(false);
+        itemFrameImg3.gameObject.SetActive(true);
+
         player_ItemNum[0].SetActive(false);
         player_ItemNum[1].SetActive(false);
         player_ItemNum[2].SetActive(false);
@@ -279,6 +349,11 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeGround()
     {
+        nowspecialGunImg.sprite = specialGunImg[2];
+        itemFrameImg1.gameObject.SetActive(false);
+        itemFrameImg2.gameObject.SetActive(false);
+        itemFrameImg3.gameObject.SetActive(true);
+
         player_ItemNum[0].SetActive(false);
         player_ItemNum[1].SetActive(false);
         player_ItemNum[2].SetActive(false);
@@ -312,6 +387,11 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeHeal()
     {
+        nowspecialGunImg.sprite = specialGunImg[3];
+        itemFrameImg1.gameObject.SetActive(false);
+        itemFrameImg2.gameObject.SetActive(false);
+        itemFrameImg3.gameObject.SetActive(true);
+
         player_ItemNum[0].SetActive(false);
         player_ItemNum[1].SetActive(false);
         player_ItemNum[2].SetActive(false);
@@ -345,6 +425,11 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeRocket()
     {
+        nowspecialGunImg.sprite = specialGunImg[4];
+        itemFrameImg1.gameObject.SetActive(false);
+        itemFrameImg2.gameObject.SetActive(false);
+        itemFrameImg3.gameObject.SetActive(true);
+
         player_ItemNum[0].SetActive(false);
         player_ItemNum[1].SetActive(false);
         player_ItemNum[2].SetActive(false);
@@ -378,6 +463,11 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeTaunt()
     {
+        nowspecialGunImg.sprite = specialGunImg[5];
+        itemFrameImg1.gameObject.SetActive(false);
+        itemFrameImg2.gameObject.SetActive(false);
+        itemFrameImg3.gameObject.SetActive(true);
+
         player_ItemNum[0].SetActive(false);
         player_ItemNum[1].SetActive(false);
         player_ItemNum[2].SetActive(false);

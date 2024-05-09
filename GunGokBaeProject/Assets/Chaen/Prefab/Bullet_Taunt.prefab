@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079489157052772968}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 3f944baf59b70184884a2e70d08fbc8a, type: 3}
 --- !u!23 &8107578288918982615
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a1fbe6dcd307d0f4380a3512ff62be0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,7 +133,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &6683308493256476192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02f8f8d3a8f85714588ba3a785af0b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet_Taunt: {fileID: 2601061315552818327, guid: 8cf1b476c7f07f44387fde95d34635bf, type: 3}
+  bullet_Taunt: {fileID: 864131849829863281, guid: 7d9c0dc33a79f41459a5d6ac738e21a6, type: 3}
   Taunt_Position: {fileID: 0}
-  BulletSpeed: 500

@@ -6898,6 +6898,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   grappleFov: 94.2
   orientation: {fileID: 3483417359925546057}
+  anim: {fileID: 0}
   state: 0
   freeze: 0
   activeGrapple: 0
