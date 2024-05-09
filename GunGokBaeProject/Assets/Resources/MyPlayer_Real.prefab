@@ -2389,7 +2389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 0.03929866, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -58258,6 +58258,7 @@ MonoBehaviour:
   bulletDirection: {fileID: 1002701748996539809}
   bulletSpeed: 30
   rocketGunMuzzleFlash: {fileID: 4214783812879978108}
+  playerBody: {fileID: 3885662261312859602}
 --- !u!4 &7201932316991670093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834079007641274, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}

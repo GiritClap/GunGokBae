@@ -96,7 +96,10 @@ public class PlayerMovementGrappling : MonoBehaviour
 
         // handle drag
         if (grounded && !activeGrapple)
+        {
             rb.drag = groundDrag;
+           
+        }
         else
             rb.drag = 0;
 
@@ -128,6 +131,7 @@ public class PlayerMovementGrappling : MonoBehaviour
             readyToJump = false;
 
             Jump();
+            anim.SetTrigger("DoJumping");
 
             Invoke(nameof(ResetJump), jumpCooldown);
         }
