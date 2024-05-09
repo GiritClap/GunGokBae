@@ -19,6 +19,8 @@ public class C_RocketGun : MonoBehaviour
     public float bulletSpeed = 30f;
     public ParticleSystem rocketGunMuzzleFlash;
 
+    public GameObject playerBody;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +58,9 @@ public class C_RocketGun : MonoBehaviour
             if(nowTime < 0)
             {
                 rocketGunMuzzleFlash.Play();
+                textGunTime.gameObject.SetActive(false);
                 ShotBullet();
+                playerBody.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.TransformDirection(0,0,-1) * 100f, ForceMode.Impulse);
                 isShot = false;
             }
         }
