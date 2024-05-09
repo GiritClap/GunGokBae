@@ -282,7 +282,7 @@ public class PlayerMovementGrappling : MonoBehaviour
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
     {
         activeGrapple = true;
-
+        anim.SetTrigger("DoJumping");
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
         Invoke(nameof(SetVelocity), 0.1f);
 
