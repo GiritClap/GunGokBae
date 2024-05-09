@@ -6,6 +6,7 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using Photon.Pun.Demo.Cockpit;
 using UnityEngine.SceneManagement;
+using UnityEditor.Experimental.GraphView;
 
 
 public class NetworkManager : MonoBehaviourPunCallbacks
@@ -182,23 +183,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void ReadyButton()
     {
         clickCount++;
-        if( clickCount %2 == 1) {
+        if( clickCount < 4) {
             PhotonNetwork.LocalPlayer.NickName = ListText.text;
             ListText.text = ("<color=green>" + PhotonNetwork.LocalPlayer.NickName + " V </color>"); // 체크표시 띄우면서 초록색으로 닉네임 색 변환
             readyCount++;
             Debug.Log(readyCount);
         }
-        else
+        else 
         {
             ListText.text =  PhotonNetwork.LocalPlayer.NickName; // 원래 이름으로 돌아가기
             readyCount--;
             Debug.Log(readyCount);
-        }       
-    }
+        }
 
-    [PunRPC]
-    public void StartButtonSetting()
-    {
         if (readyCount == 3)
         {
             StartButton.SetActive(true);
@@ -209,10 +206,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }
     }
 
+  
+
     [PunRPC]
     public void moveScene()
     {
-        SceneManager.LoadScene("FirePlanet");
+        SceneManager.LoadScene("Fire Planet");
     }
     #region 채팅
     public void Send()
@@ -238,7 +237,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             ChatText[ChatText.Length - 1].text = msg;
         }
     }
-
+   
 
     #endregion
 }
