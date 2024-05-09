@@ -4,6 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using Photon.Pun.Demo.Cockpit;
+using UnityEngine.SceneManagement;
 
 
 public class NetworkManager : MonoBehaviourPunCallbacks
@@ -11,6 +13,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [Header("DisconnectPanel")]
     public GameObject DisconnectPanel;
     public InputField NickNameInput;
+    public Text nickNameText;
+    
 
     [Header("LobbyPanel")]
     public GameObject LobbyPanel;
@@ -32,38 +36,14 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public Text StatusText;
     public PhotonView PV;
 
+    [Header("ReadyAndStart")]
+    public GameObject StartButton;
+    private int clickCount = 0;
+    private int readyCount = 0;
+    
+
     List<RoomInfo> myList = new List<RoomInfo>();
-    List<PlayerInfo> players = new List<PlayerInfo>();
     int currentPage = 1, maxPage, multiple;
-
-
-
-    public void OnClickIamReady()
-    {
-        foreach(PlayerInfo player in players)
-        {
-            player.isReady = true;
-        }
-    }
-
-    private void CheckAllPlayersReady()
-    {
-        bool allPlayersReady = true;
-
-        foreach (PlayerInfo player in players)
-        {
-            if (!player.isReady)
-            {
-                allPlayersReady = false;
-                break;
-            }
-        }
-
-        if (allPlayersReady)
-        {
-            Debug.Log("All players are ready!");
-        }
-    }
 
 
     #region 방리스트 갱신
@@ -115,6 +95,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     #region 서버연결
     void Awake() => Screen.SetResolution(1920, 1080, false);
 
+    void Start()
+    {
+        StartButton.SetActive(false);
+    }
+
     void Update()
     {
         StatusText.text = PhotonNetwork.NetworkClientState.ToString();
@@ -152,7 +137,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         LobbyPanel.SetActive(false);
-        PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 4 });
+        PhotonNetwork.CreateRoom(RoomInput.text == "" ? "Room" + Random.Range(0, 100) : RoomInput.text, new RoomOptions { MaxPlayers = 3 });
     }
 
     public void JoinRandomRoom() => PhotonNetwork.JoinRandomRoom();
@@ -175,23 +160,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         RoomRenewal();
         ChatRPC("<color=yellow>" + newPlayer.NickName + "님이 참가하셨습니다</color>");
-
-        // 새 플레이어 추가
-        PlayerInfo player = new PlayerInfo();
-        player.name = newPlayer.NickName;
-        player.isReady = false; // 새 플레이어는 준비되지 않은 상태로 시작
-        players.Add(player);
-
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
         RoomRenewal();
         ChatRPC("<color=yellow>" + otherPlayer.NickName + "님이 퇴장하셨습니다</color>");
-        // 나간 플레이어 제거
-        players.RemoveAll(p => p.name == otherPlayer.NickName);
     }
 
+  
     void RoomRenewal()
     {
         ListText.text = "";
@@ -201,12 +178,42 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    public class PlayerInfo
+    [PunRPC]
+    public void ReadyButton()
     {
-        public string name;
-        public bool isReady;
+        clickCount++;
+        if( clickCount %2 == 1) {
+            PhotonNetwork.LocalPlayer.NickName = ListText.text;
+            ListText.text = ("<color=green>" + PhotonNetwork.LocalPlayer.NickName + " V </color>"); // 체크표시 띄우면서 초록색으로 닉네임 색 변환
+            readyCount++;
+            Debug.Log(readyCount);
+        }
+        else
+        {
+            ListText.text =  PhotonNetwork.LocalPlayer.NickName; // 원래 이름으로 돌아가기
+            readyCount--;
+            Debug.Log(readyCount);
+        }       
     }
 
+    [PunRPC]
+    public void StartButtonSetting()
+    {
+        if (readyCount == 3)
+        {
+            StartButton.SetActive(true);
+        }
+        else
+        {
+            StartButton.SetActive(false);
+        }
+    }
+
+    [PunRPC]
+    public void moveScene()
+    {
+        SceneManager.LoadScene("FirePlanet");
+    }
     #region 채팅
     public void Send()
     {
@@ -231,5 +238,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             ChatText[ChatText.Length - 1].text = msg;
         }
     }
+
+
     #endregion
 }
