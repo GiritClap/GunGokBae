@@ -13,13 +13,13 @@ public class M_UpgradePanel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        upgradePanel = GameObject.Find("UpgradePanel");
+        /*upgradePanel = GameObject.Find("UpgradePanel");
         upgradePanel.SetActive(false);
         crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
         gunUpgradePanel = GameObject.Find("GunUpgradePanel");
         gunUpgradePanel.SetActive(false);
         gokUpgradePanel = GameObject.Find("GokUpgradePanel");
-        gokUpgradePanel.SetActive(false);
+        gokUpgradePanel.SetActive(false);*/
     }
 
     // Update is called once per frame

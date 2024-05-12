@@ -260,7 +260,7 @@ public class M_Boss : MonoBehaviour
         isP01 = false;
         for(int i = 0; i< player.Length; i++)
         {
-            GameObject p01 = Instantiate(pattern01, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
+            GameObject p01 = Instantiate(pattern01, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
             yield return new WaitForSeconds(5f);
             Destroy(p01);
         }
@@ -276,17 +276,17 @@ public class M_Boss : MonoBehaviour
         isP02 = false;
         for(int i = 0; i < player.Length; i++)
         {
-            GameObject p01 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
-            yield return new WaitForSeconds(1.3f);
+            GameObject p01 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(2f);
             Destroy(p01);
-            GameObject p02 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
-            yield return new WaitForSeconds(1.3f);
+            GameObject p02 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(2f);
             Destroy(p02);
-            GameObject p03 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
-            yield return new WaitForSeconds(1.3f);
+            GameObject p03 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(2f);
             Destroy(p03);
-            GameObject p04 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
-            yield return new WaitForSeconds(1.3f);
+            GameObject p04 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(2f);
             Destroy(p04);
         }
         
