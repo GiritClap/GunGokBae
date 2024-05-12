@@ -8,12 +8,13 @@ public class M_Boss : MonoBehaviour
 {
     public NavMeshAgent agent;
 
-    public Transform player;
+    GameObject[] player;
+    int randPlayer;
 
     //whatisground ���̾���� ������
     public LayerMask whatIsGround, whatIsPlayer;
 
-    public GameObject meleeWeapon;
+    public Collider[] meleeWeapon;
 
     //����1,2�� ����� ������
     public GameObject pattern01;
@@ -48,18 +49,20 @@ public class M_Boss : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
-
+    public Animator anim;
     private void Awake()
     {
-        player = GameObject.FindWithTag("whatIsPlayer").transform;
         agent = GetComponent<NavMeshAgent>();
+        randPlayer = 0;
+        FindPlayer();
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        if(player == null)
+        if (player[0] == null)
         {
-            player = GameObject.FindWithTag("whatIsPlayer").transform;
+            FindPlayer();
         }
 
         pTimer += Time.deltaTime * 1f;
@@ -79,12 +82,13 @@ public class M_Boss : MonoBehaviour
             //������ �þ�, ���ݰ��ɹ���
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
         }
 
         if (isP03_1 == true)
         {
             Debug.Log("��");
-            transform.Rotate(Vector3.up * Time.deltaTime * 72);
+            transform.Rotate(Vector3.up * Time.deltaTime * 180);
         }
 
         /*if(pTimer > 7.0f)
@@ -128,6 +132,8 @@ public class M_Boss : MonoBehaviour
 
     private void Patroling()
     {
+        anim.SetBool("IsWalking", true);
+
         if (!walkPointSet)
         {
             SearchWalkPoint();
@@ -164,14 +170,22 @@ public class M_Boss : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        randPlayer = Random.Range(0, 3);
+                //  0 -> randPlayer로 수정바람
+
+        agent.SetDestination(player[0].transform.position);
+        anim.SetBool("IsWalking", true);
+
     }
     private void AttackPlayer()
     {
+        anim.SetBool("IsWalking", false);
+
         //�ڱ� ��ġ�� ����
         //agent.SetDestination(transform.position);
         agent.ResetPath();
-        Vector3 targetPos = new Vector3(player.position.x, transform.position.y, player.position.z);
+        //  0 -> randPlayer로 수정바람
+        Vector3 targetPos = new Vector3(player[0].transform.position.x, transform.position.y, player[0].transform.position.z);
 
         if (!isP03_1)
         {
@@ -231,48 +245,69 @@ public class M_Boss : MonoBehaviour
 
     IEnumerator MeleeAttack()
     {
-        meleeWeapon.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
-        meleeWeapon.SetActive(false);
+        anim.SetTrigger("DoMeleeAttack");
+        meleeWeapon[0].enabled = true;
+        meleeWeapon[1].enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        meleeWeapon[0].enabled = false;
+        meleeWeapon[1].enabled = false;
     }
 
     // �÷��̾� �߹ؿ��� ����
     IEnumerator Pattern01()
     {
+        anim.SetTrigger("DoPattern01");
         isP01 = false;
-        GameObject p01 = Instantiate(pattern01, player.position + new Vector3(0, -0.8f, 0), player.rotation);
-        yield return new WaitForSeconds(5f);
-        Destroy(p01);
+        for(int i = 0; i< player.Length; i++)
+        {
+            GameObject p01 = Instantiate(pattern01, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(5f);
+            Destroy(p01);
+        }
+        
 
     }
 
     // ��ü�� �߹� �ð��� ��������
     IEnumerator Pattern02()
     {
+        anim.SetTrigger("DoPattern02");
+
         isP02 = false;
-        GameObject p01 = Instantiate(pattern02, player.position + new Vector3(0, -0.8f, 0), player.rotation);
-        yield return new WaitForSeconds(1.3f);
-        Destroy(p01);
-        GameObject p02 = Instantiate(pattern02, player.position + new Vector3(0, -0.8f, 0), player.rotation);
-        yield return new WaitForSeconds(1.3f);
-        Destroy(p02);
-        GameObject p03 = Instantiate(pattern02, player.position + new Vector3(0, -0.8f, 0), player.rotation);
-        yield return new WaitForSeconds(1.3f);
-        Destroy(p03);
-        GameObject p04 = Instantiate(pattern02, player.position + new Vector3(0, -0.8f, 0), player.rotation);
-        yield return new WaitForSeconds(1.3f);
-        Destroy(p04);
+        for(int i = 0; i < player.Length; i++)
+        {
+            GameObject p01 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(1.3f);
+            Destroy(p01);
+            GameObject p02 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(1.3f);
+            Destroy(p02);
+            GameObject p03 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(1.3f);
+            Destroy(p03);
+            GameObject p04 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.8f, 0), player[i].transform.rotation);
+            yield return new WaitForSeconds(1.3f);
+            Destroy(p04);
+        }
+        
 
     }
 
     //���ڸ� �ѹ��� ���鼭 ����(���ڸ��귡������ ����)
     IEnumerator Pattern03()
     {
+        anim.SetTrigger("DoPattern03");
+
         isP03 = false;
         pattern03.SetActive(true);
         yield return new WaitForSeconds(3f);
         isP03_1 = false;
         pattern03.SetActive(false);
 
+    }
+
+    void FindPlayer()
+    {
+        player = GameObject.FindGameObjectsWithTag("Player");
     }
 }
