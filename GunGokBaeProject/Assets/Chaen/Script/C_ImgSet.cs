@@ -12,9 +12,6 @@ public class C_ImgSet : MonoBehaviour
     RectTransform buttonTransform;
 
     Vector2 buttonPosition;
-    float buttonWidth;
-    float buttonHeight;
-    float imageWidth;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +26,7 @@ public class C_ImgSet : MonoBehaviour
     void Update()
     {
         buttonPosition = buttonTransform.anchoredPosition;
-        buttonWidth = buttonTransform.rect.width;
-        buttonHeight = buttonTransform.rect.height;
-        imageWidth = imageTransform.rect.width;
 
-        imageTransform.anchoredPosition = new Vector2(buttonPosition.x - 365, buttonPosition.y + 105);
+        imageTransform.anchoredPosition = new Vector2(buttonPosition.x - 355, buttonPosition.y + 100);
     }
 }
