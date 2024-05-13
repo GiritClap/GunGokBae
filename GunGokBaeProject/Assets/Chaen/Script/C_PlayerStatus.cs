@@ -13,7 +13,7 @@ public class C_PlayerStatus : MonoBehaviour
     // ศ๚ รั
     float healTimer;
     float healTime;
-    public bool isHealBullet;
+    public bool isHealBullet;   //
 
     // Start is called before the first frame update
 

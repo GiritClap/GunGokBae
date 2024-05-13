@@ -2,83 +2,125 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using static UnityEditor.Progress;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Text;
 using MySql.Data.MySqlClient;
 using System;
+using Photon.Pun;
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 
-public class SaveData //저장할 데이터 쭉 적기
+public class SaveData
 {
+    //player 정보는 포톤에서 배열식으로 받아 옴
+    //저장할 DATA들을 전역변수에 저장
+    string sceneName;                                                       //현재 씬 이름          -- 1
+    //int currentStage;                                                     //현재 스테이지 번호     -- 2
+    string[] playerIdArray = new string[3];                                    //플레이어 아이디 배열   -- 3
+    string[] playerNickNameArray = new string[3];                               //플레이어 이름(닉네임) 배열    -- 4
+    string[] playerPositionArray = new string[3];                                 //플레이어 위치 배열   -- 5
+    string[] playerRotationArray = new string[3];                                 //플레이어 회전 배열  -- 6
+    int[] playerCurHp = new int[3];                                               //플레이어 현재 체력 배열 -- 7
+    int[] playerMaxHp = new int[3];                                               //플레이어 최대 체력 배열 -- 8
 
 
-    //player 정보
-    public bool ishost = false; //호스트 여부, 호스트 1 클라 0
-    public string id; //아이디
-    public string pw; //비밀번호
-    public string nickname; //닉네임
+    M_BagManager BagManager = M_BagManager.Instance;
+    //광물 종류가 추가될때마다 stone변수 하나씩 추가
+    public float stone;     //광물 -- 9
+    public float stone2;    //광물 -- 10
+    public float stone3;    //광물 -- 11
+    public float stone4;    //광물 -- 12
+    public float stone5;    //광물 -- 13
 
-    //----------------------------------------------
-    
-    //게임 캐릭터 정보
-    public int playerHp;    //플레이어 체력
-    public Vector3 playerPos; //플레이어 위치
-    public Vector3 playerRot; //플레이어 위치
-    
-    public int level; //레벨
-    public int totalExp; //전체 경험치?
-    public int currentExp; //현재 경험치
-    public int maxExp; //최대 경험치
-    public int gold; //골드?
-    //----------------------------------------------
-    public string[] inventory = new string[6]; //인벤토리 곡괭이, 배냥, 총, 특수총 등등
-    public int currentWep;      //들고 있는 현재 총기
+    //총 종류가 추가될때마다 gun변수 하나씩 추가
+    public bool gun;    //총기 -- 14
+    public bool gun2;   //총기 -- 15
+    public bool gun3;   //총기 -- 16
+    public bool gun4;   //총기 -- 17
+    public bool gun5;   //총기 -- 18
 
-    //----------------------------------------------
-    //총기 정보 추가
-    public String gunName0; //총기이름
-    public bool special_gun0; //특수총기 여부 일반총 0 특수총 1
-    public int bulletCntInMag0; //총알 갯수
-    public int bulletMaxInMag0; //최대 총알 갯수
-    public int bulletInMag0; //탄창에 남은 총알
-    //강화 정보 추가
-    //----------------------------------------------
+    //    public int currentWeapon = 0; // 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼
+    public void GetPlayerInfo()   //플레이어 이름 받아오는 함수
+        {   
+            //현재 씬의 이름을 받아온다.    -- 1
+            Scene currentScene = SceneManager.GetActiveScene();
+            sceneName = currentScene.name;
+            
+            //GameManager에서 현재 스테이지 받아오기        // -- 2
+            //currentStage = GameManager.Instance.CurrentStage;
 
-    //광물 정보 추가
-    public int meneral0; //광물
-    public int meneral1; //광물
-    public int meneral2; //광물
-    public int meneral3; //광물
-    
-    //----------------------------------------------------------------------
-    //----------------------------------------------------------------------
-    //host일경우 업데이트 정보
-    //게임 정보
+            // 현재 방에 있는 모든 플레이어의 목록을 가져옵니다.
+            List<Photon.Realtime.Player> players = PhotonNetwork.PlayerList.ToList(); //포톤에서 플레이어 리스트 받아옴
 
-    //특수 무기 어디까지 먹었나???
-    //현재 발견된 측수총 추가
-    public string[] special_gun = new string[6];    //특수무기
-    public int specialNum;          //특수무기 갯수
-    public int currentSpecialGun;   //현재 특수무기
-    //----------------------------------------------
-    //게임 정보 gameManager
+            GameObject[] playerObjectArray = new GameObject[3];                     //플레이어 오브젝트 배열
 
-    public int sceneLevel;  //씬 레벨
-    //public int currentStage;    //현재 스테이지
-    //현재 진행 상황 번호? 추가
-    //우주선 정보 추가
-}
+            for (int i = 0; i < players.Count; i++)
+            {
+                // 플레이어 정보를 가져옵니다.
+                if (PhotonNetwork.LocalPlayer != null) 
+                {
+                    ExitGames.Client.Photon.Hashtable accountInfo = PhotonNetwork.LocalPlayer.CustomProperties;
 
-public class AcceptAllCertificates : CertificateHandler
-{
-    protected override bool ValidateCertificate(byte[] certificateData)
-    {
-        // 모든 인증서를 수락합니다.
-        return true;
+                    if (accountInfo.ContainsKey("id"))
+                    {
+                        playerIdArray[i] = (string)accountInfo["id"]; // 플레이어의 아이디      -- 3
+                    }
+                }
+            
+                Photon.Realtime.Player player = players[i];
+                
+                playerNickNameArray[i] = player.NickName; // 플레이어의 닉네임                 -- 4
+
+                // 플레이어의 게임 오브젝트를 찾습니다.
+                GameObject playerObject = PhotonView.Find(player.ActorNumber).gameObject;
+                playerObjectArray[i] = playerObject;
+
+                // 플레이어의 위치 정보를 가져옵니다.                                           -- 5
+                Vector3 position = playerObject.transform.position;
+                playerPositionArray[i] = $"{position.x},{position.y},{position.z}";;
+
+                // 플레이어의 회전 정보를 가져옵니다.                                           -- 6
+                Quaternion rotation = playerObject.transform.rotation;
+                playerRotationArray[i] = $"{rotation.x},{rotation.y},{rotation.z},{rotation.w}";
+/*
+                //나중에 받을 떄
+                string[] tokens = positionString.Split(',');
+                Vector3 position = new Vector3(
+                    float.Parse(tokens[0]),
+                    float.Parse(tokens[1]),
+                    float.Parse(tokens[2]));
+                string[] tokens = quaternionString.Split(',');
+                Quaternion rotation = new Quaternion(
+                    float.Parse(tokens[0]),
+                    float.Parse(tokens[1]),
+                    float.Parse(tokens[2]),
+                    float.Parse(tokens[3]));
+    */
+
+                // 플레이어의 체력 정보를 가져옵니다.
+                C_PlayerStatus playerStatus = playerObject.GetComponent<C_PlayerStatus>();
+                playerCurHp[i] = playerStatus.curHp; // 현재 체력                           -- 7
+                playerMaxHp[i] = playerStatus.maxHp; // 최대 체력                           -- 8
+        }
+
+            stone = BagManager.stone;   //광물 -- 9
+            stone2 = BagManager.stone2; //광물 -- 10
+            stone3 = BagManager.stone3; //광물 -- 11
+            stone4 = BagManager.stone4; //광물 -- 12
+            stone5 = BagManager.stone5; //광물 -- 13
+
+            //총 종류가 추가될때마다 gun변수 하나씩 추가
+            gun = BagManager.GetGun();      //총기 -- 14
+            gun2 = BagManager.GetGun2();    //총기 -- 15
+            gun3 = BagManager.GetGun3();    //총기 -- 16
+            gun4 = BagManager.GetGun4();    //총기 -- 17
+            gun5 = BagManager.GetGun5();    //총기 -- 18
     }
 }
+
+//-----------------------------------유니티에서 DB로 데이터 저장하기-----------------------------------
 public class Han_SaveNLoad_DB : MonoBehaviour
 {
     private const string S = "http://localhost/saveData.php";
@@ -87,11 +129,12 @@ public class Han_SaveNLoad_DB : MonoBehaviour
     private const string L = "http://localhost/loadData.php";
     private string LoadDataUrl = L; //php URL
 
-    public Text dataTxt;
+
     private SaveData saveData = new();
 
-        private static Han_SaveNLoad_DB instance_Han_SaveNLoad_DB = null;
-        void Awake()
+    //--------------싱글톤--------------
+    private static Han_SaveNLoad_DB instance_Han_SaveNLoad_DB = null;
+    void Awake()
     {
         if (null == instance_Han_SaveNLoad_DB)
         {
@@ -108,17 +151,14 @@ public class Han_SaveNLoad_DB : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    void Start()
-    {
+    //--------------싱글톤--------------
 
-    }
-    public void SaveData()
+        
+    public void SaveDataToSQL()
     {
         //객체에 대이터 저장
-        saveData.inventory[0] = "gun";
-        saveData.inventory[1] = "pick";
-        saveData.inventory[2] = "healgun";
-
+        saveData = new SaveData(); // Create an instance of SaveData class
+        saveData.GetPlayerInfo(); // Call the GetPlayerInfo() method on the instance
 
         //json파일로 변경
         string json = JsonUtility.ToJson(saveData);
@@ -175,66 +215,75 @@ public class Han_SaveNLoad_DB : MonoBehaviour
     }
 
 }
+public class AcceptAllCertificates : CertificateHandler
+{
+    protected override bool ValidateCertificate(byte[] certificateData)
+    {
+        // 모든 인증서를 수락합니다.
+        return true;
+    }
+}
 
-//json으로 클라이언트에 저장 //json으로 클라이언트에 저장 //json으로 클라이언트에 저장 //json으로 클라이언트에 저장 //json으로 클라이언트에 저장
-/*    //json 파일로 저장시 디렉토리, 파일이름저장
-    //private string SAVE_DATA_DIRECTORY; //디렉토리 경로
-    //private string SAVE_FILENAME = "/DataSaveTest.txt"; //파일 이름 //나중에는 ID_data 형식으로 저장하여 구별
 
-    //private PlayerController thePlayer; //player position //플레이어 위치 저장하는 튜토리얼
+
+// public class TestSaveData //저장할 데이터 쭉 적기
+// {
+
+
+//     //player 정보
+//     //public bool ishost = false; //호스트 여부, 호스트 1 클라 0
+//     public string id; //아이디
+//     public string pw; //비밀번호
+//     public string nickname; //닉네임
+
+//     //----------------------------------------------
     
+//     //게임 캐릭터 정보
+//     public int playerHp;    //플레이어 체력
+//     public Vector3 playerPos; //플레이어 위치
+//     public Vector3 playerRot; //플레이어 위치
+    
+//     public int level; //레벨
+//     public int totalExp; //전체 경험치?
+//     public int currentExp; //현재 경험치
+//     public int maxExp; //최대 경험치
+//     public int gold; //골드?
+//     //----------------------------------------------
+//     public string[] inventory = new string[6]; //인벤토리 곡괭이, 배냥, 총, 특수총 등등
+//     public int currentWep;      //들고 있는 현재 총기
 
-    void Start()
-    {
-        //json 파일로 저장하는 법
-*//*        SAVE_DATA_DIRECTORY = Application.dataPath + "/Han/Saves/"; //path 입력
+//     //----------------------------------------------
+//     //총기 정보 추가
+//     public String gunName0; //총기이름
+//     public bool special_gun0; //특수총기 여부 일반총 0 특수총 1
+//     public int bulletCntInMag0; //총알 갯수
+//     public int bulletMaxInMag0; //최대 총알 갯수
+//     public int bulletInMag0; //탄창에 남은 총알
+//     //강화 정보 추가
+//     //----------------------------------------------
 
-        if(!Directory.Exists(SAVE_DATA_DIRECTORY))  //디렉토리 없으면 생성
-        {
-            Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
-        }*//*
-    }
+//     //광물 정보 추가
+//     public int meneral0; //광물
+//     public int meneral1; //광물
+//     public int meneral2; //광물
+//     public int meneral3; //광물
+    
+//     //----------------------------------------------------------------------
+//     //----------------------------------------------------------------------
+//     //host일경우 업데이트 정보
+//     //게임 정보
 
-    public void SaveData()
-    {
-        //thePlayer = FindObjectOfType<PlayerController>(); //플레이어 위치 저장하는 튜토리얼
-        //saveData.playerPos = thePlayer.transform.position;
-        //saveData.playerRot = thePlayer.transform.eulerAngles;
+//     //특수 무기 어디까지 먹었나???
+//     //현재 발견된 측수총 추가
+//     public string[] special_gun = new string[6];    //특수무기
+//     public int specialNum;          //특수무기 갯수
+//     public int currentSpecialGun;   //현재 특수무기
+//     //----------------------------------------------
+//     //게임 정보 gameManager
 
-        //객체에 대이터 저장
-        saveData.inventory[0] = "gun";
-        saveData.inventory[1] = "pick";
-        saveData.inventory[2] = "healgun";
-        saveData.score = 30;
-
-        //json으로 변경
-        string json = JsonUtility.ToJson(saveData);
-
-        //파일 저장
-        File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json); //파일 저장
-
-        //Debug.Log("저장 완료");
-        //Debug.Log(json);
-    }
-
-    public void LoadData()
-    {
-        if(File.Exists(SAVE_DATA_DIRECTORY + SAVE_FILENAME)) {
-            string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
-            saveData = JsonUtility.FromJson<SaveData>(loadJson);
-
-            //GameObject player = GameObject.Find("Player") //이름으로 찾음 -> 진짜 오래걸림
-            //GameObject player = GameObject.FindWithTag("Player") //태그를 이용한 검색 -> 오래걸림
-
-
-            //thePlayer = FindObjectOfType<PlayerController>(); //PlayerController컴포넌트가 붙은 처음
-            //thePlayer.transform.position = saveData.playerPos; //받아온 데이터를 캐릭터 위치에 저장
-            //thePlayer.transform.eulerAngles = saveData.PlayerRot; // 회전
-            Debug.Log("로드 완료");
-            dataTxt.text = saveData.inventory[0]+"\n"+ saveData.inventory[1] + "\n"+ saveData.inventory[2] + "\n" + saveData.score +"\n";
-        }
-        else
-        {
-            Debug.Log("세이브 파일이 없습니다.");
-        }*/
-
+//     public int sceneLevel;  //씬 레벨
+//     //public int currentStage;    //현재 스테이지
+//     //현재 진행 상황 번호? 추가
+//     //우주선 정보 추가
+    
+// }
