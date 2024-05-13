@@ -1,0 +1,40 @@
+//아이템 먹는 효과음
+이름 : Blop Sound
+✔ SFX provided by 셀바이뮤직
+https://sellbuymusic.com/md/sgylcbb-rchxhxb 
+
+//기본 권총 효과음
+이름 : Laser gun 7-short
+✔ SFX provided by 셀바이뮤직
+https://sellbuymusic.com/md/sgrnncx-qchxhxb
+
+
+
+//로켓 발사
+이름: Weapons Guns Shots 01
+✔ SFX provided by 셀바이뮤직
+https://sellbuymusic.com/md/sqrfzcn-ichxhxb
+
+//로켓 탄 터질 때
+이름: Weapons Guns Shots 50
+✔ SFX provided by 셀바이뮤직
+https://sellbuymusic.com/md/srofhzn-echxhxb
+
+//총 장전 //및 레이져 느낌의 총류 사운드
+ 에셋 스토어 - Free Laser Weapons 	//다운받아 둠
+//장전
+-reloading
+//갈고리총
+-heavy_blast_007
+
+
+//곡괭이소리
+anvil 2개중에 괜찮은걸로
+
+//드래곤 공격 소리
+
+//드래곤 맞는 소리
+
+에셋 스토어 - SCI-FI UI SOUND EFFECTS HOVE AUDIO 		//UI클릭 사운드, 캐릭터 맞는 사운드 등등
+에셋 스토어 - ootstep(Snow and Grass) 					//발걸음
+에셋 스토어 - Free Laser Weapons 						//총 장전 //및 레이져 느낌의 총류 사운드

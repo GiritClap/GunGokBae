@@ -14,11 +14,15 @@ public class M_ShipController : MonoBehaviour
     private float rollInput;
     public float rollSpeed = 90f, rollAcceleration = 3.5f;
 
+    public ParticleSystem[] engineParticles;
+
+    Rigidbody rigid;
     // Start is called before the first frame update
     void Start()
     {
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
+        rigid = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -43,5 +47,30 @@ public class M_ShipController : MonoBehaviour
         transform.position += transform.forward * activeforwardSpeed * Time.deltaTime;
         transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
 
+
+        Debug.Log(activeforwardSpeed);
+        if (activeforwardSpeed > 20f)
+        {
+            for (int i = 0; i < engineParticles.Length; i++)
+            {
+                engineParticles[i].Play();
+                engineParticles[i].gameObject.transform.localScale = new Vector3(100f, 100f, 100f);
+            }
+        }
+        else if (activeforwardSpeed > 0.5f)
+        {
+            for (int i = 0; i < engineParticles.Length; i++)
+            {
+                engineParticles[i].Play();
+                engineParticles[i].gameObject.transform.localScale = new Vector3(50f, 50f, 50f);
+            }
+        }
+        else if (activeforwardSpeed > 0f)
+        {
+            for (int i = 0; i < engineParticles.Length; i++)
+            {
+                engineParticles[i].Stop();
+            }
+        }
     }
 }
