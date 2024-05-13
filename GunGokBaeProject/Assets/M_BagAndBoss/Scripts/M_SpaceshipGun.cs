@@ -12,6 +12,7 @@ public class M_SpaceshipGun : MonoBehaviour
     public GameObject bullet;
     public GameObject bulletPos;
     public float bulletSpeed = 30f;
+    public ParticleSystem bulletParticleSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class M_SpaceshipGun : MonoBehaviour
 
         GameObject instatiateBullet = Instantiate(bullet, bulletPos.transform.position, bulletPos.transform.rotation);
         instatiateBullet.GetComponent<Rigidbody>().AddForce(instatiateBullet.transform.TransformDirection(new Vector3(0, 0, 1)) * Time.deltaTime * bulletSpeed);
+        bulletParticleSystem.Play();
         Destroy(instatiateBullet, 5f);
     }
 
