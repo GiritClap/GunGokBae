@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement ;
+using Photon.Pun;
+using Photon.Realtime;
 
 
 public class Han_LoginManager : MonoBehaviour
@@ -57,10 +59,15 @@ public class Han_LoginManager : MonoBehaviour
         {
             if (webRequest.text.Contains("Login successful!!"))
             {
-                // 로그인 성공
-                // 다른 스크립트에 id와 pw를 넘겨줍니다.
-                Han_AccountManager.Instance.id = IDInputField.text;
-                Han_AccountManager.Instance.pw = PassInputField.text;
+                // 로그인 성공  //포톤에 id를 저장
+                if (PhotonNetwork.LocalPlayer != null) 
+                {
+                    ExitGames.Client.Photon.Hashtable accountInfo = new ExitGames.Client.Photon.Hashtable(); 
+                    accountInfo["id"] = IDInputField.text; 
+                    PhotonNetwork.LocalPlayer.SetCustomProperties(accountInfo); 
+                }
+
+
 
                 // 다음 씬으로 이동
                 int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

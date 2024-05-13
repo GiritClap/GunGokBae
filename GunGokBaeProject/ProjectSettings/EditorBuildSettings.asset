@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Han/Han_Scenes/Han_Login.unity
     guid: ba7ab09a40834834996bfbc9821ff6b5
   - enabled: 1

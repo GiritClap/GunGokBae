@@ -6,7 +6,6 @@ using Photon.Realtime;
 using UnityEngine.UI;
 using Photon.Pun.Demo.Cockpit;
 using UnityEngine.SceneManagement;
-using UnityEditor.Experimental.GraphView;
 
 
 public class NetworkManager : MonoBehaviourPunCallbacks

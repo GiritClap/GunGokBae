@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 using System.IO;
 
-using static UnityEditor.Progress;
 
 using UnityEngine.Networking;
 using System.Text;
@@ -42,7 +41,7 @@ public class Han_Menu : MonoBehaviour
     public void SaveDBBtn()
     {
         Debug.Log("ClickSave");
-        saveNLoad.SaveData();
+        saveNLoad.SaveDataToSQL();
     }
 
     public void ExitBtn()

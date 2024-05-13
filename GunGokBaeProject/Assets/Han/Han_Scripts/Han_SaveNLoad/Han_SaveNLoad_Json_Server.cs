@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using static UnityEditor.Progress;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Text;
@@ -28,9 +27,9 @@ public class Han_SaveNLoad_Json_Server : MonoBehaviour
     public void SaveData()
     {
         //객체에 대이터 저장
-        saveData.inventory[0] = "gun";
-        saveData.inventory[1] = "pick";
-        saveData.inventory[2] = "healgun";
+        //saveData.inventory[0] = "gun";
+        //saveData.inventory[1] = "pick";
+        //saveData.inventory[2] = "healgun";
         //saveData.score = 30;
 
         //json파일로 변경
