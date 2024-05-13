@@ -19,6 +19,8 @@ public class M_Machinegun : MonoBehaviour
     public Image crosshair;
     M_RaycastWeapon weapon;
 
+    public AudioClip machinegunShotClip;
+    public AudioClip reloadClip;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +53,8 @@ public class M_Machinegun : MonoBehaviour
                 if (cur_Bullet_Cnt > 0)
                 {
                     weapon.StartMachinegunFiring();
+                    M_SoundManager.instance.SFXPlay("machinegun", machinegunShotClip);
+
                     //ShotRayBullet();
                     cur_Bullet_Cnt--;
                 }
@@ -71,6 +75,8 @@ public class M_Machinegun : MonoBehaviour
             if (max_Bullet_Cnt > 0)
             {
                 Reload();
+                M_SoundManager.instance.SFXPlay("machinegunReload", reloadClip);
+
             }
             else
             {

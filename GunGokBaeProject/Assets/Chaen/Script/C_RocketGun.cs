@@ -18,9 +18,11 @@ public class C_RocketGun : MonoBehaviour
     public GameObject bulletDirection;
     public float bulletSpeed = 30f;
     public ParticleSystem rocketGunMuzzleFlash;
+    public ParticleSystem roceketCharging;
 
     public GameObject playerBody;
 
+    public AudioClip clip;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class C_RocketGun : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //좌클릭
         {
             textGunTime.gameObject.SetActive(true);
+            roceketCharging.Play();
             nowTime = gunTimer;
             isShot = true;
         }
@@ -57,9 +60,13 @@ public class C_RocketGun : MonoBehaviour
 
             if(nowTime < 0)
             {
+                roceketCharging.Stop();
+
                 rocketGunMuzzleFlash.Play();
                 textGunTime.gameObject.SetActive(false);
                 ShotBullet();
+                M_SoundManager.instance.SFXPlay("Rocket", clip);
+
                 playerBody.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.TransformDirection(0,0,-1) * 100f, ForceMode.Impulse);
                 isShot = false;
             }
@@ -67,6 +74,8 @@ public class C_RocketGun : MonoBehaviour
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) ||Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)){
             isShot = false;
             textGunTime.gameObject.SetActive(false);
+            roceketCharging.Stop();
+
         }
     }
 

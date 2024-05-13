@@ -19,7 +19,9 @@ public class M_OriginalGun : MonoBehaviour
     public Image crosshair;
 
     M_RaycastWeapon weapon;
-   
+
+    public AudioClip pistolShotClip;
+    public AudioClip reloadClip;
 
 
 
@@ -51,6 +53,8 @@ public class M_OriginalGun : MonoBehaviour
                 if (cur_Bullet_Cnt > 0)
                 {
                     weapon.StartPistolFiring();
+                    M_SoundManager.instance.SFXPlay("pistol", pistolShotClip);
+
                     //ShotRayBullet();
                     cur_Bullet_Cnt--;
                 }
@@ -70,6 +74,8 @@ public class M_OriginalGun : MonoBehaviour
         {
             if (max_Bullet_Cnt > 0)
             {
+                M_SoundManager.instance.SFXPlay("reload", reloadClip);
+
                 Reload();
             }
             else

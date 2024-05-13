@@ -23,6 +23,9 @@ public class M_Sniper : MonoBehaviour
     public GameObject bulletDirection;
     public ParticleSystem sniperMuzzleFlash;
 
+
+    public AudioClip sniperShotClip;
+    public AudioClip reloadClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,8 @@ public class M_Sniper : MonoBehaviour
                 if (cur_Bullet_Cnt > 0)
                 {
                     ShotRayBullet();
+                    M_SoundManager.instance.SFXPlay("sniper", sniperShotClip);
+
                     sniperMuzzleFlash.Play();
                     cur_Bullet_Cnt--;
                 }
@@ -68,6 +73,8 @@ public class M_Sniper : MonoBehaviour
             if (max_Bullet_Cnt > 0)
             {
                 Reload();
+                M_SoundManager.instance.SFXPlay("sniperReload", reloadClip);
+
             }
             else
             {

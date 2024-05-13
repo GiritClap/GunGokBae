@@ -27,6 +27,9 @@ public class Grappling : MonoBehaviour
 
     private bool grappling;
 
+    [Header("Sound")]
+    public AudioClip clip;
+
     private void Start()
     {
         pm = GetComponent<PlayerMovementGrappling>();
@@ -34,8 +37,11 @@ public class Grappling : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(grappleKey)) StartGrapple();
+        if (Input.GetKeyDown(grappleKey))
+        {
+            StartGrapple();
 
+        }
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;
     }
@@ -49,6 +55,8 @@ public class Grappling : MonoBehaviour
     private void StartGrapple()
     {
         if (grapplingCdTimer > 0) return;
+
+        M_SoundManager.instance.SFXPlay("grappling", clip);
 
         grappling = true;
 

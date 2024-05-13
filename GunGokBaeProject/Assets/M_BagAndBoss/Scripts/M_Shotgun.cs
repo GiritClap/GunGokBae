@@ -22,6 +22,10 @@ public class M_Shotgun : MonoBehaviour
     public float bulletSpeed = 30f;
 
 
+    public AudioClip shotgunShotClip;
+    public AudioClip reloadClip;
+
+
     public ParticleSystem shotgunMuzzleFlash;
     // Start is called before the first frame update
     void Start()
@@ -51,6 +55,7 @@ public class M_Shotgun : MonoBehaviour
                 if (cur_Bullet_Cnt > 0)
                 {
                     ShotRayBullet();
+                    M_SoundManager.instance.SFXPlay("shotgun", shotgunShotClip);
                     shotgunMuzzleFlash.Play();
                     cur_Bullet_Cnt--;
                 }
@@ -67,6 +72,8 @@ public class M_Shotgun : MonoBehaviour
         {
             if (max_Bullet_Cnt > 0)
             {
+                M_SoundManager.instance.SFXPlay("shotgunReload", reloadClip);
+
                 Reload();
             }
             else

@@ -57,6 +57,12 @@ public class PlayerMovementGrappling : MonoBehaviour
     Rigidbody rb;
 
     public MovementState state;
+
+    public AudioSource audioSource;
+    public AudioClip walkClip;
+    public AudioClip jumpClip;
+
+
     public enum MovementState
     {
         freeze,
@@ -106,10 +112,19 @@ public class PlayerMovementGrappling : MonoBehaviour
         if(state == MovementState.walking)
         {
             anim.SetBool("IsWalking", true);
+            if(!audioSource.isPlaying)
+            {
+                audioSource.clip = walkClip;
+                audioSource.loop = true;
+                audioSource.Play();
+            }
+            
         }
         else
         {
             anim.SetBool("IsWalking", false);
+            audioSource.Stop();
+
         }
 
         //TextStuff();
@@ -132,7 +147,9 @@ public class PlayerMovementGrappling : MonoBehaviour
 
             Jump();
             anim.SetTrigger("DoJumping");
-
+            audioSource.clip = jumpClip;
+            audioSource.loop = false;
+            audioSource.Play();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
 
