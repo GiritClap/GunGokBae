@@ -130,7 +130,7 @@ public class M_BtnSystem : MonoBehaviour
 
         for(int i = 0; i < machinegunUpgradeBtns.Length; i++)
         {
-            machinegunUpgradeBtns[i].interactable = false;
+            machinegunUpgradeBtns[i].interactable = false; 
             shotgunUpgradeBtns[i].interactable = false;
             sniperUpgradeBtns[i].interactable = false;
         }
