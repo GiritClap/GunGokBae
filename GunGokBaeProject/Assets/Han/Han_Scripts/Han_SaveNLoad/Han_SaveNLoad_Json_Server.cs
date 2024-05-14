@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -6,11 +6,11 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Text;
 
-/*public class SaveData //플레이어 위치 저장하는 튜토리얼
+*//*public class SaveData //플레이어 위치 저장하는 튜토리얼
 {
     public Vector3 playerPos;
     public Vector3 playerRot;
-}*/
+}*//*
 
 
 public class Han_SaveNLoad_Json_Server : MonoBehaviour
@@ -66,7 +66,7 @@ public class Han_SaveNLoad_Json_Server : MonoBehaviour
 }
 
 //json으로 클라이언트에 저장 //json으로 클라이언트에 저장 //json으로 클라이언트에 저장 //json으로 클라이언트에 저장 //json으로 클라이언트에 저장
-/*    //json 파일로 저장시 디렉토리, 파일이름저장
+*//*    //json 파일로 저장시 디렉토리, 파일이름저장
     //private string SAVE_DATA_DIRECTORY; //디렉토리 경로
     //private string SAVE_FILENAME = "/DataSaveTest.txt"; //파일 이름 //나중에는 ID_data 형식으로 저장하여 구별
 

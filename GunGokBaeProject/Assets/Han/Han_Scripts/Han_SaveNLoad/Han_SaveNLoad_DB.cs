@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -368,4 +368,4 @@ public class AcceptAllCertificates : CertificateHandler
 //     //현재 진행 상황 번호? 추가
 //     //우주선 정보 추가
     
-// }
+// }*/

@@ -19,12 +19,18 @@ public class M_ShipController : MonoBehaviour
     Rigidbody rigid;
 
     public AudioClip moveSoudClip;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
         rigid = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.loop = true;
+        audioSource.volume = 0.1f;
+        audioSource.playOnAwake = false;
+
     }
 
     // Update is called once per frame
@@ -53,6 +59,8 @@ public class M_ShipController : MonoBehaviour
         Debug.Log(activeforwardSpeed);
         if (activeforwardSpeed > 20f)
         {
+            audioSource.volume = 0.1f;
+            audioSource.Play();
             for (int i = 0; i < engineParticles.Length; i++)
             {
                 engineParticles[i].Play();
@@ -61,6 +69,9 @@ public class M_ShipController : MonoBehaviour
         }
         else if (activeforwardSpeed > 0.5f)
         {
+            audioSource.volume = 0.04f;
+            audioSource.Play();
+
             for (int i = 0; i < engineParticles.Length; i++)
             {
                 engineParticles[i].Play();
@@ -69,6 +80,8 @@ public class M_ShipController : MonoBehaviour
         }
         else if (activeforwardSpeed > 0f)
         {
+            audioSource.Stop();
+
             for (int i = 0; i < engineParticles.Length; i++)
             {
                 engineParticles[i].Stop();
