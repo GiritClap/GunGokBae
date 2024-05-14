@@ -1299,6 +1299,7 @@ MonoBehaviour:
   hpBar: {fileID: 4748148054408095708}
   curHp: 0
   maxHp: 0
+  isDie: 0
 --- !u!1 &2640322978901925158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2678,7 +2679,7 @@ GameObject:
   - component: {fileID: 4087079247284020272}
   - component: {fileID: 3314546403643663184}
   - component: {fileID: 7871357891302595199}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2834,7 +2835,6 @@ MonoBehaviour:
   target: {fileID: 0}
   bulletFactory: {fileID: 7631077021663482634, guid: 08adc25df385f2442a43ace132852c58, type: 3}
   firePosition: {fileID: 4925729729224685487}
-  isDie: 0
 --- !u!1 &5866905661688553510
 GameObject:
   m_ObjectHideFlags: 0

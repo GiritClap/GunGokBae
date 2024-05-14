@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1978256215111629103, guid: d1842c68e132449479e27c031f0e77f0, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4934127609338252205, guid: d1842c68e132449479e27c031f0e77f0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6
@@ -179,10 +175,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wolf White
       objectReference: {fileID: 0}
-    - target: {fileID: 5029697909680209216, guid: d1842c68e132449479e27c031f0e77f0, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -199,10 +191,6 @@ PrefabInstance:
     - target: {fileID: 5799582236358899231, guid: 420820a352a15b1499a11c6c9c787641, type: 3}
       propertyPath: m_Name
       value: Dragon
-      objectReference: {fileID: 0}
-    - target: {fileID: 5799582236358899231, guid: 420820a352a15b1499a11c6c9c787641, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6555460720195666502, guid: 420820a352a15b1499a11c6c9c787641, type: 3}
       propertyPath: m_LocalPosition.x
