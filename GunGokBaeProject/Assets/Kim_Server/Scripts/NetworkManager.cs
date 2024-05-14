@@ -210,7 +210,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [PunRPC]
     public void moveScene()
     {
-        SceneManager.LoadScene("Fire Planet");
+        SceneManager.LoadScene("Shin_TestPlanet");
     }
     #region Ã¤ÆÃ
     public void Send()

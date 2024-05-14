@@ -132,6 +132,15 @@ public class M_Boss : MonoBehaviour
         }
     }
 
+
+    #region 데미지
+
+    private void K_Damage()
+    {
+
+    }
+
+    #endregion
     private void Patroling()
     {
         anim.SetBool("IsWalking", true);
