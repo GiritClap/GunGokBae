@@ -14,6 +14,8 @@ public class M_SpaceshipGun : MonoBehaviour
     public float bulletSpeed = 30f;
     public ParticleSystem bulletParticleSystem;
 
+    public AudioClip clip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,7 @@ public class M_SpaceshipGun : MonoBehaviour
             {
 
                 ShotRayBullet();
+                M_SoundManager.instance.SFXPlay("SpaceshipShot", clip);
 
                 timer = 0;
             }

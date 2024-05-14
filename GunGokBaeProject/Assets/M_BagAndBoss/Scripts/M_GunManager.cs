@@ -31,7 +31,7 @@ public class M_GunManager : MonoBehaviour
 
     public string OriginalGunName()
     {
-        return "OriginalGun";
+        return "Pistol";
     }
 
     public string MachinegunName()

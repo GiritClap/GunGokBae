@@ -20,6 +20,10 @@ public class M_ShipController : MonoBehaviour
 
     public AudioClip moveSoudClip;
     public AudioSource audioSource;
+
+    public ParticleSystem directionArrow;
+    public Transform target; // 도착 행성 위치
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +31,7 @@ public class M_ShipController : MonoBehaviour
         screenCenter.y = Screen.height * 0.5f;
         rigid = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        audioSource.clip = moveSoudClip;
         audioSource.loop = true;
         audioSource.volume = 0.1f;
         audioSource.playOnAwake = false;
@@ -55,12 +60,17 @@ public class M_ShipController : MonoBehaviour
         transform.position += transform.forward * activeforwardSpeed * Time.deltaTime;
         transform.position += (transform.right * activeStrafeSpeed * Time.deltaTime) + (transform.up * activeHoverSpeed * Time.deltaTime);
 
+        directionArrow.gameObject.transform.LookAt(target);
 
         Debug.Log(activeforwardSpeed);
         if (activeforwardSpeed > 20f)
         {
-            audioSource.volume = 0.1f;
-            audioSource.Play();
+            if(!audioSource.isPlaying)
+            {
+                audioSource.volume = 0.8f;
+                audioSource.Play();
+            }
+           
             for (int i = 0; i < engineParticles.Length; i++)
             {
                 engineParticles[i].Play();
@@ -69,8 +79,8 @@ public class M_ShipController : MonoBehaviour
         }
         else if (activeforwardSpeed > 0.5f)
         {
-            audioSource.volume = 0.04f;
-            audioSource.Play();
+
+            audioSource.Stop();
 
             for (int i = 0; i < engineParticles.Length; i++)
             {
