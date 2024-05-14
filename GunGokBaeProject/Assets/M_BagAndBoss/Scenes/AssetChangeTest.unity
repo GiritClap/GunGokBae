@@ -468,8 +468,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac2a50763adc53d48bf88c61e6d4df51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgSound: {fileID: 0}
-  bgList: []
+  bgSound: {fileID: 655279347}
+  bgList:
+  - {fileID: 8300000, guid: 3ed1a180d319ab148bef12719f0d4f59, type: 3}
 --- !u!4 &655279346
 Transform:
   m_ObjectHideFlags: 0
@@ -495,7 +496,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3ed1a180d319ab148bef12719f0d4f59, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1466,10 +1467,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3066869885953715449, guid: 680b56eec647a57418a24be1761ef497, type: 3}
-      propertyPath: m_Volume
-      value: 0.52
-      objectReference: {fileID: 0}
     - target: {fileID: 3505022611434941946, guid: 680b56eec647a57418a24be1761ef497, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1521,14 +1518,6 @@ PrefabInstance:
     - target: {fileID: 5372791356308404330, guid: 680b56eec647a57418a24be1761ef497, type: 3}
       propertyPath: sceneViewId
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6025120367696164625, guid: 680b56eec647a57418a24be1761ef497, type: 3}
-      propertyPath: playOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6025736666591478757, guid: 680b56eec647a57418a24be1761ef497, type: 3}
-      propertyPath: playOnAwake
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6244489548669286629, guid: 680b56eec647a57418a24be1761ef497, type: 3}
       propertyPath: m_AnchorMax.y

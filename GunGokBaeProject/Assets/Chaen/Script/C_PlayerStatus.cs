@@ -15,6 +15,7 @@ public class C_PlayerStatus : MonoBehaviour
     float healTime;
     public bool isHealBullet;   //
 
+    public AudioClip healSound;
     // Start is called before the first frame update
 
     void Awake()
@@ -57,6 +58,14 @@ public class C_PlayerStatus : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Heal")
+        {
+            M_SoundManager.instance.SFXPlay("Healing", healSound);
+        }
+
+    }
 
     public void Attack(int damage)
     {
@@ -92,8 +101,11 @@ public class C_PlayerStatus : MonoBehaviour
         healTime += Time.deltaTime;
         if(healTime > healTimer)
         {
+
+
             if (curHp < maxHp)
             {
+
                 curHp += 5;
                 UpdateHp();
             }

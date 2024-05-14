@@ -22,14 +22,21 @@ public class C_RocketGun : MonoBehaviour
 
     public GameObject playerBody;
 
-    public AudioClip clip;
+    public AudioClip rocketShotClip;
+
+
+    public AudioSource audioSource;
+    public AudioClip rocketChargingClip;
 
     // Start is called before the first frame update
     void Start()
     {
    
         isShot = false;
-
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = rocketChargingClip;
+        audioSource.loop = true;
+        audioSource.playOnAwake = false;
         //bulletCntText = GameObject.Find("BulletCnt").GetComponent<Text>();
         //bulletCntText.text = "GroundGun";
         //crosshair = GameObject.Find("Crosshair").GetComponent<Image>();
@@ -44,6 +51,7 @@ public class C_RocketGun : MonoBehaviour
         {
             textGunTime.gameObject.SetActive(true);
             roceketCharging.Play();
+            audioSource.Play();
             nowTime = gunTimer;
             isShot = true;
         }
@@ -65,7 +73,7 @@ public class C_RocketGun : MonoBehaviour
                 rocketGunMuzzleFlash.Play();
                 textGunTime.gameObject.SetActive(false);
                 ShotBullet();
-                M_SoundManager.instance.SFXPlay("Rocket", clip);
+                M_SoundManager.instance.SFXPlay("Rocket", rocketShotClip);
 
                 playerBody.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.TransformDirection(0,0,-1) * 100f, ForceMode.Impulse);
                 isShot = false;
@@ -75,6 +83,8 @@ public class C_RocketGun : MonoBehaviour
             isShot = false;
             textGunTime.gameObject.SetActive(false);
             roceketCharging.Stop();
+            audioSource.Stop();
+
 
         }
     }

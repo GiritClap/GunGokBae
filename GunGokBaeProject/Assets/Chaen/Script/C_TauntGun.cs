@@ -15,6 +15,7 @@ public class C_TauntGun : MonoBehaviour
     public float bulletSpeed = 30f;
     public ParticleSystem tauntGunMuzzleFlash;
 
+    public AudioClip tauntShotClip;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,8 @@ public class C_TauntGun : MonoBehaviour
         {
             tauntGunMuzzleFlash.Play();
             ShotBullet();
+            M_SoundManager.instance.SFXPlay("tauntShot", tauntShotClip);
+
         }
     }
 

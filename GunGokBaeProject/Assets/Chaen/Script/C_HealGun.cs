@@ -14,6 +14,8 @@ public class C_HealGun : MonoBehaviour
     public float bulletSpeed = 30f;
     public ParticleSystem healGunMuzzleFlash;
 
+    public AudioClip healShotClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class C_HealGun : MonoBehaviour
         {
             healGunMuzzleFlash.Play();
             ShotBullet();
+            M_SoundManager.instance.SFXPlay("healgunShot", healShotClip);
+
         }
     }
 

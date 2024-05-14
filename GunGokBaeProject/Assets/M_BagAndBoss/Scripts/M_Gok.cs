@@ -15,6 +15,7 @@ public class M_Gok : MonoBehaviour
 
     float timer;
 
+    public AudioClip gokClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,8 @@ public class M_Gok : MonoBehaviour
             melee.enabled = true;
             anim.SetBool("Picking", true);
             Invoke("StopPicking", 1.2f);
+            M_SoundManager.instance.SFXPlay("gok", gokClip);
+
             timer = 0;
         }
         if (Input.GetButtonUp("Fire1"))

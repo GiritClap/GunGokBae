@@ -17,6 +17,7 @@ public class C_GroundGun : MonoBehaviour
 
     private bool isCool = false;
 
+    public AudioClip groundGunSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,7 @@ public class C_GroundGun : MonoBehaviour
         {
             groundGunMuzzleFlash.Play();
             ShotBullet();
+            M_SoundManager.instance.SFXPlay("groundgunShot", groundGunSound);
             this.GetComponentInParent<C_PlayerItem>().isCool = true;
             this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(10f);
         }

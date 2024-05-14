@@ -9,6 +9,7 @@ public class M_Pattern2 : MonoBehaviour
 
     public float dangerTime = 0;
     public float upSpeed = 30;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,7 @@ public class M_Pattern2 : MonoBehaviour
         yield return new WaitForSeconds(dangerTime);
         pattern2_1.SetActive(false);
         pattern2_2.SetActive(true);
+
         pattern2_2.transform.Translate(Vector3.down * upSpeed * Time.deltaTime);
     }
 }

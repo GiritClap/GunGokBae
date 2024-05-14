@@ -5,11 +5,12 @@ using UnityEngine;
 public class M_Pattern2_Effect : MonoBehaviour
 {
     public GameObject touchEffect;
-
+    public AudioClip clip;
     private void OnCollisionEnter(Collision other)
     {
-
-        touchEffect.SetActive(true);
+        M_SoundManager.instance.SFXPlay("Meteor_boom", clip);
+        GameObject ggg = Instantiate(touchEffect, transform.position, Quaternion.identity);
+        Destroy(ggg, 3f);
         Destroy(this);
 
     }

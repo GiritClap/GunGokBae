@@ -6,6 +6,9 @@ public class C_BulletHeal : MonoBehaviour
 {
     float timer;
     float nowTime;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {

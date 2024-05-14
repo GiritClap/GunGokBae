@@ -54,6 +54,8 @@ public class C_PlayerItem : MonoBehaviour
     public Image coolImg;
     public float cooldown;
 
+    public AudioClip btnClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -275,6 +277,8 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeNoGun()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         nowspecialGunImg.sprite = specialGunImg[0];
         itemFrameImg1.gameObject.SetActive(false);
         itemFrameImg2.gameObject.SetActive(false);
@@ -311,6 +315,8 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeGrappling()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         nowspecialGunImg.sprite = specialGunImg[1];
         itemFrameImg1.gameObject.SetActive(false);
         itemFrameImg2.gameObject.SetActive(false);
@@ -349,6 +355,8 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeGround()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         nowspecialGunImg.sprite = specialGunImg[2];
         itemFrameImg1.gameObject.SetActive(false);
         itemFrameImg2.gameObject.SetActive(false);
@@ -387,6 +395,8 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeHeal()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         nowspecialGunImg.sprite = specialGunImg[3];
         itemFrameImg1.gameObject.SetActive(false);
         itemFrameImg2.gameObject.SetActive(false);
@@ -425,6 +435,8 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeRocket()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         nowspecialGunImg.sprite = specialGunImg[4];
         itemFrameImg1.gameObject.SetActive(false);
         itemFrameImg2.gameObject.SetActive(false);
@@ -463,6 +475,8 @@ public class C_PlayerItem : MonoBehaviour
 
     public void ChangeTaunt()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         nowspecialGunImg.sprite = specialGunImg[5];
         itemFrameImg1.gameObject.SetActive(false);
         itemFrameImg2.gameObject.SetActive(false);

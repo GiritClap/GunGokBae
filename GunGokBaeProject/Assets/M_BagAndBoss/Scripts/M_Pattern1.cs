@@ -10,6 +10,11 @@ public class M_Pattern1 : MonoBehaviour
 
     public float dangerTime = 0;
     public float upSpeed = 30;
+
+    float timer = 0; 
+
+    public AudioClip clip;
+    bool isOneShot = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +25,13 @@ public class M_Pattern1 : MonoBehaviour
     void Update()
     {
         StartCoroutine("SpikeUp");
+        timer += Time.deltaTime;
+        if(timer > dangerTime && isOneShot)
+        {
+            M_SoundManager.instance.SFXPlay("Magma", clip);
+            isOneShot = false;
+
+        }
     }
 
     IEnumerator SpikeUp()
@@ -27,6 +39,7 @@ public class M_Pattern1 : MonoBehaviour
         yield return new WaitForSeconds(dangerTime);
         pattern1_1.SetActive(false);
         pattern1_2.SetActive(true);
+
         pattern1_2.transform.Translate(Vector3.up * upSpeed * Time.deltaTime);
 
     }
