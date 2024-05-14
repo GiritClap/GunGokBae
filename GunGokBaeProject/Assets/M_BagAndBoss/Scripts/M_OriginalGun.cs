@@ -24,6 +24,8 @@ public class M_OriginalGun : MonoBehaviour
     public AudioClip reloadClip;
 
 
+    // 레이 충돌 콜라이더
+    public Collider raycoll;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class M_OriginalGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         this.gameObject.tag = "OriginalGun";
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
 
@@ -57,6 +60,8 @@ public class M_OriginalGun : MonoBehaviour
 
                     //ShotRayBullet();
                     cur_Bullet_Cnt--;
+
+                    raycoll.enabled = true;
                 }
                 else
                 {
@@ -68,6 +73,7 @@ public class M_OriginalGun : MonoBehaviour
         if(Input.GetButtonUp("Fire1"))
         {
             weapon.StopPistolFiring();
+            raycoll.enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.R) && cur_Bullet_Cnt != reload_Bullet_Cnt && crosshair.gameObject.activeSelf == true) // 재장전

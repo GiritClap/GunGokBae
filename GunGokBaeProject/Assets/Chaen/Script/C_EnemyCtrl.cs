@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class C_EnemyCtrl : MonoBehaviour
@@ -13,6 +14,8 @@ public class C_EnemyCtrl : MonoBehaviour
     private Animator ani;
 
     private bool isHit = false;
+
+    public bool isDie = false;
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +80,7 @@ public class C_EnemyCtrl : MonoBehaviour
 
         if (curHp <= 0)
         {
+            isDie = true;
             ani.SetBool("Die", true);  // 체력 0이면 죽음 애니메이션 재생 
             transform.GetComponentInParent<CapsuleCollider>().enabled = false; // 콜라이더 해제
             yield return new WaitForSeconds(2.0f);

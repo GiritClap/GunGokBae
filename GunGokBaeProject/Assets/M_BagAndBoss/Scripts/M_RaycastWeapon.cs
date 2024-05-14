@@ -30,7 +30,10 @@ public class M_RaycastWeapon : MonoBehaviour
         ray.origin = pistolRaycastOrigin.position;
         ray.direction = raycastDestination.position - pistolRaycastOrigin.position;
 
-        if(Physics.Raycast(ray, out hitInfo))
+        int layerMask = (-1) - (1 << LayerMask.NameToLayer("Enemy"));
+        
+
+        if (Physics.Raycast(ray.origin, ray.direction, out hitInfo, Mathf.Infinity, layerMask))
         {
             //Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1f);
             pistolHitEffect.transform.position = hitInfo.point;
@@ -54,7 +57,11 @@ public class M_RaycastWeapon : MonoBehaviour
         var tracer = Instantiate(machinegunTracerEffet, ray.origin, Quaternion.identity);
         tracer.AddPosition(ray.origin);
 
-        if (Physics.Raycast(ray, out hitInfo))
+        int layerMask = (-1) - (1 << LayerMask.NameToLayer("Enemy"));
+        //Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), hit, Mathf.Infinity, layerMask);
+        //Physics.Raycast(ray.origin, ray.direction, out hitInfo, Mathf.Infinity, layerMask);
+
+        if (Physics.Raycast(ray.origin, ray.direction, out hitInfo, Mathf.Infinity, layerMask))
         {
             //Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 1f);
             machinegunHitEffect.transform.position = hitInfo.point;

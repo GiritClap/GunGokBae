@@ -26,6 +26,7 @@ public class M_Shotgun : MonoBehaviour
     public AudioClip reloadClip;
 
 
+
     public ParticleSystem shotgunMuzzleFlash;
     // Start is called before the first frame update
     void Start()
@@ -43,6 +44,7 @@ public class M_Shotgun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         this.gameObject.tag = "Shotgun";
         bulletCntText.text = cur_Bullet_Cnt.ToString() + " / " + max_Bullet_Cnt.ToString();
 
@@ -65,6 +67,7 @@ public class M_Shotgun : MonoBehaviour
                 }
                 timer = 0;
             }
+            
         }
 
 

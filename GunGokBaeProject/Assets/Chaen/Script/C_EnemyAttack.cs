@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.AI;
 public class C_EnemyAttack : MonoBehaviour
@@ -10,14 +11,12 @@ public class C_EnemyAttack : MonoBehaviour
     public Transform target;
     NavMeshAgent nmAgent;
 
-    // 공격
-    public GameObject bulletFactory;
-    public Transform firePosition;
-
     private bool isAttack = false;
 
+    private bool isDie = false;
+
     // 애니메이션
-    //private Animator ani;
+    private Animator ani;
 
     bool Taunt; // 도발 허수아비
 
@@ -25,14 +24,24 @@ public class C_EnemyAttack : MonoBehaviour
     void Start()
     {
         nmAgent = GetComponent<NavMeshAgent>();
-        //ani = GetComponent<Animator>();
+        ani = GetComponent<Animator>();
+        isAttack = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        isDie = transform.GetChild(0).GetComponent<C_EnemyCtrl>().isDie;
+        if (isDie == true)
+        {
+            nmAgent.isStopped = true;
+        }
+
         if (target == null) // 타겟 없을 시 빙글빙글 돌고 있음 => 추후 일정범위 돌아다니는 거로 수정 예정
         {
+
+            ani.SetBool("Idle", false);
+            isAttack = false;
             rotSpeed = 10;
             this.transform.Translate(Vector3.forward * Time.deltaTime);
             this.transform.Rotate(Vector3.up * Time.deltaTime * rotSpeed);
@@ -40,20 +49,44 @@ public class C_EnemyAttack : MonoBehaviour
 
         else if (target != null) // 타겟 생성시 타겟 따라감
         {
+            rotSpeed = 10;
+            float distance = Vector3.Distance(target.transform.position, this.transform.position);
+            Vector3 dir = target.transform.position - this.transform.position;
+
+            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotSpeed);
             nmAgent.SetDestination(target.position);
+
+            if (distance >= 4)
+            {
+                ani.SetBool("Idle", false);
+            }
+
+            else if (distance <= 4.0f)
+            {
+                if (isAttack == false)
+                {
+                    ani.SetBool("Idle", true);
+                    StartCoroutine(Attack());
+                }
+            }
         }
     }
 
     // 공격
     IEnumerator Attack()
     {
+        nmAgent.isStopped = true;
         isAttack = true;
-        //ani.SetBool("Attack", true);    
+        ani.SetBool("Attack", true);    
         yield return new WaitForSeconds(0.5f);
-        ShotBullet(); // 총알 발사
-        //ani.SetBool("Attack", false);
+        if(target.gameObject.tag == "Player")
+        {
+            target.gameObject.GetComponent<C_PlayerStatus>().Attack(5);
+        }
+        ani.SetBool("Attack", false);
         yield return new WaitForSeconds(3.0f);
         isAttack = false;
+        nmAgent.isStopped = false;
     }
 
 
@@ -79,12 +112,5 @@ public class C_EnemyAttack : MonoBehaviour
         }
     }
 
-
-    private void ShotBullet() // 일반적인 총알 발사
-    {
-        GameObject bullet = Instantiate(bulletFactory);
-        bullet.transform.position = firePosition.position;
-        bullet.transform.forward = firePosition.forward;
-    }
 
 }

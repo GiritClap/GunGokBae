@@ -22,16 +22,24 @@ public class C_DragonAttack : MonoBehaviour
 
     bool Taunt; // 도발 허수아비
 
+    bool isDie = false;
+
     // Start is called before the first frame update
     void Start()
     {
         nmAgent = GetComponent<NavMeshAgent>();
         ani = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        isDie = transform.GetChild(0).GetComponent<C_EnemyCtrl>().isDie;
+        if(isDie == true)
+        {
+            nmAgent.isStopped = true;
+        }
         if (target == null) // 타겟 없을 시 빙글빙글 돌고 있음 => 추후 일정범위 돌아다니는 거로 수정 예정
         {
 
