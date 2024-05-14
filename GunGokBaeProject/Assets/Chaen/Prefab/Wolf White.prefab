@@ -297,6 +297,7 @@ MonoBehaviour:
   hpBar: {fileID: 5699229317471699623}
   curHp: 0
   maxHp: 0
+  isDie: 0
 --- !u!65 &4039401826749885883
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1149,7 +1150,7 @@ GameObject:
   - component: {fileID: 6740867575059879561}
   - component: {fileID: 1340162970882820119}
   - component: {fileID: 2581585421375809646}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wolf White
   m_TagString: Untagged
   m_Icon: {fileID: 0}
