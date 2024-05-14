@@ -31,8 +31,9 @@ public class M_Boss : MonoBehaviour
 
     //���� ü��
     public Slider bossHp;
-    float maxBossHp = 100f;
-    public float currentBossHp = 100f;
+    float maxBossHp = 1200f;
+    public float currentBossHp = 1200f;
+    public Text currentBossHpTxt;
 
 
     //��Ʈ��
@@ -126,6 +127,7 @@ public class M_Boss : MonoBehaviour
 
 
         bossHp.value = currentBossHp / maxBossHp;
+        currentBossHpTxt.text = currentBossHp.ToString("N0") + " / " + maxBossHp.ToString("N0") + " HP";
         if (currentBossHp <= 0f)
         {
             Destroy(this);

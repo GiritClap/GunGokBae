@@ -22,6 +22,9 @@ public class M_Machinegun : MonoBehaviour
     public AudioClip machinegunShotClip;
     public AudioClip reloadClip;
 
+    // 레이 충돌 콜라이더
+    public Collider raycoll;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +60,7 @@ public class M_Machinegun : MonoBehaviour
 
                     //ShotRayBullet();
                     cur_Bullet_Cnt--;
+                    raycoll.enabled = true;
                 }
                 else
                 {
@@ -68,6 +72,7 @@ public class M_Machinegun : MonoBehaviour
         if (Input.GetButtonUp("Fire1"))
         {
             weapon.StopMachinegunFiring();
+            raycoll.enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.R) && cur_Bullet_Cnt != reload_Bullet_Cnt && crosshair.gameObject.activeSelf == true) // 재장전
