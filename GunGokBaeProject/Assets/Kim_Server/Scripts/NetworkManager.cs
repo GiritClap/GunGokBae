@@ -97,7 +97,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        StartButton.SetActive(false);
+        
     }
 
     void Update()
@@ -178,40 +178,12 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     #endregion
 
-    [PunRPC]
-    public void ReadyButton()
-    {
-        clickCount++;
-        if( clickCount < 4) {
-            PhotonNetwork.LocalPlayer.NickName = ListText.text;
-            ListText.text = ("<color=green>" + PhotonNetwork.LocalPlayer.NickName + " V </color>"); // 체크표시 띄우면서 초록색으로 닉네임 색 변환
-            readyCount++;
-            Debug.Log(readyCount);
-        }
-        else 
-        {
-            ListText.text =  PhotonNetwork.LocalPlayer.NickName; // 원래 이름으로 돌아가기
-            readyCount--;
-            Debug.Log(readyCount);
-        }
 
-        if (readyCount == 3)
-        {
-            StartButton.SetActive(true);
-        }
-        else
-        {
-            StartButton.SetActive(false);
-        }
-    }
-
-  
-
-    [PunRPC]
     public void moveScene()
     {
         SceneManager.LoadScene("Shin_TestPlanet");
     }
+
     #region 채팅
     public void Send()
     {

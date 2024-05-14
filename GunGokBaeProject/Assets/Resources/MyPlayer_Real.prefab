@@ -2603,7 +2603,6 @@ GameObject:
   - component: {fileID: 4839657906830626640}
   - component: {fileID: 2152461187207963333}
   - component: {fileID: 2640486883971815775}
-  - component: {fileID: 2607006110792426228}
   - component: {fileID: 5372791356308404330}
   - component: {fileID: 9113756189805184078}
   - component: {fileID: 8289908679517996134}
@@ -2733,18 +2732,6 @@ MonoBehaviour:
   gp: {fileID: 6111441094797808870}
   bulletCntText: {fileID: 836686609893151502}
   crosshair: {fileID: 3654781307027579350}
---- !u!114 &2607006110792426228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879966743356764501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1174f3b1ac550bc419ca93cf5f9cb9b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5372791356308404330
 MonoBehaviour:
   m_ObjectHideFlags: 0
