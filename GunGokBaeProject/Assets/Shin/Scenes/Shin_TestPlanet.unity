@@ -516,32 +516,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
---- !u!1 &847467269 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1002701748996539809, guid: 680b56eec647a57418a24be1761ef497, type: 3}
-  m_PrefabInstance: {fileID: 911109838}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &847467272
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847467269}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &901498885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -839,10 +813,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7710215104956589636, guid: 680b56eec647a57418a24be1761ef497, type: 3}
-      propertyPath: raycoll
-      value: 
-      objectReference: {fileID: 847467272}
     - target: {fileID: 8220235562464483141, guid: 680b56eec647a57418a24be1761ef497, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -986,10 +956,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1002701748996539809, guid: 680b56eec647a57418a24be1761ef497, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 847467272}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 680b56eec647a57418a24be1761ef497, type: 3}
 --- !u!1 &1073351199
 GameObject:
@@ -1129,12 +1096,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5341051494630267045, guid: 85135f9520a842542b8d145a3cc97a14, type: 3}
       propertyPath: oreArray.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5341051494630267045, guid: 85135f9520a842542b8d145a3cc97a14, type: 3}
       propertyPath: oreArray.Array.data[0]
       value: 
       objectReference: {fileID: 1744114420}
+    - target: {fileID: 5341051494630267045, guid: 85135f9520a842542b8d145a3cc97a14, type: 3}
+      propertyPath: oreArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 5029697909680209216, guid: d1842c68e132449479e27c031f0e77f0, type: 3}
     - target: {fileID: 5475663694219087783, guid: 85135f9520a842542b8d145a3cc97a14, type: 3}
       propertyPath: m_LocalPosition.y
       value: 512.51
