@@ -9,7 +9,7 @@ public class C_BulletTaunt : MonoBehaviour
 
     float destroyTime = 0;
 
-
+    public AudioClip tauntSpawnClip;
    
     // Update is called once per frame
     void Update()
@@ -31,6 +31,8 @@ public class C_BulletTaunt : MonoBehaviour
     void isCol() //물체랑 충돌했을 때
     {
         GameObject taunt = Instantiate(bullet_Taunt, this.transform.position + new Vector3(0,1,0), Quaternion.identity);
+        M_SoundManager.instance.SFXPlay("tauntSpawn", tauntSpawnClip);
+
         Destroy(gameObject);
     }
 }

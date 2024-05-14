@@ -17,6 +17,8 @@ public class M_ShipController : MonoBehaviour
     public ParticleSystem[] engineParticles;
 
     Rigidbody rigid;
+
+    public AudioClip moveSoudClip;
     // Start is called before the first frame update
     void Start()
     {

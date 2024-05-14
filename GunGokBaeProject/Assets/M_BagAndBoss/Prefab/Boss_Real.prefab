@@ -2056,6 +2056,12 @@ MonoBehaviour:
   playerInSightRange: 0
   playerInAttackRange: 0
   anim: {fileID: 6977405310934595961}
+  clips:
+  - {fileID: 8300000, guid: 39ebedd4c086bb04c880dc6e0293ec6d, type: 3}
+  - {fileID: 8300000, guid: 5a59cabcf0540104d8d828dddad0601a, type: 3}
+  - {fileID: 8300000, guid: 94e5d10a34288a8458991a66a6977857, type: 3}
+  - {fileID: 8300000, guid: f587f959d64e2e643b4be028d6de92c7, type: 3}
+  - {fileID: 8300000, guid: f587f959d64e2e643b4be028d6de92c7, type: 3}
 --- !u!65 &7141744785738431527
 BoxCollider:
   m_ObjectHideFlags: 0

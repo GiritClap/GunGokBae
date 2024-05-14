@@ -50,6 +50,7 @@ MonoBehaviour:
   pattern1_2: {fileID: 6044408217111902602}
   dangerTime: 3
   upSpeed: 30
+  clip: {fileID: 8300000, guid: b5b9f7537bc9b4c44809ebd1f8bb2362, type: 3}
 --- !u!1 &6044408217111902602
 GameObject:
   m_ObjectHideFlags: 0

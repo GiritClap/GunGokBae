@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet_Taunt: {fileID: 864131849829863281, guid: 7d9c0dc33a79f41459a5d6ac738e21a6, type: 3}
   Taunt_Position: {fileID: 0}
+  tauntSpawnClip: {fileID: 8300000, guid: e144b31db785246498242a5fb9343d71, type: 3}

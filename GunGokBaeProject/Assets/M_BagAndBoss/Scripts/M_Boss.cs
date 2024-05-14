@@ -50,6 +50,8 @@ public class M_Boss : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     public Animator anim;
+
+    public AudioClip[] clips; // 0 = 기본공격, 1 = 패턴1 땅찍기, 2 = 패턴2 땅찍기, 3 = 패턴2 운석떨어지기, 4 = 패턴3 불뿜기
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -246,6 +248,8 @@ public class M_Boss : MonoBehaviour
     IEnumerator MeleeAttack()
     {
         anim.SetTrigger("DoMeleeAttack");
+        M_SoundManager.instance.SFXPlay("attack", clips[0]);
+
         meleeWeapon[0].enabled = true;
         meleeWeapon[1].enabled = true;
         yield return new WaitForSeconds(0.5f);
@@ -257,6 +261,8 @@ public class M_Boss : MonoBehaviour
     IEnumerator Pattern01()
     {
         anim.SetTrigger("DoPattern01");
+        M_SoundManager.instance.SFXPlay("pattern01_landAttack", clips[1]);
+
         isP01 = false;
         for(int i = 0; i< player.Length; i++)
         {
@@ -272,19 +278,27 @@ public class M_Boss : MonoBehaviour
     IEnumerator Pattern02()
     {
         anim.SetTrigger("DoPattern02");
+        M_SoundManager.instance.SFXPlay("pattern02_landAttack", clips[2]);
 
         isP02 = false;
         for(int i = 0; i < player.Length; i++)
         {
+            M_SoundManager.instance.SFXPlay("pattern02_Meteor", clips[3]);
             GameObject p01 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
             yield return new WaitForSeconds(2f);
             Destroy(p01);
+
+            M_SoundManager.instance.SFXPlay("pattern02_Meteor", clips[3]);
             GameObject p02 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
             yield return new WaitForSeconds(2f);
             Destroy(p02);
+
+            M_SoundManager.instance.SFXPlay("pattern02_Meteor", clips[3]);
             GameObject p03 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
             yield return new WaitForSeconds(2f);
             Destroy(p03);
+
+            M_SoundManager.instance.SFXPlay("pattern02_Meteor", clips[3]);
             GameObject p04 = Instantiate(pattern02, player[i].transform.position + new Vector3(0, -0.05f, 0), player[i].transform.rotation);
             yield return new WaitForSeconds(2f);
             Destroy(p04);
@@ -297,6 +311,7 @@ public class M_Boss : MonoBehaviour
     IEnumerator Pattern03()
     {
         anim.SetTrigger("DoPattern03");
+        M_SoundManager.instance.SFXPlay("pattern03_FireBreathe", clips[4]);
 
         isP03 = false;
         pattern03.SetActive(true);

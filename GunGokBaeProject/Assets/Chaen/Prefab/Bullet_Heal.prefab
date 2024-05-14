@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_ground: {fileID: 2206493317891387601, guid: 94181ad7efc01b4439a373c2534323c3, type: 3}
+  groundSpawnClip: {fileID: 8300000, guid: 1b7239529673d834b9db0a8090bf66de, type: 3}
 --- !u!1001 &6655152160176594290
 PrefabInstance:
   m_ObjectHideFlags: 0

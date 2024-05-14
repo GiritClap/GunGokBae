@@ -1873,6 +1873,7 @@ MonoBehaviour:
   coolTxt: {fileID: 5360344872098483285}
   coolImg: {fileID: 2825128756352463614}
   cooldown: 0
+  btnClip: {fileID: 8300000, guid: 966cf95f5f24ab94a9f7bf14ba7ce55b, type: 3}
 --- !u!114 &2640486883971815775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27955,6 +27956,7 @@ MonoBehaviour:
   curHp: 0
   maxHp: 0
   isHealBullet: 0
+  healSound: {fileID: 8300000, guid: 3703dab069abea644b0c2f39fe687d99, type: 3}
 --- !u!114 &1870525510306920595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55064,6 +55066,7 @@ MonoBehaviour:
   crosshair: {fileID: 3654781307027579350}
   pick: {fileID: 2671508024038831724}
   anim: {fileID: 1131929559357075785}
+  gokClip: {fileID: 8300000, guid: f703390802e78db45a549c3681ae0a50, type: 3}
 --- !u!114 &8939095015126109268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60581,6 +60584,7 @@ MonoBehaviour:
   bulletDirection: {fileID: 1002701748996539809}
   bulletSpeed: 10
   tauntGunMuzzleFlash: {fileID: 8997700136023401361}
+  tauntShotClip: {fileID: 8300000, guid: 51c4a08634f638f4c94beef7d23914c8, type: 3}
 --- !u!4 &359407347151051549 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4424435494630020, guid: 4140508019e090f499e30b79bb83db5a, type: 3}
@@ -61863,6 +61867,7 @@ MonoBehaviour:
   bulletDirection: {fileID: 1002701748996539809}
   bulletSpeed: 20
   groundGunMuzzleFlash: {fileID: 1908337439273620675}
+  groundGunSound: {fileID: 8300000, guid: 1e05201580daa2c418386b7fbd5db3ca, type: 3}
 --- !u!1001 &1782163061814069657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63158,6 +63163,7 @@ MonoBehaviour:
   bulletDirection: {fileID: 1002701748996539809}
   bulletSpeed: 10
   healGunMuzzleFlash: {fileID: 27273259925166133}
+  healShotClip: {fileID: 8300000, guid: e85ec6ce9abf89d4fbfbc61dc017683c, type: 3}
 --- !u!1001 &5686626492533787031
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63996,6 +64002,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1247444303257178, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9035968384057217851}
+    - targetCorrespondingSourceObject: {fileID: 1247444303257178, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 427517898837959053}
   m_SourcePrefab: {fileID: 100100000, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
 --- !u!1 &7198763563797862317 stripped
 GameObject:
@@ -64025,7 +64034,105 @@ MonoBehaviour:
   rocketGunMuzzleFlash: {fileID: 4214783812879978108}
   roceketCharging: {fileID: 6025736666591478757}
   playerBody: {fileID: 3885662261312859602}
-  clip: {fileID: 8300000, guid: 057898e1e9d7e1a4190965a239ecb30a, type: 3}
+  rocketShotClip: {fileID: 8300000, guid: 057898e1e9d7e1a4190965a239ecb30a, type: 3}
+  audioSource: {fileID: 427517898837959053}
+  rocketChargingClip: {fileID: 8300000, guid: 2c36844a6b3a19847be25c21ba795597, type: 3}
+--- !u!82 &427517898837959053
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7198763563797862317}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.51
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &7201932316991670093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4834079007641274, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
@@ -64642,6 +64749,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
+      propertyPath: btnClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 966cf95f5f24ab94a9f7bf14ba7ce55b, type: 3}
     - target: {fileID: 4712998685299645154, guid: e95f0a79e193a0d4da722141a115608d, type: 3}
       propertyPath: gunLevel
       value: 

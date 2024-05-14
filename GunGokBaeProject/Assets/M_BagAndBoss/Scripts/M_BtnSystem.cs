@@ -60,6 +60,8 @@ public class M_BtnSystem : MonoBehaviour
     int clickGokNum = 0;
     int clickGunNum = 0;
 
+    [Header("Button Clik Sound")]
+    public AudioClip btnClip;
    
     private void Start()
     {
@@ -110,6 +112,8 @@ public class M_BtnSystem : MonoBehaviour
     //여기서부터 기본총 업그레이드
     public void GunBtn()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         upgradePanel.SetActive(false);
         gunUpgradePanel.SetActive(true);
     }
@@ -117,12 +121,17 @@ public class M_BtnSystem : MonoBehaviour
    
     public void GunCancel()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         upgradePanel.SetActive(true);
         gunUpgradePanel.SetActive(false);
     }
 
     public void GunReset()
     {
+
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         // 수정중
         machinegunBtnInGUP.gameObject.SetActive(false);
         shotgunBtnInGUP.gameObject.SetActive(false);
@@ -130,7 +139,7 @@ public class M_BtnSystem : MonoBehaviour
 
         for(int i = 0; i < machinegunUpgradeBtns.Length; i++)
         {
-            machinegunUpgradeBtns[i].interactable = false;
+            machinegunUpgradeBtns[i].interactable = false; 
             shotgunUpgradeBtns[i].interactable = false;
             sniperUpgradeBtns[i].interactable = false;
         }
@@ -160,6 +169,9 @@ public class M_BtnSystem : MonoBehaviour
 
     public void GunUpgrade()
     {
+
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         // 수정중
         clickGunNum++;
         if(isOriginalGun)
@@ -219,6 +231,9 @@ public class M_BtnSystem : MonoBehaviour
     }
     public void MachinegunBtn()
     {
+
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         chooseMachinegun = true;
         isOriginalGun = false;
         machinegunBtnInGUP.gameObject.SetActive(true);
@@ -239,6 +254,9 @@ public class M_BtnSystem : MonoBehaviour
     }
     public void ShotgunBtn()
     {
+
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         chooseShotgun = true;
         isOriginalGun = false;
         shotgunBtnInGUP.gameObject.SetActive(true);
@@ -262,6 +280,9 @@ public class M_BtnSystem : MonoBehaviour
 
     public void SniperBtn()
     {
+
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         chooseSniper = true;
         isOriginalGun = false;
         sniperBtnInGUP.gameObject.SetActive(true);
@@ -284,50 +305,68 @@ public class M_BtnSystem : MonoBehaviour
     // 여기부터 총 업그레이드 이후 버튼들
     public void MachinegunBuildBtn()
     {
+
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         machinegunBuild.gameObject.SetActive(true);
         machinegunBuild.SetAsLastSibling();
     }
     public void MachinegunCancel()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         machinegunBuild.gameObject.SetActive(false);
     }
 
     public void ShotgunBuildBtn()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         shotgunBuild.gameObject.SetActive(true);
         shotgunBuild.SetAsLastSibling();
     }
     public void ShotgunCancel()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         shotgunBuild.gameObject.SetActive(false);
     }
 
     public void SniperBuildBtn()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         sniperBuild.gameObject.SetActive(true);
         sniperBuild.SetAsLastSibling();
     }
     public void SniperCancel()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         sniperBuild.gameObject.SetActive(false);
     }
 
 
     // 여기서부터 곡괭이 업그레이드
     public void GokBtn()
-    {
+    {        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         upgradePanel.SetActive(false);
         gokUpgradePanel.SetActive(true);
     }
 
     public void GokCancel()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         upgradePanel.SetActive(true);
         gokUpgradePanel.SetActive(false);
     }
 
     public void GokReset()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         for (int i = 0; i < gokUpgradeNum.Length; i++)
         {
             gokUpgradeNum[i].SetActive(false);
@@ -337,6 +376,8 @@ public class M_BtnSystem : MonoBehaviour
 
     public void GokUpgrade()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         if (clickGokNum > 2)
         {
             GokReset();
@@ -350,6 +391,8 @@ public class M_BtnSystem : MonoBehaviour
 
     public void SpeedGokBtn()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         crosshair.gameObject.SetActive(true);
         manageGok.ChooseSpeedGok();
         goksPanel.SetActive(false);
@@ -359,6 +402,8 @@ public class M_BtnSystem : MonoBehaviour
 
     public void DefenseGokBtn()
     {
+        M_SoundManager.instance.SFXPlay("btn", btnClip);
+
         crosshair.gameObject.SetActive(true);
         manageGok.ChooseDefenseGok();
         goksPanel.SetActive(false);
