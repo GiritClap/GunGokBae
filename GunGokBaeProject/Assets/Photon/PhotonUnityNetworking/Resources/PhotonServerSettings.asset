@@ -43,6 +43,17 @@ MonoBehaviour:
   - ReadyButton
   - moveScene
   - StartButtonSetting
+  - CurrentDamage
+  - CurrentMaxBulletCnt
+  - Reload
+  - ResetToLevel1
+  - StartMachinegunFiring
+  - StartPistolFiring
+  - StopMachinegunFiring
+  - StopPistolFiring
+  - UpdateDamage
+  - UpgradeMaxBulletCnt
+  - Shot
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
