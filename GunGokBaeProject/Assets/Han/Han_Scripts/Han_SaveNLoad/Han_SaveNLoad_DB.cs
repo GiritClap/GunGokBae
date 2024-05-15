@@ -18,8 +18,11 @@ public class SaveData
     //player 정보는 포톤에서 배열식으로 받아 옴
     //저장할 DATA들을 전역변수에 저장
     string RoomName ; //방 이름                 -- 0
+    string masterID; //마스터 아이디            --  0 - 1
     string sceneName;                                                       //현재 씬 이름          -- 1
     //int currentStage;                                                     //현재 스테이지 번호     -- 2
+    //포톤서버 마스터의 아이디
+    
     string[] playerIdArray = new string[3];                                       //플레이어 아이디 배열   -- 3
     string[] playerNickNameArray = new string[3];                                 //플레이어 이름(닉네임) 배열    -- 4
     string[] playerPositionArray = new string[3];                                 //플레이어 위치 배열   -- 5
@@ -51,10 +54,24 @@ public class SaveData
     public float[] max_Bullet_Cnt = new float[3]; // 총 총알수                                       // -- 21
     public float[] damage = new float[3]; // 총 데미지                                               // -- 22
 
-    
+        public string GetMasterClientId()
+    {
+        if (PhotonNetwork.MasterClient != null)
+        {
+            ExitGames.Client.Photon.Hashtable masterClientProperties = PhotonNetwork.MasterClient.CustomProperties;
+
+            if (masterClientProperties.ContainsKey("id"))
+            {
+                return (string)masterClientProperties["id"];
+            }
+        }
+
+        return null;
+    }
     public void GetPlayerInfo()   //플레이어 이름 받아오는 함수
         {   
             RoomName = PhotonNetwork.CurrentRoom.Name; //방 이름 받아옴         -- 0
+            masterID = GetMasterClientId(); //마스터 아이디 받아옴                  -- 0 - 1
             //현재 씬의 이름을 받아온다.                                        -- 1
             Scene currentScene = SceneManager.GetActiveScene();
             sceneName = currentScene.name;
