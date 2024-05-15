@@ -275,6 +275,168 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: d53e728b637588947a54cab5efc19659, type: 3}
   m_PrefabInstance: {fileID: 345494784}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &345824764
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1975184265179778, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_Name
+      value: Drone_Flight_Preset_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.29884
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.45382
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.966989
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971789858358306, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 81f06ea9ba957924b98f4abff18003ff, type: 3}
+--- !u!1 &445190821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445190825}
+  - component: {fileID: 445190824}
+  - component: {fileID: 445190823}
+  - component: {fileID: 445190822}
+  m_Layer: 0
+  m_Name: K_Planet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!135 &445190822
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445190821}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &445190823
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445190821}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: feaf496f35e733743a7a0731b47afaac, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &445190824
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445190821}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &445190825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445190821}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8000, y: 100, z: 56.204605}
+  m_LocalScale: {x: 3000, y: 3000, z: 3000}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &505077634
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -496,37 +658,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 3951b21bc57173e47be7774cab60d47a, type: 3}
   m_PrefabInstance: {fileID: 1091546358}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1260169057
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1260169058}
-  m_Layer: 0
-  m_Name: Target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1260169058
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260169057}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -291.3, y: -2.4584045, z: -378.9}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1341447652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1209,6 +1340,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1848874072
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1322417463414312, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_Name
+      value: Drone_Flight_Preset_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 57.823093
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 17.953993
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.3845472
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4418240883445762, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4bf138fc79e89a749903b1b383f5b105, type: 3}
 --- !u!1001 &1873402061
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1732,7 +1920,7 @@ PrefabInstance:
     - target: {fileID: 4596206094265793722, guid: 2c1f7f0bedf2e954e9e09918591b03a2, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1260169058}
+      objectReference: {fileID: 445190825}
     - target: {fileID: 4596206094265793722, guid: 2c1f7f0bedf2e954e9e09918591b03a2, type: 3}
       propertyPath: directionArrow
       value: 
@@ -1781,6 +1969,10 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 10000
       objectReference: {fileID: 0}
+    - target: {fileID: 7485422679556794344, guid: 2c1f7f0bedf2e954e9e09918591b03a2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8347911162922853509, guid: 2c1f7f0bedf2e954e9e09918591b03a2, type: 3}
       propertyPath: far clip plane
       value: 10000
@@ -1808,7 +2000,6 @@ SceneRoots:
   - {fileID: 5562111241815038377}
   - {fileID: 1873402061}
   - {fileID: 5900979256385162527}
-  - {fileID: 1260169058}
   - {fileID: 532377005}
   - {fileID: 1388970259}
   - {fileID: 1796890114}
@@ -1817,3 +2008,6 @@ SceneRoots:
   - {fileID: 49767385}
   - {fileID: 345494784}
   - {fileID: 1608014033}
+  - {fileID: 1848874072}
+  - {fileID: 345824764}
+  - {fileID: 445190825}
