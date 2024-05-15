@@ -8,19 +8,25 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Han/Han_Scenes/Han_Login.unity
     guid: ba7ab09a40834834996bfbc9821ff6b5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Kim_Server/K_server.unity
     guid: 736888e80bddbfb4e8c49dfe60941161
-  - enabled: 1
+  - enabled: 0
     path: Assets/Chaen/Scenes/Fire Planet.unity
     guid: 0a99d216a39b8ff4eae2ede09461d13a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Shin/Scenes/Shin_TestPlanet.unity
     guid: e702e1e5807717942a511ade00da0140
-  - enabled: 1
+  - enabled: 0
     path: Assets/Shin/Scenes/Shin_Map.unity
     guid: 4e2bd9630c96a68438eb859309440e32
-  - enabled: 1
+  - enabled: 0
     path: Assets/Shin/Scenes/Shin_BossScene.unity
     guid: 1eb57540307034f4f9917451452f01af
+  - enabled: 1
+    path: Assets/M_ServerTest/Moon_Lobby.unity
+    guid: f2f09f845fdc2c843957f6afbf497bb5
+  - enabled: 1
+    path: Assets/M_ServerTest/FirstTest.unity
+    guid: 469d29ed6fdded648b5ec5439fa210c8
   m_configObjects: {}

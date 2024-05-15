@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
-public class PlayerMovementGrappling : MonoBehaviour
+
+public class PlayerMovementGrappling : MonoBehaviourPun
 {
     [Header("Movement")]
     private float moveSpeed;
@@ -93,6 +95,11 @@ public class PlayerMovementGrappling : MonoBehaviour
 
     private void Update()
     {
+       
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 

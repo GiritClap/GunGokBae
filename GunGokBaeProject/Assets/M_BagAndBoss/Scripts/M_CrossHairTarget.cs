@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
+
 public class M_CrossHairTarget : MonoBehaviour
 {
     Camera mainCam;
@@ -12,12 +13,16 @@ public class M_CrossHairTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mainCam = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(mainCam == null)
+        {
+            mainCam = Camera.main;
+
+        }
         ray.origin = mainCam.transform.position;
         ray.direction = mainCam.transform.forward;
         int layerMask = (-1) - (1 << LayerMask.NameToLayer("Enemy"));

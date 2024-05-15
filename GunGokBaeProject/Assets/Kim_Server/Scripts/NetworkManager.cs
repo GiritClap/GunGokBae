@@ -181,7 +181,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void moveScene()
     {
-        SceneManager.LoadScene("Shin_TestPlanet");
+       
+       PhotonNetwork.LoadLevel("Shin_TestPlanet");
+
     }
 
     #region Ã¤ÆÃ
