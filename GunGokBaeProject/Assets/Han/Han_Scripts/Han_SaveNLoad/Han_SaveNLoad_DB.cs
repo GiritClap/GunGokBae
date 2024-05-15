@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -125,25 +125,25 @@ public class SaveData
                     currentWeapon = 0;                              // 0 = 권총         -- 19                   
                     cur_Bullet_Cnt = originalGun.cur_Bullet_Cnt ;   // 현재 총알수      -- 20
                     max_Bullet_Cnt = originalGun.max_Bullet_Cnt;    // 총 총알수        -- 21
-                    damage = originalGun.Damage;                    // 총 데미지        -- 22
+                    damage = originalGun.damage;                    // 총 데미지        -- 22
 
                 }else if (sniper.enabled){
                     currentWeapon = 3;                              //  3 = 스나이퍼    -- 19
                     cur_Bullet_Cnt = sniper.cur_Bullet_Cnt ;        // 현재 총알수      -- 20
                     max_Bullet_Cnt = sniper.max_Bullet_Cnt;         // 총 총알수        -- 21
-                    damage = sniper.Damage;                         // 총 데미지        -- 22
+                    damage = sniper.damage;                         // 총 데미지        -- 22
 
                 }else if (shotgun.enabled){
                     currentWeapon = 2;                              // 2 = 샷건         -- 19
                     cur_Bullet_Cnt = shotgun.cur_Bullet_Cnt ;       // 현재 총알수      -- 20
                     max_Bullet_Cnt = shotgun.max_Bullet_Cnt;        // 총 총알수        -- 21
-                    damage = shotgun.Damage;                        // 총 데미지        -- 22
+                    damage = shotgun.damage;                        // 총 데미지        -- 22
 
                 }else if (machinegun.enabled){
                     currentWeapon = 1;                              // 1 = 머신건       -- 19
                     cur_Bullet_Cnt = machinegun.cur_Bullet_Cnt ;    // 현재 총알수      -- 20
                     max_Bullet_Cnt = machinegun.max_Bullet_Cnt;     // 총 총알수        -- 21
-                    damage = machinegun.Damage;                     // 총 데미지        -- 22
+                    damage = machinegun.damage;                     // 총 데미지        -- 22
                 }
                 //총기 정보 받아오기 끝
 
@@ -196,8 +196,6 @@ public class SaveData
             Debug.Log("총기3" + gun3);
             Debug.Log("총기4" + gun4);
             Debug.Log("총기5" + gun5);
-
-            Debug.Log("test" + "damage" + originalGun.damage);
 
     }
 }
@@ -368,4 +366,4 @@ public class AcceptAllCertificates : CertificateHandler
 //     //현재 진행 상황 번호? 추가
 //     //우주선 정보 추가
     
-// }*/
+// }

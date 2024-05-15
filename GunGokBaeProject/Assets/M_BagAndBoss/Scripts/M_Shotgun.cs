@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class M_Shotgun : MonoBehaviour
 {
-    float cur_Bullet_Cnt = 0; // ⑷營 識憲熱
-    float max_Bullet_Cnt = 30; // 識 識憲熱
+    public float cur_Bullet_Cnt = 0; // ⑷營 識憲熱
+    public float max_Bullet_Cnt = 30; // 識 識憲熱
     float reload_Bullet_Cnt = 7; // 濰瞪 й 熱 氈朝 識憲 熱
     public float damage = 0; // 等嘐雖
  
