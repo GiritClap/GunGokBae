@@ -16876,6 +16876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c58070abef35e047a30ebb2f52e7c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cur_Bullet_Cnt: 0
+  max_Bullet_Cnt: 70
   damage: 0
   bulletEffect: {fileID: 7465784824618726419, guid: 310083050f9305140a5ce85cfb4e9cc3, type: 3}
   bulletCntText: {fileID: 836686609893151502}
@@ -16896,6 +16898,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 465fbce14f60af3449958e26725a7658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cur_Bullet_Cnt: 0
+  max_Bullet_Cnt: 30
   damage: 0
   bulletCntText: {fileID: 836686609893151502}
   fireTimer: 1.5
@@ -16918,6 +16922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ccbc7f1115d0748aa0673f4f8f47f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cur_Bullet_Cnt: 0
+  max_Bullet_Cnt: 150
   damage: 0
   bulletEffect: {fileID: 7962392344137173328, guid: 2dc515018292c3f47a84efbc62e0aced, type: 3}
   bulletCntText: {fileID: 836686609893151502}
@@ -16938,6 +16944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0355faf9404a1824598016128f6598bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cur_Bullet_Cnt: 0
+  max_Bullet_Cnt: 15
   damage: 0
   bulletCntText: {fileID: 836686609893151502}
   fireTimer: 2
