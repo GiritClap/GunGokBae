@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -17,15 +17,19 @@ public class SaveData
 {
     //player 정보는 포톤에서 배열식으로 받아 옴
     //저장할 DATA들을 전역변수에 저장
+    string RoomName ; //방 이름                 -- 0
+    string masterID; //마스터 아이디            --  0 - 1
     string sceneName;                                                       //현재 씬 이름          -- 1
     //int currentStage;                                                     //현재 스테이지 번호     -- 2
+    //포톤서버 마스터의 아이디
+    
     string[] playerIdArray = new string[3];                                       //플레이어 아이디 배열   -- 3
     string[] playerNickNameArray = new string[3];                                 //플레이어 이름(닉네임) 배열    -- 4
     string[] playerPositionArray = new string[3];                                 //플레이어 위치 배열   -- 5
     string[] playerRotationArray = new string[3];                                 //플레이어 회전 배열  -- 6
     int[] playerCurHp = new int[3];                                               //플레이어 현재 체력 배열 -- 7
     int[] playerMaxHp = new int[3];                                               //플레이어 최대 체력 배열 -- 8
-
+ 
 
     M_BagManager BagManager = M_BagManager.Instance;
     //광물 종류가 추가될때마다 stone변수 하나씩 추가
@@ -45,13 +49,30 @@ public class SaveData
     
 
     //총 data
-    public int currentWeapon = 0; // 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼    // -- 19
-    public float cur_Bullet_Cnt; // 현재 총알수                                     // -- 20
-    public float max_Bullet_Cnt; // 총 총알수                                       // -- 21
-    public float damage; // 총 데미지                                               // -- 22
+    public int[] currentWeapon = new int[3]; // 0 = 권총, 1 = 머신건, 2 = 샷건, 3 = 스나이퍼    // -- 19
+    public float[] cur_Bullet_Cnt = new float[3]; // 현재 총알수                                     // -- 20
+    public float[] max_Bullet_Cnt = new float[3]; // 총 총알수                                       // -- 21
+    public float[] damage = new float[3]; // 총 데미지                                               // -- 22
+
+        public string GetMasterClientId()
+    {
+        if (PhotonNetwork.MasterClient != null)
+        {
+            ExitGames.Client.Photon.Hashtable masterClientProperties = PhotonNetwork.MasterClient.CustomProperties;
+
+            if (masterClientProperties.ContainsKey("id"))
+            {
+                return (string)masterClientProperties["id"];
+            }
+        }
+
+        return null;
+    }
     public void GetPlayerInfo()   //플레이어 이름 받아오는 함수
         {   
-            //현재 씬의 이름을 받아온다.    -- 1
+            RoomName = PhotonNetwork.CurrentRoom.Name; //방 이름 받아옴         -- 0
+            masterID = GetMasterClientId(); //마스터 아이디 받아옴                  -- 0 - 1
+            //현재 씬의 이름을 받아온다.                                        -- 1
             Scene currentScene = SceneManager.GetActiveScene();
             sceneName = currentScene.name;
             
@@ -121,29 +142,45 @@ public class SaveData
                 M_Shotgun shotgun = originalGunTransform.GetComponent<M_Shotgun>();
                 M_Machinegun machinegun = originalGunTransform.GetComponent<M_Machinegun>();
 
-                if (originalGun.enabled){     
-                    currentWeapon = 0;                              // 0 = 권총         -- 19                   
-                    cur_Bullet_Cnt = originalGun.cur_Bullet_Cnt ;   // 현재 총알수      -- 20
-                    max_Bullet_Cnt = originalGun.max_Bullet_Cnt;    // 총 총알수        -- 21
-                    damage = originalGun.Damage;                    // 총 데미지        -- 22
+                // 먼저, 어떤 무기가 활성화되어 있는지를 나타내는 변수 설정이 필요합니다.
+                // 예: String activeWeapon = "originalGun"; // 이는 예시이며, 실제로는 무기의 활성화 여부에 따라 결정되어야 합니다.
 
-                }else if (sniper.enabled){
-                    currentWeapon = 3;                              //  3 = 스나이퍼    -- 19
-                    cur_Bullet_Cnt = sniper.cur_Bullet_Cnt ;        // 현재 총알수      -- 20
-                    max_Bullet_Cnt = sniper.max_Bullet_Cnt;         // 총 총알수        -- 21
-                    damage = sniper.Damage;                         // 총 데미지        -- 22
+                String activeWeapon = ""; // 활성화된 무기를 저장할 변수
+                if (originalGun.enabled) {
+                    activeWeapon = "originalGun";
+                } else if (sniper.enabled) {
+                    activeWeapon = "sniper";
+                } else if (shotgun.enabled) {
+                    activeWeapon = "shotgun";
+                } else if (machinegun.enabled) {
+                    activeWeapon = "machinegun";
+                }
 
-                }else if (shotgun.enabled){
-                    currentWeapon = 2;                              // 2 = 샷건         -- 19
-                    cur_Bullet_Cnt = shotgun.cur_Bullet_Cnt ;       // 현재 총알수      -- 20
-                    max_Bullet_Cnt = shotgun.max_Bullet_Cnt;        // 총 총알수        -- 21
-                    damage = shotgun.Damage;                        // 총 데미지        -- 22
-
-                }else if (machinegun.enabled){
-                    currentWeapon = 1;                              // 1 = 머신건       -- 19
-                    cur_Bullet_Cnt = machinegun.cur_Bullet_Cnt ;    // 현재 총알수      -- 20
-                    max_Bullet_Cnt = machinegun.max_Bullet_Cnt;     // 총 총알수        -- 21
-                    damage = machinegun.Damage;                     // 총 데미지        -- 22
+                switch (activeWeapon) {
+                    case "originalGun":
+                        currentWeapon[i] = 0; // 0 = 권총                               // -- 19
+                        cur_Bullet_Cnt[i] = originalGun.cur_Bullet_Cnt; // 현재 총알수  // -- 20
+                        max_Bullet_Cnt[i] = originalGun.max_Bullet_Cnt; // 총 총알수    // -- 21
+                        damage[i] = originalGun.damage; // 총 데미지                    // -- 22
+                        break;
+                    case "sniper":
+                        currentWeapon[i] = 3; // 3 = 스나이퍼                           // -- 19
+                        cur_Bullet_Cnt[i] = sniper.cur_Bullet_Cnt; // 현재 총알수       // -- 20
+                        max_Bullet_Cnt[i] = sniper.max_Bullet_Cnt; // 총 총알수         // -- 21
+                        damage[i] = sniper.damage; // 총 데미지                         // -- 22
+                        break;
+                    case "shotgun":
+                        currentWeapon[i] = 2; // 2 = 샷건                               // -- 19
+                        cur_Bullet_Cnt[i] = shotgun.cur_Bullet_Cnt; // 현재 총알수      // -- 20
+                        max_Bullet_Cnt[i] = shotgun.max_Bullet_Cnt; // 총 총알수        // -- 21
+                        damage[i] = shotgun.damage; // 총 데미지                        // -- 22
+                        break;
+                    case "machinegun":
+                        currentWeapon[i] = 1; // 1 = 머신건                             // -- 19
+                        cur_Bullet_Cnt[i] = machinegun.cur_Bullet_Cnt; // 현재 총알수   // -- 20
+                        max_Bullet_Cnt[i] = machinegun.max_Bullet_Cnt; // 총 총알수     // -- 21
+                        damage[i] = machinegun.damage; // 총 데미지                     // -- 22
+                        break;
                 }
                 //총기 정보 받아오기 끝
 
@@ -196,8 +233,6 @@ public class SaveData
             Debug.Log("총기3" + gun3);
             Debug.Log("총기4" + gun4);
             Debug.Log("총기5" + gun5);
-
-            Debug.Log("test" + "damage" + originalGun.damage);
 
     }
 }
@@ -368,4 +403,4 @@ public class AcceptAllCertificates : CertificateHandler
 //     //현재 진행 상황 번호? 추가
 //     //우주선 정보 추가
     
-// }*/
+// }

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class M_Sniper : MonoBehaviour
 {
-    float cur_Bullet_Cnt = 0; // ⑷營 識憲熱
-    float max_Bullet_Cnt = 15; // 識 識憲熱
+    public float cur_Bullet_Cnt = 0; // ⑷營 識憲熱
+    public float max_Bullet_Cnt = 15; // 識 識憲熱
     float reload_Bullet_Cnt = 4; // 濰瞪 й 熱 氈朝 識憲 熱
     public float damage = 0; // 等嘐雖
     public Text bulletCntText;
