@@ -31,7 +31,7 @@ public class M_GunnerSpaceshipL : MonoBehaviour
 
         if (playerCam == null)
         {
-            playerCam = GameObject.Find("PlayerCamera");
+            playerCam = GameObject.Find("MainCamera");
         }
         if (spaceship == null)
         {

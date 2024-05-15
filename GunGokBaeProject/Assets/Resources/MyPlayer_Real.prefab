@@ -1098,7 +1098,7 @@ GameObject:
   - component: {fileID: 3515260243809061714}
   - component: {fileID: 4205902360737868582}
   - component: {fileID: 3843730472703381372}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5783,7 +5783,7 @@ GameObject:
   - component: {fileID: 1132147339925493753}
   - component: {fileID: 4560104278922082536}
   - component: {fileID: 6261327437734042107}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PistolHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11869,10 +11869,9 @@ GameObject:
   - component: {fileID: 4839657906830626640}
   - component: {fileID: 2152461187207963333}
   - component: {fileID: 2640486883971815775}
+  - component: {fileID: 8289908679517996134}
   - component: {fileID: 5372791356308404330}
   - component: {fileID: 9113756189805184078}
-  - component: {fileID: 8289908679517996134}
-  - component: {fileID: 382458909663250889}
   m_Layer: 6
   m_Name: MyPlayer_Real
   m_TagString: Untagged
@@ -11998,46 +11997,6 @@ MonoBehaviour:
   gp: {fileID: 6111441094797808870}
   bulletCntText: {fileID: 836686609893151502}
   crosshair: {fileID: 3654781307027579350}
---- !u!114 &5372791356308404330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879966743356764501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents:
-  - {fileID: 9113756189805184078}
-  - {fileID: 382458909663250889}
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!114 &9113756189805184078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879966743356764501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!54 &8289908679517996134
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12065,7 +12024,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &382458909663250889
+--- !u!114 &5372791356308404330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12074,13 +12033,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 879966743356764501}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 0
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 1
-  m_TeleportIfDistanceGreaterThan: 3
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 9113756189805184078}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &9113756189805184078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879966743356764501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &883584367519159382
 GameObject:
   m_ObjectHideFlags: 0
@@ -14461,7 +14443,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 682564186363337030}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: GunTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15194,7 +15176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6692223585435905498}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: ShotgunBulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15980,7 +15962,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3576104311962650495}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -16763,7 +16745,8 @@ GameObject:
   - component: {fileID: 1389860556478148101}
   - component: {fileID: 5850100959344048034}
   - component: {fileID: 5493264737931389109}
-  m_Layer: 6
+  - component: {fileID: 7730765361181844893}
+  m_Layer: 12
   m_Name: OriginalGun
   m_TagString: OriginalGun
   m_Icon: {fileID: 0}
@@ -16978,6 +16961,28 @@ MonoBehaviour:
   machinegunRaycastOrigin: {fileID: 7120982853344794778}
   machinegunTracerEffet: {fileID: 3923828903986408600, guid: 9751153bed5f5144b9cc3118db07ab4d, type: 3}
   raycastDestination: {fileID: 8358787423223811885}
+--- !u!114 &7730765361181844893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2403101537269592519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2404480748852941306
 GameObject:
   m_ObjectHideFlags: 0
@@ -17317,7 +17322,8 @@ GameObject:
   - component: {fileID: 5070472383936211513}
   - component: {fileID: 5613082831006402396}
   - component: {fileID: 2018463610603775010}
-  m_Layer: 6
+  - component: {fileID: 950119648479904438}
+  m_Layer: 12
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17403,6 +17409,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camPos: {fileID: 2516839604741904688}
   camLookAt: {fileID: 6838935512805267610}
+--- !u!114 &950119648479904438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516839604741904688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2532255714156120281
 GameObject:
   m_ObjectHideFlags: 0
@@ -19206,7 +19234,7 @@ GameObject:
   - component: {fileID: 8358787423223811885}
   - component: {fileID: 385534425656663202}
   - component: {fileID: 2940999524022487804}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: CrossHairTarget
   m_TagString: player_attack
   m_Icon: {fileID: 0}
@@ -21883,7 +21911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4373470863351748823}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: SniperBulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22157,6 +22185,7 @@ GameObject:
   - component: {fileID: 3066869885953715449}
   - component: {fileID: 7135394060152644285}
   - component: {fileID: 892124649166543377}
+  - component: {fileID: 6874381494434293545}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -22772,6 +22801,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 892124649166543377}
+  - {fileID: 6874381494434293545}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -22791,6 +22821,22 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &6874381494434293545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3885662261312859602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &3915550804931521718
 GameObject:
   m_ObjectHideFlags: 0
@@ -23422,7 +23468,7 @@ GameObject:
   - component: {fileID: 6063139584757425565}
   - component: {fileID: 5756405443244624528}
   - component: {fileID: 52158652963898019}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29056,7 +29102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7120982853344794778}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: MachinegunRaycastOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29476,7 +29522,7 @@ GameObject:
   - component: {fileID: 5342808176481652877}
   - component: {fileID: 323387504432129106}
   - component: {fileID: 2638016528813237512}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34208,7 +34254,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3576104311962650495}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -39171,7 +39217,7 @@ GameObject:
   - component: {fileID: 3545259778505232529}
   - component: {fileID: 7830666521277541335}
   - component: {fileID: 4835306233304860524}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: GrappleGun(NoTouch)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39597,7 +39643,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741815561998520936}
   - component: {fileID: 6347551997364964993}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: NoGun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42450,7 +42496,7 @@ GameObject:
   - component: {fileID: 2920153172877061127}
   - component: {fileID: 1262568015690280686}
   - component: {fileID: 3441271895219897541}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47506,7 +47552,7 @@ GameObject:
   - component: {fileID: 7181018334245511587}
   - component: {fileID: 6628625009922023254}
   - component: {fileID: 7471903494203587615}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Pick
   m_TagString: melee
   m_Icon: {fileID: 0}
@@ -47743,7 +47789,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3576104311962650495}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -47988,7 +48034,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7612234394132347294}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48225,7 +48271,7 @@ GameObject:
   - component: {fileID: 4576254037556877003}
   - component: {fileID: 6114050371996009059}
   - component: {fileID: 6156089064422529195}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Grappling Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48857,7 +48903,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3576104311962650495}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: Aim
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -51098,7 +51144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4250771490968212398}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: PistolRaycastOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51619,7 +51665,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2091587735492914737}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51747,7 +51793,7 @@ GameObject:
   - component: {fileID: 2590086752606320666}
   - component: {fileID: 3314402413513957320}
   - component: {fileID: 7079857983118832649}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Dust
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56438,7 +56484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1780742966845869241}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56822,7 +56868,7 @@ GameObject:
   - component: {fileID: 7470389546480405334}
   - component: {fileID: 8283470852343189216}
   - component: {fileID: 3476730437117922083}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Decal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61987,7 +62033,7 @@ GameObject:
   - component: {fileID: 2450353214804157021}
   - component: {fileID: 9108821579358796289}
   - component: {fileID: 7069123707527367610}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MachinegunHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70906,7 +70952,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2378015926009410534}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72670,18 +72716,18 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: IsWalking
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Picking
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: DoJumping
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 0
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 1
 --- !u!4 &1074200251207556045 stripped
 Transform:
@@ -72848,6 +72894,10 @@ PrefabInstance:
     - target: {fileID: 5142265223765295084, guid: d5da06dd0062aea4bbbbc63b65350d86, type: 3}
       propertyPath: m_Name
       value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 5142265223765295084, guid: d5da06dd0062aea4bbbbc63b65350d86, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5142265223765295084, guid: d5da06dd0062aea4bbbbc63b65350d86, type: 3}
       propertyPath: m_IsActive
@@ -73239,7 +73289,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1069497590386464, guid: 6470470508222994aac5e1edafdd48cf, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1069497590386464, guid: 6470470508222994aac5e1edafdd48cf, type: 3}
       propertyPath: m_IsActive
@@ -73247,11 +73297,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1584536662574956, guid: 6470470508222994aac5e1edafdd48cf, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1970343530429680, guid: 6470470508222994aac5e1edafdd48cf, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4583844655828098, guid: 6470470508222994aac5e1edafdd48cf, type: 3}
       propertyPath: m_LocalScale.x
@@ -73361,9 +73411,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4900470090976416847}
     m_Modifications:
+    - target: {fileID: 1199387749997026, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1792092052645256, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
       propertyPath: m_Name
       value: RocketGunParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1792092052645256, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880413776039800, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4573121468440114, guid: 0e56aef02a6fcc6408400ea7c75e13a7, type: 3}
       propertyPath: m_LocalScale.x
@@ -73467,6 +73529,14 @@ PrefabInstance:
     - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_Name
       value: ShotgunMuzzleFlash01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992675705445476, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.x
@@ -73613,11 +73683,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1038310758103916, guid: 4140508019e090f499e30b79bb83db5a, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1120376536349514, guid: 4140508019e090f499e30b79bb83db5a, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1912801552452294, guid: 4140508019e090f499e30b79bb83db5a, type: 3}
       propertyPath: m_Name
@@ -73625,7 +73695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1912801552452294, guid: 4140508019e090f499e30b79bb83db5a, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1912801552452294, guid: 4140508019e090f499e30b79bb83db5a, type: 3}
       propertyPath: m_IsActive
@@ -73743,6 +73813,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pick
       objectReference: {fileID: 0}
+    - target: {fileID: 1617029034339782, guid: fe1c5c4acedb42b4e9734844c550c942, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4023172205835302, guid: fe1c5c4acedb42b4e9734844c550c942, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
@@ -73821,6 +73895,14 @@ PrefabInstance:
     - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_Name
       value: HealGunMuzzleFlash01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992675705445476, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.x
@@ -74145,15 +74227,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1092931405653798, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1364094888149322, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1388886641559710, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1500440585460168, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Name
@@ -74161,7 +74243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1500440585460168, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1500440585460168, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_IsActive
@@ -74169,23 +74251,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1648533584449766, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1719066493528528, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1801164721461466, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1845793867250286, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1850154077811472, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4280381430291750, guid: 6f97251bb4998e14bb1bfb88e4511764, type: 3}
       propertyPath: m_LocalScale.x
@@ -74611,6 +74693,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundGunMuzzleFlash01
       objectReference: {fileID: 0}
+    - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992675705445476, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -74748,7 +74838,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1247444303257178, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1247444303257178, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
       propertyPath: m_IsActive
@@ -74756,7 +74846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1567623838509688, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4834079007641274, guid: 128067c17e4280846b19b85d9d5f3aaa, type: 3}
       propertyPath: m_LocalScale.x
@@ -74978,6 +75068,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PistolMuzzleFlash01
       objectReference: {fileID: 0}
+    - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992675705445476, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.016
@@ -75195,6 +75293,14 @@ PrefabInstance:
     - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_Name
       value: TauntGunMuzzleFlash01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992675705445476, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.x
@@ -75553,6 +75659,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SniperMuzzleFlash01
       objectReference: {fileID: 0}
+    - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992675705445476, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -75699,6 +75813,14 @@ PrefabInstance:
     - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_Name
       value: MachinegunMuzzleFlash01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1743301284569550, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1992675705445476, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4300533007854612, guid: ad2ab49d0a2a17148bd51c93d977bdbc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -76047,6 +76169,14 @@ PrefabInstance:
     - target: {fileID: 1236643204216662, guid: 706333c6431ba8c4ea48f7fe578e3e37, type: 3}
       propertyPath: m_Name
       value: FX_PowerDraw_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236643204216662, guid: 706333c6431ba8c4ea48f7fe578e3e37, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419194491794776, guid: 706333c6431ba8c4ea48f7fe578e3e37, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4027604870923254, guid: 706333c6431ba8c4ea48f7fe578e3e37, type: 3}
       propertyPath: m_LocalScale.x
