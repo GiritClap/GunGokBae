@@ -35,6 +35,7 @@ TagManager:
   - Taunt
   - gun5
   - Meteor
+  - SpaceMap
   layers:
   - Default
   - TransparentFX
