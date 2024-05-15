@@ -28,7 +28,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     [Header("RoomPanel")]
     public GameObject RoomPanel;
     public Text ListText;
-    public Text RoomInfoText;
+    public Text RoomInfoText;   // 방이름 / 인원수 / 최대인원수
     public Text[] ChatText;
     public InputField ChatInput;
 
