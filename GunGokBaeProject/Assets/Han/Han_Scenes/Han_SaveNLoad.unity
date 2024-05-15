@@ -123,16 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &200319471 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8311905367359496742, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
-  m_PrefabInstance: {fileID: 6921920323829218728}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &866167526 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3816932159896837273, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
-  m_PrefabInstance: {fileID: 6921920323829218728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1329624690
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,11 +191,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1381218897 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 19643039754172014, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
-  m_PrefabInstance: {fileID: 6921920323829218728}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1713633400
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,18 +415,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2023661655737752218, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
-      propertyPath: dataPanel
-      value: 
-      objectReference: {fileID: 200319471}
-    - target: {fileID: 2023661655737752218, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
-      propertyPath: SaveDataPanel
-      value: 
-      objectReference: {fileID: 1381218897}
-    - target: {fileID: 2023661655737752218, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
-      propertyPath: SaveNLoadCanvas
-      value: 
-      objectReference: {fileID: 866167526}
     - target: {fileID: 3816932159896837273, guid: c55888e22ff352e45b7bda41cda50b50, type: 3}
       propertyPath: m_Name
       value: SaveNLoadCanvas

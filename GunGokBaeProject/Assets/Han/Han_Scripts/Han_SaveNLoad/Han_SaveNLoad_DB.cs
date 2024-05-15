@@ -19,16 +19,16 @@ public class SaveData
     //저장할 DATA들을 전역변수에 저장
     string RoomName ; //방 이름                 -- 0
     string masterID; //마스터 아이디            --  0 - 1
-    string sceneName;                                                       //현재 씬 이름          -- 1
+    public string sceneName;                                                       //현재 씬 이름          -- 1
     //int currentStage;                                                     //현재 스테이지 번호     -- 2
     //포톤서버 마스터의 아이디
     
-    string[] playerIdArray = new string[3];                                       //플레이어 아이디 배열   -- 3
-    string[] playerNickNameArray = new string[3];                                 //플레이어 이름(닉네임) 배열    -- 4
-    string[] playerPositionArray = new string[3];                                 //플레이어 위치 배열   -- 5
-    string[] playerRotationArray = new string[3];                                 //플레이어 회전 배열  -- 6
-    int[] playerCurHp = new int[3];                                               //플레이어 현재 체력 배열 -- 7
-    int[] playerMaxHp = new int[3];                                               //플레이어 최대 체력 배열 -- 8
+    public string[] playerIdArray = new string[3];                                       //플레이어 아이디 배열   -- 3
+    public string[] playerNickNameArray = new string[3];                                 //플레이어 이름(닉네임) 배열    -- 4
+    public string[] playerPositionArray = new string[3];                                 //플레이어 위치 배열   -- 5
+    public string[] playerRotationArray = new string[3];                                 //플레이어 회전 배열  -- 6
+    public int[] playerCurHp = new int[3];                                               //플레이어 현재 체력 배열 -- 7
+    public int[] playerMaxHp = new int[3];                                               //플레이어 최대 체력 배열 -- 8
  
 
     M_BagManager BagManager = M_BagManager.Instance;
@@ -70,6 +70,7 @@ public class SaveData
     }
     public void GetPlayerInfo()   //플레이어 이름 받아오는 함수
         {   
+            //    M_BagManager BagManager = M_BagManager.Instance;
             RoomName = PhotonNetwork.CurrentRoom.Name; //방 이름 받아옴         -- 0
             masterID = GetMasterClientId(); //마스터 아이디 받아옴                  -- 0 - 1
             //현재 씬의 이름을 받아온다.                                        -- 1
@@ -145,6 +146,7 @@ public class SaveData
                 // 먼저, 어떤 무기가 활성화되어 있는지를 나타내는 변수 설정이 필요합니다.
                 // 예: String activeWeapon = "originalGun"; // 이는 예시이며, 실제로는 무기의 활성화 여부에 따라 결정되어야 합니다.
 
+                
                 String activeWeapon = ""; // 활성화된 무기를 저장할 변수
                 if (originalGun.enabled) {
                     activeWeapon = "originalGun";
@@ -235,6 +237,9 @@ public class SaveData
             Debug.Log("총기5" + gun5);
 
     }
+
+
+    
 }
 
 //-----------------------------------유니티에서 DB로 데이터 저장하기-----------------------------------
@@ -308,27 +313,168 @@ public class Han_SaveNLoad_DB : MonoBehaviour
             Debug.Log("Form upload complete!");
         }
     }
-    
-     public IEnumerator LoadData()
+
+    [Obsolete]
+    public IEnumerator LoadData()
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(LoadDataUrl))
+        // 요청을 생성합니다.
+        WWWForm form = new WWWForm();
+        form.AddField("masterID", GetMasterClientId());
+        form.AddField("roomName", PhotonNetwork.CurrentRoom.Name);
+
+        UnityWebRequest www = UnityWebRequest.Post(LoadDataUrl, form);
+
+        // 요청을 보냅니다.
+        yield return www.SendWebRequest();
+
+        // 에러가 있는지 확인합니다.
+        if (www.isNetworkError || www.isHttpError)
         {
-            yield return www.SendWebRequest();
+            Debug.Log(www.error);
+        }
+        else
+        {
+            // 결과를 받아옵니다.
+            string result = www.downloadHandler.text;
 
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                Debug.Log(www.error);
-            }
-            else
-            {
-                // 데이터 처리
-                string data = www.downloadHandler.text;
-                SaveData saveData = JsonUtility.FromJson<SaveData>(data);
+            // 결과를 JSON 형식으로 변환합니다.
+            SaveData saveData = JsonUtility.FromJson<SaveData>(result);
 
-                // 데이터 사용
-                // 예: 플레이어 위치 설정, 점수 표시 등
+            // 정보를 초기화합니다.
+                
+            M_BagManager BagManager = M_BagManager.Instance;
+            Scene currentScene = SceneManager.GetActiveScene();
+            
+            currentScene.name = saveData.sceneName;
+            
+            //GameManager에서 현재 스테이지 받아오기        // -- 2
+            //GameManager.Instance.CurrentStage = saveData.currentStage;
+
+            // 현재 방에 있는 모든 플레이어의 목록을 가져옵니다.
+            List<Photon.Realtime.Player> players = PhotonNetwork.PlayerList.ToList(); //포톤에서 플레이어 리스트 받아옴
+
+
+            string[] playerIdArray = new string[3];                                 
+            for (int i = 0; i < players.Count ; i++)
+            {
+                int curplayerIndex;
+                // 플레이어 정보를 가져옵니다.
+                if (PhotonNetwork.LocalPlayer != null) 
+                {
+                    ExitGames.Client.Photon.Hashtable accountInfo = PhotonNetwork.LocalPlayer.CustomProperties;
+
+                    if (accountInfo.ContainsKey("id"))
+                    {
+                        playerIdArray[i] = (string)accountInfo["id"]; // 플레이어의 아이디      -- 3
+                    }
+                }
+
+                for(int j = 0; j < 3; j++){             //플레이어 아이디 배열과 저장된 아이디 배열 비교
+                    if(playerIdArray[j] == saveData.playerIdArray[i]){
+                        curplayerIndex = j; //플레이어 아이디가 맞으면 배열 위치 저장
+
+                    
+                        Photon.Realtime.Player player = players[i];
+                        
+
+                        // 플레이어의 게임 오브젝트를 찾습니다.
+                        //위치 저장
+                        GameObject playerObject = PhotonView.Find(player.ActorNumber).gameObject;
+                        string[] tokens1 = saveData.playerPositionArray[curplayerIndex].Split(',');
+                        Vector3 position = new Vector3(
+                            float.Parse(tokens1[0]),
+                            float.Parse(tokens1[1]),
+                            float.Parse(tokens1[2]));
+
+                        playerObject.transform.position = position;
+
+                        //플레이어의 회전 정보를 저장  
+                        string[] tokens2 = saveData.playerRotationArray[curplayerIndex].Split(',');
+                        Quaternion rotation = new Quaternion(
+                            float.Parse(tokens2[0]),
+                            float.Parse(tokens2[1]),
+                            float.Parse(tokens2[2]),
+                            float.Parse(tokens2[3]));
+
+                        playerObject.transform.rotation = rotation;
+                
+
+
+
+                        // 플레이어의 체력 정보를 가져옵니다.
+                        C_PlayerStatus playerStatus = playerObject.transform.Find("Player").GetComponent<C_PlayerStatus>();
+                        playerStatus.curHp = saveData.playerCurHp[curplayerIndex]; // 현재 체력                           -- 7
+                        playerStatus.maxHp = saveData.playerMaxHp[curplayerIndex]; // 최대 체력                           -- 8
+
+                        //총기 정보 받아오기
+                        //GameObject playerObject = GameObject.Find("MyPlayer_Real");
+                        Transform originalGunTransform = playerObject.transform.Find("CameraHolder/PlayerCamera/OriginalGun");
+        
+                        M_OriginalGun originalGun = originalGunTransform.GetComponent<M_OriginalGun>();
+                        M_Sniper sniper = originalGunTransform.GetComponent<M_Sniper>();
+                        M_Shotgun shotgun = originalGunTransform.GetComponent<M_Shotgun>();
+                        M_Machinegun machinegun = originalGunTransform.GetComponent<M_Machinegun>();
+
+
+                        originalGun.enabled = false;
+                        sniper.enabled = false;
+                        shotgun.enabled = false;
+                        machinegun.enabled = false;
+
+                        switch (saveData.currentWeapon[curplayerIndex]) {
+                            case 0:
+                                originalGun.enabled = true;
+                                originalGun.cur_Bullet_Cnt = saveData.cur_Bullet_Cnt[curplayerIndex]; // 현재 총알수  // -- 20
+                                originalGun.max_Bullet_Cnt = saveData.max_Bullet_Cnt[curplayerIndex]; // 총 총알수    // -- 21
+                                originalGun.damage = saveData.damage[curplayerIndex]; // 총 데미지                    // -- 22
+                                break;
+                            case 3:
+                                sniper.enabled = true;
+                                sniper.cur_Bullet_Cnt = saveData.cur_Bullet_Cnt[curplayerIndex]; // 현재 총알수  // -- 20
+                                sniper.max_Bullet_Cnt = saveData.max_Bullet_Cnt[curplayerIndex]; // 총 총알수    // -- 21
+                                sniper.damage = saveData.damage[curplayerIndex]; // 총 데미지                    // -- 22
+
+                                break;
+                            case 2:
+                                shotgun.enabled = true;
+                                shotgun.cur_Bullet_Cnt = saveData.cur_Bullet_Cnt[curplayerIndex]; // 현재 총알수  // -- 20
+                                shotgun.max_Bullet_Cnt = saveData.max_Bullet_Cnt[curplayerIndex]; // 총 총알수    // -- 21
+                                shotgun.damage = saveData.damage[curplayerIndex]; // 총 데미지                    // -- 22
+                                break;
+                            case 1:
+                                machinegun.enabled = true;
+                                machinegun.cur_Bullet_Cnt = saveData.cur_Bullet_Cnt[curplayerIndex]; // 현재 총알수  // -- 20
+                                machinegun.max_Bullet_Cnt = saveData.max_Bullet_Cnt[curplayerIndex]; // 총 총알수    // -- 21
+                                machinegun.damage = saveData.damage[curplayerIndex]; // 총 데미지                    // -- 22
+                                break;
+                        
+                            //총기 정보 받아오기 끝
+
+                        }
+                    
+
+                            break;
+                        
+                    }
+                }
+
             }
         }
+    }
+
+    public string GetMasterClientId()
+    {
+        if (PhotonNetwork.MasterClient != null)
+        {
+            ExitGames.Client.Photon.Hashtable masterClientProperties = PhotonNetwork.MasterClient.CustomProperties;
+
+            if (masterClientProperties.ContainsKey("id"))
+            {
+                return (string)masterClientProperties["id"];
+            }
+        }
+
+        return null;
     }
 
 }
