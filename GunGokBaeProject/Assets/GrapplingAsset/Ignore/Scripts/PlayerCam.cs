@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Photon.Pun;
-using Cinemachine; // 시네머신 관련 코드
 
 
-public class PlayerCam : MonoBehaviourPun
+
+public class PlayerCam : MonoBehaviour
 {
     public float sensX;
     public float sensY;
@@ -32,19 +31,12 @@ public class PlayerCam : MonoBehaviourPun
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        if (photonView.IsMine)
-        {
-            CinemachineVirtualCamera followCam = FindObjectOfType<CinemachineVirtualCamera>();
-            followCam.transform.SetParent(camHolder);
-        }
+        
     }
 
     private void Update()
     {
-        if (!photonView.IsMine)
-        {
-            return;
-        }
+        
         // get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * sensY;

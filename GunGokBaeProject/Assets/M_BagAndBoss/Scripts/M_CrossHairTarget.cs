@@ -13,6 +13,7 @@ public class M_CrossHairTarget : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainCam = Camera.main;
     }
 
     // Update is called once per frame

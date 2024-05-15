@@ -1,10 +1,9 @@
-using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
-public class M_RaycastWeapon : MonoBehaviourPun
+public class M_RaycastWeapon : MonoBehaviour
 {
     public bool isFiring = false;
     [Header("Pistol Hit Particle")]
@@ -24,7 +23,7 @@ public class M_RaycastWeapon : MonoBehaviourPun
     Ray ray;
     RaycastHit hitInfo;
 
-    [PunRPC]
+   
     public void StartPistolFiring()
     {
         isFiring = true;
@@ -45,13 +44,11 @@ public class M_RaycastWeapon : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
     public void StopPistolFiring()
     {
         isFiring= false;
     }
 
-    [PunRPC]
     public void StartMachinegunFiring()
     {
         isFiring = true;
@@ -79,7 +76,6 @@ public class M_RaycastWeapon : MonoBehaviourPun
     }
 
 
-    [PunRPC]
     public void StopMachinegunFiring()
     {
         isFiring = false;
