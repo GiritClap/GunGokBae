@@ -42,7 +42,7 @@ public class M_RideSpaceship : MonoBehaviour
         }
         if (playerCam == null)
         {
-            playerCam = GameObject.Find("MainCamera");
+            playerCam = GameObject.Find("PlayerCamera");
         }
         if (spaceship == null)
         {

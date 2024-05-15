@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun; // PUN °ü·Ã ÄÚµå
 
-public class M_OriginalGun : MonoBehaviourPun
+public class M_OriginalGun : MonoBehaviour
 {
     public float cur_Bullet_Cnt = 0; // ÇöÀç ÃÑ¾Ë¼ö
     public float max_Bullet_Cnt = 70; // ÃÑ ÃÑ¾Ë¼ö
@@ -56,7 +55,8 @@ public class M_OriginalGun : MonoBehaviourPun
             {
                 if (cur_Bullet_Cnt > 0)
                 {
-                    photonView.RPC("Shot", RpcTarget.All);
+                    weapon.StartPistolFiring();
+
                     M_SoundManager.instance.SFXPlay("pistol", pistolShotClip);
 
                     //ShotRayBullet();
@@ -107,15 +107,9 @@ public class M_OriginalGun : MonoBehaviourPun
             ps.Play();
         }
     }*/
-    [PunRPC]
-    void Shot()
-    {
-        weapon.StartPistolFiring();
-
-    }
+   
 
 
-    [PunRPC]
     void Reload()
     {
         if (max_Bullet_Cnt >= reload_Bullet_Cnt)
@@ -130,32 +124,29 @@ public class M_OriginalGun : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
     public void ResetToLevel1()
     {
         damage = 3;
         max_Bullet_Cnt = 70;
     }
-
-    [PunRPC]
     public void UpdateDamage(float a)
     {
         damage += a;
     }
 
-    [PunRPC]
+
     public void UpgradeMaxBulletCnt(float a)
     {
         max_Bullet_Cnt += a;
     }
 
-    [PunRPC]
+
     public float CurrentDamage()
     {
         return damage;
     }
 
-    [PunRPC]
+  
     public float CurrentMaxBulletCnt()
     {
         return max_Bullet_Cnt;
