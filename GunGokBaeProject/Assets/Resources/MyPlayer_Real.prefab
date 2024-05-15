@@ -11869,9 +11869,9 @@ GameObject:
   - component: {fileID: 4839657906830626640}
   - component: {fileID: 2152461187207963333}
   - component: {fileID: 2640486883971815775}
+  - component: {fileID: 8289908679517996134}
   - component: {fileID: 5372791356308404330}
   - component: {fileID: 9113756189805184078}
-  - component: {fileID: 8289908679517996134}
   - component: {fileID: 382458909663250889}
   m_Layer: 6
   m_Name: MyPlayer_Real
@@ -11998,6 +11998,33 @@ MonoBehaviour:
   gp: {fileID: 6111441094797808870}
   bulletCntText: {fileID: 836686609893151502}
   crosshair: {fileID: 3654781307027579350}
+--- !u!54 &8289908679517996134
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879966743356764501}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &5372791356308404330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12038,33 +12065,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
---- !u!54 &8289908679517996134
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879966743356764501}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &382458909663250889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15980,7 +15980,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3576104311962650495}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -17317,6 +17317,7 @@ GameObject:
   - component: {fileID: 5070472383936211513}
   - component: {fileID: 5613082831006402396}
   - component: {fileID: 2018463610603775010}
+  - component: {fileID: 950119648479904438}
   m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: Untagged
@@ -17403,6 +17404,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camPos: {fileID: 2516839604741904688}
   camLookAt: {fileID: 6838935512805267610}
+--- !u!114 &950119648479904438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516839604741904688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &2532255714156120281
 GameObject:
   m_ObjectHideFlags: 0
@@ -34208,7 +34231,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3576104311962650495}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -47743,7 +47766,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3576104311962650495}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -72670,18 +72693,18 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: IsWalking
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Picking
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: DoJumping
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 0
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 1
 --- !u!4 &1074200251207556045 stripped
 Transform:

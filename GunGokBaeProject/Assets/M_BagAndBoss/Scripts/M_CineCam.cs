@@ -20,6 +20,7 @@ public class M_CineCam : MonoBehaviourPun
             followCam.gameObject.transform.position = camPos.transform.position;
             followCam.Follow = camPos.transform;
             followCam.LookAt = camLookAt.transform;
+            Debug.Log("gd");
         }
     }
 
