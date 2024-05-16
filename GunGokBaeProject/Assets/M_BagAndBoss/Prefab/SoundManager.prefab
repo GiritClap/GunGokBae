@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgSound: {fileID: 2061837081225807207}
   bgList:
-  - {fileID: 8300000, guid: 3ed1a180d319ab148bef12719f0d4f59, type: 3}
+  - {fileID: 8300000, guid: 58d80877347d6b1429e9249917f05fa5, type: 3}
+  - {fileID: 8300000, guid: 280a4bfe8517d9046b4e80775df6d3a8, type: 3}
+  - {fileID: 8300000, guid: 5b275d013d4bfc347ad5a06f464da1d3, type: 3}
 --- !u!82 &2061837081225807207
 AudioSource:
   m_ObjectHideFlags: 0

@@ -6900,6 +6900,9 @@ MonoBehaviour:
   orientation: {fileID: 3483417359925546057}
   anim: {fileID: 0}
   state: 0
+  audioSource: {fileID: 0}
+  walkClip: {fileID: 0}
+  jumpClip: {fileID: 0}
   freeze: 0
   activeGrapple: 0
   swinging: 0
@@ -6926,6 +6929,7 @@ MonoBehaviour:
   overshootYAxis: 2
   grapplingCd: 1
   grappleKey: 323
+  clip: {fileID: 0}
 --- !u!114 &6860703234735416359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7249,6 +7253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1a48a72f9e3b94f9fe227ab37b0eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clip: {fileID: 0}
 --- !u!114 &6409119467410129534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7282,6 +7287,7 @@ MonoBehaviour:
   curHp: 0
   maxHp: 0
   isHealBullet: 0
+  healSound: {fileID: 0}
 --- !u!114 &1285443008005441936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9104,6 +9110,22 @@ MonoBehaviour:
   gunManager: {fileID: 0}
   oriRigs: []
   specRigs: []
+  itemFrameImg1: {fileID: 0}
+  itemFrameImg2: {fileID: 0}
+  itemFrameImg3: {fileID: 0}
+  nowspecialGunImg: {fileID: 0}
+  specialGunImg:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  isCool: 0
+  coolTxt: {fileID: 0}
+  coolImg: {fileID: 0}
+  cooldown: 0
+  btnClip: {fileID: 0}
 --- !u!114 &7510579333147542733
 MonoBehaviour:
   m_ObjectHideFlags: 0

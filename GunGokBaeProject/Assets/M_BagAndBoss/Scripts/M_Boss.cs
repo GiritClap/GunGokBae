@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -53,6 +54,11 @@ public class M_Boss : MonoBehaviour
     public Animator anim;
 
     public AudioClip[] clips; // 0 = 기본공격, 1 = 패턴1 땅찍기, 2 = 패턴2 땅찍기, 3 = 패턴2 운석떨어지기, 4 = 패턴3 불뿜기
+
+    bool isDie = false;
+
+    public ParticleSystem dieEffect;
+    public GameObject dieEffectPos;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -63,75 +69,77 @@ public class M_Boss : MonoBehaviour
 
     private void Update()
     {
-        if (player[0] == null)
-        {
-            FindPlayer();
-        }
-
-        pTimer += Time.deltaTime * 1f;
-        if (pTimer > 10.0f)
-        {
-            RandomPattern();
-            pTimer = 0f;
-        }
-
-        if (isP01 || isP02 || isP03)
-        {
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange + 1000f, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange + 1000f, whatIsPlayer);
-        }
-        else
-        {
-            //������ �þ�, ���ݰ��ɹ���
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-
-        }
-
-        if (isP03_1 == true)
-        {
-            Debug.Log("��");
-            transform.Rotate(Vector3.up * Time.deltaTime * 180);
-        }
-
-        /*if(pTimer > 7.0f)
-        {
-            isP01 = true;
-            //������ �þ�, ���ݰ��ɹ���
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange + 1000f, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange + 1000f, whatIsPlayer);
-            pTimer = 0f;
-        }
-        else
-        {
-            isP01 = false;
-            //������ �þ�, ���ݰ��ɹ���
-            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-        }
-   */
-
-        if (!playerInSightRange && !playerInAttackRange && !alreadyAttacked)
-        {
-            Patroling();
-        }
-        if (playerInSightRange && !playerInAttackRange && !alreadyAttacked)
-        {
-            ChasePlayer();
-        }
-        if (playerInSightRange && playerInAttackRange)
-        {
-            AttackPlayer();
-        }
-
-
-
         bossHp.value = currentBossHp / maxBossHp;
         currentBossHpTxt.text = currentBossHp.ToString("N0") + " / " + maxBossHp.ToString("N0") + " HP";
-        if (currentBossHp <= 0f)
+        
+        if(isDie == false)
         {
-            Destroy(this);
+            if (player[0] == null)
+            {
+                FindPlayer();
+            }
+
+            pTimer += Time.deltaTime * 1f;
+            if (pTimer > 10.0f)
+            {
+                RandomPattern();
+                pTimer = 0f;
+            }
+
+            if (isP01 || isP02 || isP03)
+            {
+                playerInSightRange = Physics.CheckSphere(transform.position, sightRange + 1000f, whatIsPlayer);
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange + 1000f, whatIsPlayer);
+            }
+            else
+            {
+                //������ �þ�, ���ݰ��ɹ���
+                playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+            }
+
+            if (isP03_1 == true)
+            {
+                Debug.Log("��");
+                transform.Rotate(Vector3.up * Time.deltaTime * 180);
+            }
+
+            /*if(pTimer > 7.0f)
+            {
+                isP01 = true;
+                //������ �þ�, ���ݰ��ɹ���
+                playerInSightRange = Physics.CheckSphere(transform.position, sightRange + 1000f, whatIsPlayer);
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange + 1000f, whatIsPlayer);
+                pTimer = 0f;
+            }
+            else
+            {
+                isP01 = false;
+                //������ �þ�, ���ݰ��ɹ���
+                playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            }
+       */
+
+            if (!playerInSightRange && !playerInAttackRange && !alreadyAttacked)
+            {
+                Patroling();
+            }
+            if (playerInSightRange && !playerInAttackRange && !alreadyAttacked)
+            {
+                ChasePlayer();
+            }
+            if (playerInSightRange && playerInAttackRange)
+            {
+                AttackPlayer();
+            }
+
         }
+
+
+
+
     }
 
 
@@ -332,8 +340,48 @@ public class M_Boss : MonoBehaviour
 
     }
 
+    IEnumerator Damaged()
+    {
+        agent.SetDestination(transform.position);
+        anim.SetBool("IsDamaged", true);
+        yield return new WaitForSeconds(0.1f);
+        agent.SetDestination(player[0].transform.position);
+        anim.SetBool("IsDamaged", false);
+    }
+
+    IEnumerator Die()
+    {
+        isDie = true;
+        agent.SetDestination(transform.position);
+        anim.SetTrigger("DoDie");
+        GameObject effect = Instantiate(dieEffect.gameObject, dieEffectPos.transform.position, Quaternion.identity);
+        
+        Destroy(effect, 3f);
+        yield return new WaitForSeconds(1.5f);
+        Destroy(this.gameObject);
+
+    }
+
     void FindPlayer()
     {
         player = GameObject.FindGameObjectsWithTag("Player");
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "player_attack")
+        {
+            currentBossHp -= 40;
+            if(currentBossHp > 0)
+            {
+                StartCoroutine("Damaged");
+
+            }
+            else if(currentBossHp <= 0)
+            {
+                StartCoroutine("Die");
+            }
+        }
     }
 }

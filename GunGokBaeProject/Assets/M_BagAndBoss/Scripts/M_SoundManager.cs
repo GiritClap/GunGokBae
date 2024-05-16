@@ -33,7 +33,7 @@ public class M_SoundManager : MonoBehaviour
 
             }
         }
-        BgSoundPlay(bgList[0]);
+        
     }
 
     public void SFXPlay(string sfxName, AudioClip clip)

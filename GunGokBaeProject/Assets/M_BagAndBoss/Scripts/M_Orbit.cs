@@ -13,6 +13,6 @@ public class M_Orbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.gameObject.transform.Rotate(0, 60 * Time.deltaTime, 0);
+        this.gameObject.transform.Rotate(0, 90 * Time.deltaTime, 0);
     }
 }
