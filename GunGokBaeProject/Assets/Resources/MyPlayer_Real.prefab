@@ -68627,7 +68627,7 @@ MonoBehaviour:
   bulletSpeed: 30
   rocketGunMuzzleFlash: {fileID: 2129775264105078142}
   roceketCharging: {fileID: 8389123426234257639}
-  playerBody: {fileID: 0}
+  playerBody: {fileID: 3885662261312859602}
   rocketShotClip: {fileID: 8300000, guid: 057898e1e9d7e1a4190965a239ecb30a, type: 3}
   audioSource: {fileID: 2458201914986803855}
   rocketChargingClip: {fileID: 8300000, guid: 2c36844a6b3a19847be25c21ba795597, type: 3}
