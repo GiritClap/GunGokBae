@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class C_EnemyCtrl : MonoBehaviour
 {
+    
     public Image hpBar;
     public int curHp;
     public int maxHp;
@@ -70,6 +71,8 @@ public class C_EnemyCtrl : MonoBehaviour
         {
             Destroy(transform.parent.gameObject); // 현재 Enemy 자식 오브젝트라서 부모 오브젝트 삭제로 변경
         }
+
+        
     }
 
     IEnumerator Hit() // 공격 당했을 때
