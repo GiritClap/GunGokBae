@@ -32,6 +32,7 @@ public class C_TauntGun : MonoBehaviour
     void Update()
     {
         isCool = this.GetComponentInParent<C_PlayerItem>().isCool;
+
         
         bulletCntText.text = "Taunt Gun";
 
