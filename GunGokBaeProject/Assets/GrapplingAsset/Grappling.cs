@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Grappling : MonoBehaviour
 {
+    private bool isCool = false;
+
     [Header("References")]
     private PlayerMovementGrappling pm;
     public Transform cam;
@@ -37,10 +39,13 @@ public class Grappling : MonoBehaviour
 
     private void Update()
     {
-       
-        if (Input.GetKeyDown(grappleKey))
+        isCool = this.GetComponentInParent<C_PlayerItem>().isCool;
+        
+        if (Input.GetKeyDown(grappleKey) && !isCool)
         {
             StartGrapple();
+            this.GetComponentInParent<C_PlayerItem>().isCool = true;
+            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(5f);
 
         }
         if (grapplingCdTimer > 0)

@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0415fea8fa4ac9645a05fd8702055cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monsAttack: {fileID: 8300000, guid: b80c5d444bed64842a1fda37418b0660, type: 3}
   hpBar: {fileID: 5699229317471699623}
   curHp: 0
   maxHp: 0
