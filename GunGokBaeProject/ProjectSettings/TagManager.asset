@@ -36,6 +36,9 @@ TagManager:
   - gun5
   - Meteor
   - SpaceMap
+  - machinegunAttack
+  - shotgunAttack
+  - sniperAttack
   layers:
   - Default
   - TransparentFX

@@ -59,6 +59,12 @@ public class M_Boss : MonoBehaviour
 
     public ParticleSystem dieEffect;
     public GameObject dieEffectPos;
+
+    M_OriginalGun pistol;
+    M_Machinegun machinegun;
+    M_Shotgun shotgun;
+    M_Sniper sniper;
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -365,6 +371,11 @@ public class M_Boss : MonoBehaviour
     void FindPlayer()
     {
         player = GameObject.FindGameObjectsWithTag("Player");
+        pistol = GameObject.FindWithTag("OriginalGun").GetComponent<M_OriginalGun>();
+        machinegun = GameObject.FindWithTag("OriginalGun").GetComponent<M_Machinegun>();
+        shotgun = GameObject.FindWithTag("OriginalGun").GetComponent<M_Shotgun>();
+        sniper = GameObject.FindWithTag("OriginalGun").GetComponent<M_Sniper>();
+
     }
 
 
@@ -372,7 +383,7 @@ public class M_Boss : MonoBehaviour
     {
         if(other.gameObject.tag == "player_attack")
         {
-            currentBossHp -= 40;
+            currentBossHp -= pistol.CurrentDamage();
             if(currentBossHp > 0)
             {
                 StartCoroutine("Damaged");
@@ -383,5 +394,48 @@ public class M_Boss : MonoBehaviour
                 StartCoroutine("Die");
             }
         }
+
+        if(other.gameObject.tag == "machinegunAttack")
+        {
+            currentBossHp -= machinegun.CurrentDamage();
+            if (currentBossHp > 0)
+            {
+                StartCoroutine("Damaged");
+
+            }
+            else if (currentBossHp <= 0)
+            {
+                StartCoroutine("Die");
+            }
+        }
+
+        if (other.gameObject.tag == "shotgunAttack")
+        {
+            currentBossHp -= shotgun.CurrentDamage();
+            if (currentBossHp > 0)
+            {
+                StartCoroutine("Damaged");
+
+            }
+            else if (currentBossHp <= 0)
+            {
+                StartCoroutine("Die");
+            }
+        }
+
+        if (other.gameObject.tag == "sniperAttack")
+        {
+            currentBossHp -= sniper.CurrentDamage();
+            if (currentBossHp > 0)
+            {
+                StartCoroutine("Damaged");
+
+            }
+            else if (currentBossHp <= 0)
+            {
+                StartCoroutine("Die");
+            }
+        }
+
     }
 }
