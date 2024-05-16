@@ -28,6 +28,8 @@ public class C_RocketGun : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip rocketChargingClip;
 
+    private bool isCool = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,15 +47,20 @@ public class C_RocketGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isCool = this.GetComponentInParent<C_PlayerItem>().isCool;
+        
         bulletCntText.text = "Rocket Gun";
 
-        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //좌클릭
+        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true && !isCool) //좌클릭
         {
             textGunTime.gameObject.SetActive(true);
             roceketCharging.Play();
             audioSource.Play();
             nowTime = gunTimer;
             isShot = true;
+
+            this.GetComponentInParent<C_PlayerItem>().isCool = true;
+            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(5f);
         }
 
         else if (Input.GetButtonUp("Fire1") && crosshair.gameObject.activeSelf == true)

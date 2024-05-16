@@ -38,7 +38,7 @@ public class C_GroundGun : MonoBehaviour
             ShotBullet();
             M_SoundManager.instance.SFXPlay("groundgunShot", groundGunSound);
             this.GetComponentInParent<C_PlayerItem>().isCool = true;
-            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(10f);
+            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(5f);
         }
 
     }

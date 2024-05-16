@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class C_HealGun : MonoBehaviour
@@ -16,6 +17,9 @@ public class C_HealGun : MonoBehaviour
 
     public AudioClip healShotClip;
 
+    private bool isCool = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +31,18 @@ public class C_HealGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isCool = this.GetComponentInParent<C_PlayerItem>().isCool;
+
         bulletCntText.text = "HealGun";
 
-        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //ÁÂÅ¬¸¯
+        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true && !isCool) //ÁÂÅ¬¸¯
         {
+
             healGunMuzzleFlash.Play();
             ShotBullet();
             M_SoundManager.instance.SFXPlay("healgunShot", healShotClip);
+            this.GetComponentInParent<C_PlayerItem>().isCool = true;
+            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(5f);
 
         }
     }
