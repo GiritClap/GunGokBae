@@ -1,3 +1,4 @@
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,11 @@ public class C_EnemyCtrl : MonoBehaviour
 
     public bool isDie = false;
 
+    M_OriginalGun pistol;
+    M_Machinegun machinegun;
+    M_Shotgun shotgun;
+    M_Sniper sniper;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +32,11 @@ public class C_EnemyCtrl : MonoBehaviour
         hpBar.rectTransform.localScale = new Vector3(1f, 1f , 1f);
 
         ani = transform.GetComponentInParent<Animator>();
+
+        pistol = GameObject.FindWithTag("OriginalGun").GetComponent<M_OriginalGun>();
+        machinegun = GameObject.FindWithTag("OriginalGun").GetComponent<M_Machinegun>();
+        shotgun = GameObject.FindWithTag("OriginalGun").GetComponent<M_Shotgun>();
+        sniper = GameObject.FindWithTag("OriginalGun").GetComponent<M_Sniper>();
     }
 
 
@@ -44,11 +55,42 @@ public class C_EnemyCtrl : MonoBehaviour
             Debug.Log(other.gameObject.name + " 충돌");
             if (isHit == false)
             {
-                StartCoroutine(Hit());
+                StartCoroutine(Hit((int)pistol.CurrentDamage()));
             }
         }
 
-        if(other.tag == "rocket_attack") // 특수총 - 로켓
+
+        if (other.tag == "machinegunAttack") // 머신건
+        {
+            Debug.Log(other.gameObject.name + " 충돌");
+            if (isHit == false)
+            {
+                StartCoroutine(Hit((int)machinegun.CurrentDamage()));
+            }
+        }
+        if (other.tag == "shotgunAttack") // 샷건
+        {
+            Debug.Log(other.gameObject.name + " 충돌");
+            if (isHit == false)
+            {
+                StartCoroutine(Hit((int)shotgun.CurrentDamage()));
+            }
+        }
+        if (other.tag == "sniperAttack") // 스나이퍼
+        {
+            Debug.Log(other.gameObject.name + " 충돌");
+            if (isHit == false)
+            {
+                StartCoroutine(Hit((int)sniper.CurrentDamage()));
+            }
+        }
+
+
+
+
+
+
+        if (other.tag == "rocket_attack") // 특수총 - 로켓
         {
             Debug.Log(other.gameObject.name + " 충돌");
             RocketAttack();
@@ -75,10 +117,10 @@ public class C_EnemyCtrl : MonoBehaviour
         
     }
 
-    IEnumerator Hit() // 공격 당했을 때
+    IEnumerator Hit(int dmg) // 공격 당했을 때
     {
         isHit = true;
-        curHp -= 10;
+        curHp -= dmg;
         hpBar.rectTransform.localScale = new Vector3((float)curHp / (float)maxHp, 1f, 1f); //HP바 체력 동기화
 
         if (curHp <= 0)

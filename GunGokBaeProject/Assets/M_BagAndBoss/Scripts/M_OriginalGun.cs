@@ -152,4 +152,9 @@ public class M_OriginalGun : MonoBehaviour
         return max_Bullet_Cnt;
     }
 
+    public void PlusMaxBulletCnt(int aaa)
+    {
+        max_Bullet_Cnt += aaa;
+    }
+
 }
