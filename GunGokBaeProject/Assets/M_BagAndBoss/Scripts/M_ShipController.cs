@@ -21,8 +21,11 @@ public class M_ShipController : MonoBehaviour
     public AudioClip moveSoudClip;
     public AudioSource audioSource;
 
+
     public ParticleSystem directionArrow;
     public Transform target; // 도착 행성 위치
+
+    public Transform[] planet = new Transform[3];
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,6 @@ public class M_ShipController : MonoBehaviour
         audioSource.clip = moveSoudClip;
         audioSource.loop = true;
         audioSource.volume = 0.1f;
-        audioSource.playOnAwake = false;
 
     }
 
@@ -97,5 +99,10 @@ public class M_ShipController : MonoBehaviour
                 engineParticles[i].Stop();
             }
         }
+    }
+
+    public void ChangeTarget(int i)
+    {
+        target = planet[i];
     }
 }
