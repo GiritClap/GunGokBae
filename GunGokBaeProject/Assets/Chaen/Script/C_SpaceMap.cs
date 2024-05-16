@@ -20,11 +20,15 @@ public class C_SpaceMap : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.G) && isMap==false)
         {
             spaceMap.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
             isMap = true;
         }
         else if ((Input.GetKeyDown(KeyCode.G) || Input.GetKeyDown(KeyCode.Escape)) && isMap == true)
         {
             spaceMap.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
             isMap = false;
         }
     }
