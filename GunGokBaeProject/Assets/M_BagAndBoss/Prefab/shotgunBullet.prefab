@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2788391438963214345}
   m_Layer: 3
   m_Name: shotgunBullet
-  m_TagString: player_attack
+  m_TagString: shotgunAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
