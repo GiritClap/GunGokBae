@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class C_EnemyAttack : MonoBehaviour
 {
     public float rotSpeed = 10 ;
-
+    public AudioClip monsAttack;
     // AI
     public Transform target;
     NavMeshAgent nmAgent;
@@ -77,16 +77,20 @@ public class C_EnemyAttack : MonoBehaviour
     {
         nmAgent.isStopped = true;
         isAttack = true;
-        ani.SetBool("Attack", true);    
+        ani.SetBool("Attack", true);
+        M_SoundManager.instance.SFXPlay("MonsterAttack", monsAttack);
         yield return new WaitForSeconds(0.5f);
+
         if(target.gameObject.tag == "Player")
         {
             target.gameObject.GetComponent<C_PlayerStatus>().Attack(5);
         }
+
         ani.SetBool("Attack", false);
         yield return new WaitForSeconds(3.0f);
         isAttack = false;
         nmAgent.isStopped = false;
+
     }
 
 
