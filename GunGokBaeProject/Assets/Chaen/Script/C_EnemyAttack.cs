@@ -56,12 +56,12 @@ public class C_EnemyAttack : MonoBehaviour
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * rotSpeed);
             nmAgent.SetDestination(target.position);
 
-            if (distance >= 4)
+            if (distance >= 8)
             {
                 ani.SetBool("Idle", false);
             }
 
-            else if (distance <= 4.0f)
+            else if (distance <= 8.0f)
             {
                 if (isAttack == false)
                 {
