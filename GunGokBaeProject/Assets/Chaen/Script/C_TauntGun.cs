@@ -2,6 +2,7 @@ using Photon.Pun.Demo.Asteroids;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 public class C_TauntGun : MonoBehaviour
@@ -17,6 +18,8 @@ public class C_TauntGun : MonoBehaviour
 
     public AudioClip tauntShotClip;
 
+    private bool isCool = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +31,17 @@ public class C_TauntGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isCool = this.GetComponentInParent<C_PlayerItem>().isCool;
+        
         bulletCntText.text = "Taunt Gun";
 
-        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true) //ÁÂÅ¬¸¯
+        if (Input.GetButtonDown("Fire1") && crosshair.gameObject.activeSelf == true && !isCool) //ÁÂÅ¬¸¯
         {
             tauntGunMuzzleFlash.Play();
             ShotBullet();
             M_SoundManager.instance.SFXPlay("tauntShot", tauntShotClip);
+            this.GetComponentInParent<C_PlayerItem>().isCool = true;
+            this.GetComponentInParent<C_PlayerItem>().SetCooldownTime(5f);
 
         }
     }

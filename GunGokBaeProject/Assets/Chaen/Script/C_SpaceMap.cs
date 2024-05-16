@@ -17,7 +17,7 @@ public class C_SpaceMap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G) && isMap==false)
+        if (Input.GetKeyDown(KeyCode.G) && isMap==false && isTrigger == true)
         {
             spaceMap.SetActive(true);
             Cursor.visible = true;
@@ -37,6 +37,14 @@ public class C_SpaceMap : MonoBehaviour
     {
         if(other.gameObject.tag == "SpaceMap") {
             isTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "SpaceMap")
+        {
+            isTrigger = false;
         }
     }
 }
