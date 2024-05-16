@@ -9,8 +9,10 @@ public class M_Ore : MonoBehaviour
     MeshRenderer mat;
 
     // 해당 광물에 어떤 광물과 총기를 드랍할 것 인지 등록
-    public GameObject gun;
-    public GameObject ore;
+    public GameObject[] gun;
+    public GameObject[] ore;
+
+    public AudioClip[] clip; // hitSound
 
     Color oriCol;
     // Start is called before the first frame update
@@ -23,16 +25,25 @@ public class M_Ore : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (cnt > 2)
+        if (cnt <= 0)
         {
             if(gun != null)
             {
-                GameObject gg = Instantiate(gun, this.transform.position + new Vector3(1, 0, 0), this.transform.rotation);
-                gg.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1, 2, 1) * 100); // 광석이나 총기가 드랍될때 랜덤한 방향으로 튕겨나가기 // 추후 랜덤한 방향으로 바꿀것
+                int g = Random.Range(0, gun.Length + 1);
+                if(g == gun.Length)
+                {
+
+                }
+                else
+                {
+                    GameObject gg = Instantiate(gun[g], this.transform.position + new Vector3(1, 0, 0), this.transform.rotation);
+                    gg.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(1, 2, 1) * 100); // 광석이나 총기가 드랍될때 랜덤한 방향으로 튕겨나가기 // 추후 랜덤한 방향으로 바꿀것
+
+                }
 
             }
-           
-            GameObject oo = Instantiate(ore, this.transform.position + new Vector3(-1, 0, 0), this.transform.rotation);
+            int o = Random.Range(0, ore.Length);
+            GameObject oo = Instantiate(ore[o], this.transform.position + new Vector3(-1, 0, 0), this.transform.rotation);
             oo.gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 2, -1) * 100);
 
             Destroy(this.gameObject);
@@ -49,8 +60,10 @@ public class M_Ore : MonoBehaviour
 
     IEnumerator Damage()
     {
+        int i = Random.Range(0,2);
+        M_SoundManager.instance.SFXPlay("oreHit", clip[i]);
         isDamage = true;
-        cnt++;
+        cnt--;
         mat.material.color = Color.red;
         yield return new WaitForSeconds(0.5f);
         mat.material.color = oriCol;
