@@ -182,7 +182,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void moveScene()
     {
        
-       PhotonNetwork.LoadLevel("Shin_TestPlanet");
+       PhotonNetwork.LoadLevel("Shin_Map02 1");
 
     }
 
