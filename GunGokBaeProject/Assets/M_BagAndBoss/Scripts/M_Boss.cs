@@ -186,10 +186,11 @@ public class M_Boss : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        Debug.Log(Physics.Raycast(walkPoint, -transform.up, 12f, whatIsGround));
-        Debug.DrawRay(walkPoint, -transform.up * 12f, Color.red);
+        
         if (Physics.Raycast(walkPoint, -transform.up, 12f, whatIsGround))
         {
+            Debug.Log(Physics.Raycast(walkPoint, -transform.up, 12f, whatIsGround));
+            Debug.DrawRay(walkPoint, -transform.up * 12f, Color.red);
             Debug.Log("�ν�");
             walkPointSet = true;
         }
